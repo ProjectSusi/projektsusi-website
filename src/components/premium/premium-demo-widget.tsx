@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
-import RAGInterface from '@/components/demo/rag-interface'
+import DemoWidget from '@/components/demo/demo-widget'
 
 interface PremiumDemoWidgetProps {
   locale: string
@@ -12,10 +12,7 @@ interface PremiumDemoWidgetProps {
 const PremiumDemoWidget: React.FC<PremiumDemoWidgetProps> = ({ locale, className }) => {
   return (
     <div className={cn("w-full max-w-6xl mx-auto", className)}>
-      <RAGInterface 
-        locale={locale}
-        apiBase={typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8000'}
-      />
+      <DemoWidget locale={locale} className={className} />
     </div>
   )
 }

@@ -1,6 +1,7 @@
+import React, { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Layout from '@/components/layout/layout'
 import { 
   SwissFlag, 
@@ -16,6 +17,7 @@ import {
 import AnimatedCard from '@/components/ui/animated-card'
 import AnimatedButton from '@/components/ui/animated-button'
 import PremiumDemoWidget from '@/components/premium/premium-demo-widget'
+import LiveRAGIntegration from '@/components/demo/live-rag-integration'
 import { 
   Rocket,
   Brain,
@@ -26,7 +28,9 @@ import {
   Users,
   Award,
   Play,
-  ArrowRight
+  ArrowRight,
+  ToggleLeft,
+  ToggleRight
 } from 'lucide-react'
 
 interface DemoPageProps {
@@ -35,6 +39,7 @@ interface DemoPageProps {
 
 const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
   const isGerman = locale === 'de'
+  const [showLiveSystem, setShowLiveSystem] = useState(false)
 
   const demoFeatures = [
     {
@@ -167,7 +172,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
           </div>
         </motion.section>
 
-        {/* Demo Widget */}
+        {/* Demo Widget Section with Toggle */}
         <motion.section 
           className="py-20 bg-white"
           initial={{ opacity: 0, y: 30 }}
@@ -176,7 +181,143 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <PremiumDemoWidget locale={locale} />
+            {/* Toggle Switch */}
+            <div className="flex items-center justify-center mb-8">
+              <motion.div 
+                className="bg-gray-100 rounded-full p-1 flex items-center space-x-2"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.button
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    !showLiveSystem 
+                      ? 'bg-white text-primary shadow-lg' 
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                  onClick={() => setShowLiveSystem(false)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Play className="w-4 h-4" />
+                  <span>{isGerman ? 'Demo Modus' : 'Demo Mode'}</span>
+                </motion.button>
+                <motion.button
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    showLiveSystem 
+                      ? 'bg-white text-primary shadow-lg' 
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                  onClick={() => setShowLiveSystem(true)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Rocket className="w-4 h-4" />
+                  <span>{isGerman ? 'Live System' : 'Live System'}</span>
+                  <motion.span 
+                    className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold text-white bg-green-500 rounded-full"
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    LIVE
+                  </motion.span>
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Description Text */}
+            <motion.div 
+              className="text-center mb-8 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <p className="text-gray-600">
+                {showLiveSystem ? (
+                  <>
+                    {isGerman 
+                      ? '🔴 Sie verwenden jetzt unser produktives RAG-System. Laden Sie Ihre Dokumente hoch und erleben Sie Swiss AI in Echtzeit!'
+                      : '🔴 You are now using our production RAG system. Upload your documents and experience Swiss AI in real-time!'}
+                  </>
+                ) : (
+                  <>
+                    {isGerman 
+                      ? '🎮 Testen Sie Projekt Susi mit vorbereiteten Beispielen - keine eigenen Dokumente erforderlich.'
+                      : '🎮 Try Projekt Susi with prepared examples - no need to upload your own documents.'}
+                  </>
+                )}
+              </p>
+            </motion.div>
+
+            {/* Content Display */}
+            <AnimatePresence mode="wait">
+              {showLiveSystem ? (
+                <motion.div
+                  key="live"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <LiveRAGIntegration locale={locale} variant="embedded" height="800px" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="demo"
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <PremiumDemoWidget locale={locale} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Additional Info Cards */}
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <AnimatedCard className="p-6 text-center">
+                <Shield className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h4 className="font-bold text-gray-900 mb-2">
+                  {isGerman ? 'Swiss Security' : 'Swiss Security'}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {isGerman 
+                    ? 'Ihre Daten bleiben in der Schweiz'
+                    : 'Your data stays in Switzerland'}
+                </p>
+              </AnimatedCard>
+              
+              <AnimatedCard className="p-6 text-center">
+                <Zap className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h4 className="font-bold text-gray-900 mb-2">
+                  {isGerman ? 'Zero Hallucination' : 'Zero Hallucination'}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {isGerman 
+                    ? 'Nur verifizierte Antworten'
+                    : 'Only verified answers'}
+                </p>
+              </AnimatedCard>
+              
+              <AnimatedCard className="p-6 text-center">
+                <MessageSquare className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h4 className="font-bold text-gray-900 mb-2">
+                  {isGerman ? 'Multi-Language' : 'Multi-Language'}
+                </h4>
+                <p className="text-sm text-gray-600">
+                  {isGerman 
+                    ? 'DE, FR, IT, EN unterstützt'
+                    : 'DE, FR, IT, EN supported'}
+                </p>
+              </AnimatedCard>
+            </motion.div>
           </div>
         </motion.section>
 
