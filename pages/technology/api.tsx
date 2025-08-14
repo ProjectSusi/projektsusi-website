@@ -368,7 +368,7 @@ console.log(result.answer);`
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
                 <AnimatedButton 
-                  variant="swiss"
+                  variant="primary"
                   size="lg"
                   icon={<Key className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}

@@ -371,7 +371,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                 transition={{ duration: 0.8, delay: 1 }}
               >
                 <AnimatedButton 
-                  variant="swiss"
+                  variant="primary"
                   size="lg"
                   icon={<Zap className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
