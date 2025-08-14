@@ -61,8 +61,8 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ locale }) => {
     setShowDetails(false)
     
     // Apply consent settings
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('consent', 'update', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('consent', 'update', {
         analytics_storage: newConsent.analytics ? 'granted' : 'denied',
         ad_storage: newConsent.marketing ? 'granted' : 'denied',
         functionality_storage: newConsent.preferences ? 'granted' : 'denied'

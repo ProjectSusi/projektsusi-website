@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { buttonTap } from '@/lib/animations'
 
 interface AnimatedButtonProps extends HTMLMotionProps<"button"> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient' | 'swiss'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   children: React.ReactNode
   className?: string
@@ -31,7 +31,8 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
       secondary: 'bg-gradient-to-r from-secondary to-secondary/90 text-white hover:from-secondary/90 hover:to-secondary/80 shadow-lg hover:shadow-xl',
       outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
       ghost: 'text-foreground hover:bg-accent hover:text-accent-foreground',
-      gradient: 'bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 shadow-lg hover:shadow-xl'
+      gradient: 'bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 shadow-lg hover:shadow-xl',
+      swiss: 'bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 shadow-lg hover:shadow-xl'
     }
 
     const sizes = {

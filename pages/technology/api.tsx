@@ -730,7 +730,7 @@ console.log(result.answer);`
                     </ul>
 
                     <AnimatedButton 
-                      variant={tier.tier === 'Professional' ? 'swiss' : 'outline'}
+                      variant={tier.tier === 'Professional' ? 'primary' : 'outline'}
                       size="lg"
                       className="w-full"
                       onClick={() => window.location.href = '/contact'}
