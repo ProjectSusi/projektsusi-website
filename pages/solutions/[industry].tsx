@@ -1,5 +1,4 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { motion } from 'framer-motion'
 import Layout from '@/components/layout/layout'
 import { 
@@ -625,14 +624,10 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const industries = ['banking', 'pharma', 'manufacturing', 'government']
-  const locales = ['de', 'en']
   
-  const paths = industries.flatMap(industry =>
-    locales.map(locale => ({
-      params: { industry },
-      locale
-    }))
-  )
+  const paths = industries.map(industry => ({
+    params: { industry }
+  }))
 
   return {
     paths,
@@ -640,13 +635,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const industry = params?.industry as string
 
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'de', ['common'])),
-      locale: locale ?? 'de',
+      locale: 'de',
       industry
     },
   }

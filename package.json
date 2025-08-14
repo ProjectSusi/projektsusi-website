@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "export": "next export",
+    "deploy": "npm run build"
   },
   "dependencies": {
     "@next/font": "14.0.4",
