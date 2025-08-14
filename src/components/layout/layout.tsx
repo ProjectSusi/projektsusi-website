@@ -10,6 +10,7 @@ import ScrollProgress from '@/components/ui/scroll-progress'
 import SmoothScroll from '@/components/ui/smooth-scroll'
 import ScrollToTop from '@/components/ui/scroll-to-top'
 import CookieBanner from '@/components/ui/cookie-banner'
+import SEOHead from '@/components/seo/seo-head'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 
 // Font configuration
@@ -27,15 +28,25 @@ const jetbrainsMono = JetBrains_Mono({
 
 interface LayoutProps {
   children: React.ReactNode
+  seo?: {
+    title?: string
+    description?: string
+    keywords?: string
+    ogImage?: string
+    ogType?: 'website' | 'article' | 'product'
+    noindex?: boolean
+    canonical?: string
+  }
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, seo }) => {
   const router = useRouter()
   const { locale = 'de' } = router
 
   return (
     <SmoothScroll>
       <div className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen flex flex-col bg-white`}>
+        <SEOHead {...seo} />
         <ScrollProgress />
         
         <motion.div

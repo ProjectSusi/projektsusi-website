@@ -38,7 +38,8 @@ import {
   Send,
   CheckCircle,
   Heart,
-  Building
+  Building,
+  X
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -58,18 +59,54 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [error, setError] = useState('')
 
   const isGerman = locale === 'de'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError('')
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      const result = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(result.error || result.message || 'Form submission failed')
+      }
+      
       setShowSuccess(true)
-    }, 2000)
+      // Reset form
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        industry: '',
+        message: '',
+        interest: 'beta'
+      })
+      
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setError(
+        error instanceof Error 
+          ? error.message 
+          : isGerman 
+            ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.'
+            : 'An error occurred. Please try again later.'
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -541,6 +578,63 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                           : 'Tell us about your project and how we can help...'}
                       />
                     </div>
+
+                    {/* Error Message */}
+                    <AnimatePresence>
+                      {error && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="p-4 bg-red-50 border border-red-200 rounded-lg"
+                        >
+                          <div className="flex items-center space-x-2">
+                            <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                              <X className="w-3 h-3 text-white" />
+                            </div>
+                            <p className="text-red-700 text-sm">{error}</p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Success Message */}
+                    <AnimatePresence>
+                      {showSuccess && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          className="p-6 bg-green-50 border border-green-200 rounded-lg text-center"
+                        >
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.2, type: "spring" }}
+                            className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                          >
+                            <CheckCircle className="w-6 h-6 text-white" />
+                          </motion.div>
+                          <h3 className="text-lg font-semibold text-green-800 mb-2">
+                            {isGerman ? 'Erfolgreich gesendet!' : 'Successfully sent!'}
+                          </h3>
+                          <p className="text-green-700 text-sm">
+                            {isGerman 
+                              ? 'Vielen Dank für Ihr Interesse! Wir melden uns innerhalb von 24 Stunden bei Ihnen.'
+                              : 'Thank you for your interest! We will get back to you within 24 hours.'
+                            }
+                          </p>
+                          <motion.button
+                            onClick={() => setShowSuccess(false)}
+                            className="mt-4 text-green-600 hover:text-green-800 text-sm font-medium"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            {isGerman ? 'Schließen' : 'Close'}
+                          </motion.button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}

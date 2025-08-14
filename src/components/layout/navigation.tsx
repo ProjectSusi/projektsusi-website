@@ -3,9 +3,12 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Menu, X, ChevronDown, Globe, Shield, Zap } from 'lucide-react'
+import { Menu, X, ChevronDown, Globe, Shield, Zap, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { motion, AnimatePresence } from 'framer-motion'
+import { mobileMenuSlide } from '@/lib/animations'
+import SearchDialog from '@/components/ui/search-dialog'
 
 interface NavigationProps {
   locale: string
@@ -15,6 +18,7 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [searchOpen, setSearchOpen] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -135,6 +139,18 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
     setIsOpen(false)
   }
 
+  // Global search shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setSearchOpen(true)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
@@ -253,6 +269,26 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
               </Link>
             </div>
 
+            {/* Search Button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className={cn(
+                "hidden md:flex items-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors",
+                scrolled 
+                  ? "text-muted-foreground hover:text-primary bg-gray-100 hover:bg-gray-200" 
+                  : "text-white/70 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm"
+              )}
+            >
+              <Search className="w-4 h-4" />
+              <span className="hidden lg:block">{isGerman ? 'Suchen' : 'Search'}</span>
+              <kbd className={cn(
+                "ml-2 px-1.5 py-0.5 text-xs rounded border",
+                scrolled ? "bg-white border-gray-300" : "bg-white/20 border-white/30 text-white/90"
+              )}>
+                ⌘K
+              </kbd>
+            </button>
+
             {/* CTA Buttons */}
             <div className="hidden md:flex items-center space-x-3">
               <Button 
@@ -281,26 +317,41 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={cn(
-                "lg:hidden p-2 rounded-md transition-colors",
+                "lg:hidden p-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary",
                 scrolled ? "text-secondary hover:text-primary" : "text-white hover:text-primary"
               )}
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <motion.div
+                animate={{ rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </motion.div>
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-t shadow-lg">
-            <div className="p-4 space-y-4">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              className="lg:hidden absolute top-full left-0 right-0 bg-white border-t shadow-lg"
+              variants={mobileMenuSlide}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className="p-4 space-y-4 max-h-screen overflow-y-auto">
               {mainNavItems.map((item, index) => (
                 <div key={index}>
                   {item.dropdown ? (
                     <div>
                       <button
                         onClick={() => toggleDropdown(`mobile-${item.key}`)}
-                        className="flex items-center justify-between w-full text-left text-secondary hover:text-primary font-medium"
+                        className="flex items-center justify-between w-full text-left text-secondary hover:text-primary font-medium py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded"
+                        aria-expanded={activeDropdown === `mobile-${item.key}`}
                       >
                         {item.label}
                         <ChevronDown className={cn(
@@ -308,26 +359,35 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
                           activeDropdown === `mobile-${item.key}` && "rotate-180"
                         )} />
                       </button>
-                      {activeDropdown === `mobile-${item.key}` && (
-                        <div className="mt-2 ml-4 space-y-2">
-                          {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                            <Link
-                              key={dropdownIndex}
-                              href={dropdownItem.href}
-                              onClick={closeDropdowns}
-                              className="block text-sm text-muted-foreground hover:text-primary"
-                            >
-                              {dropdownItem.icon} {dropdownItem.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+                      <AnimatePresence>
+                        {activeDropdown === `mobile-${item.key}` && (
+                          <motion.div 
+                            className="mt-2 ml-4 space-y-2"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                              <Link
+                                key={dropdownIndex}
+                                href={dropdownItem.href}
+                                onClick={closeDropdowns}
+                                className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary py-2 px-3 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+                              >
+                                <span>{dropdownItem.icon}</span>
+                                <span>{dropdownItem.label}</span>
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
                     <Link
                       href={item.href!}
                       onClick={closeDropdowns}
-                      className="block text-secondary hover:text-primary font-medium"
+                      className="block text-secondary hover:text-primary font-medium py-2 px-3 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
                     >
                       {item.label}
                     </Link>
@@ -336,6 +396,48 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
               ))}
               
               <div className="pt-4 border-t space-y-3">
+                {/* Mobile Search */}
+                <button
+                  onClick={() => {
+                    setSearchOpen(true)
+                    closeDropdowns()
+                  }}
+                  className="w-full flex items-center justify-start space-x-3 p-3 bg-gray-50 rounded-lg text-secondary hover:text-primary transition-colors"
+                >
+                  <Search className="w-4 h-4" />
+                  <span>{isGerman ? 'Suchen' : 'Search'}</span>
+                  <kbd className="ml-auto px-2 py-1 text-xs bg-white rounded border">⌘K</kbd>
+                </button>
+                
+                {/* Language Toggle for Mobile */}
+                <div className="flex items-center justify-center space-x-2 mb-4">
+                  <span className="text-sm font-medium text-muted-foreground">Language:</span>
+                  <Link
+                    href={router.asPath}
+                    locale="de"
+                    className={cn(
+                      "px-3 py-1 text-sm font-medium rounded transition-colors",
+                      locale === 'de' 
+                        ? "bg-primary text-white" 
+                        : "text-secondary hover:text-primary border border-gray-300"
+                    )}
+                  >
+                    DE
+                  </Link>
+                  <Link
+                    href={router.asPath}
+                    locale="en"
+                    className={cn(
+                      "px-3 py-1 text-sm font-medium rounded transition-colors",
+                      locale === 'en' 
+                        ? "bg-primary text-white" 
+                        : "text-secondary hover:text-primary border border-gray-300"
+                    )}
+                  >
+                    EN
+                  </Link>
+                </div>
+                
                 <Button variant="outline" className="w-full justify-start" asChild>
                   <Link href="/demo" onClick={closeDropdowns}>
                     <Globe className="w-4 h-4 mr-2" />
@@ -349,9 +451,19 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
+        {/* Search Dialog */}
+        <AnimatePresence>
+          <SearchDialog 
+            isOpen={searchOpen} 
+            onClose={() => setSearchOpen(false)} 
+            locale={locale}
+          />
+        </AnimatePresence>
       </nav>
 
       {/* Backdrop for dropdowns */}

@@ -4,6 +4,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Shield, Globe, Github, Linkedin, Twitter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import NewsletterSignup from '@/components/ui/newsletter-signup'
+import TrustIndicators from '@/components/ui/trust-indicators'
 
 interface FooterProps {
   locale: string
@@ -83,38 +85,10 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
       {/* Newsletter Section */}
       <div className="border-b border-white/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-alpine rounded-full flex items-center justify-center">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold mb-4">
-              {isGerman 
-                ? 'Bleiben Sie über Swiss AI Innovationen informiert' 
-                : 'Stay informed about Swiss AI innovations'}
-            </h3>
-            <p className="text-white/80 mb-6">
-              {isGerman 
-                ? 'Erhalten Sie monatliche Updates über neue Features, Compliance-Updates und Erfolgsgeschichten.'
-                : 'Get monthly updates on new features, compliance updates, and success stories.'}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder={isGerman ? 'Ihre E-Mail-Adresse' : 'Your email address'}
-                className="flex-1 px-4 py-3 rounded-md text-secondary bg-white focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <Button variant="swiss" size="lg" className="px-8">
-                {isGerman ? 'Anmelden' : 'Subscribe'}
-              </Button>
-            </div>
-            <p className="text-xs text-white/60 mt-4">
-              {isGerman 
-                ? 'Wir respektieren Ihre Privatsphäre. Jederzeit abbestellbar.'
-                : 'We respect your privacy. Unsubscribe at any time.'}
-            </p>
-          </div>
+          <NewsletterSignup 
+            locale={locale} 
+            className="bg-transparent text-white"
+          />
         </div>
       </div>
 
@@ -306,8 +280,13 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
           </div>
         </div>
 
+        {/* Trust Indicators */}
+        <div className="py-8 border-t border-white/20">
+          <TrustIndicators locale={locale} variant="footer" />
+        </div>
+
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/60">
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/60 pt-8 border-t border-white/20">
           <div className="mb-4 md:mb-0">
             <p>
               © 2024 Projekt Susi AG. {isGerman ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}

@@ -12,6 +12,8 @@ import Stats from '@/components/sections/stats'
 import Testimonials from '@/components/sections/testimonials'
 import CTA from '@/components/sections/cta'
 import FAQ from '@/components/sections/faq'
+import NewsletterSignup from '@/components/ui/newsletter-signup'
+import TrustIndicators from '@/components/ui/trust-indicators'
 
 interface HomeProps {
   locale: string
@@ -49,17 +51,17 @@ export default function Home({ locale }: HomeProps) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Projekt Susi",
-              "url": "https://projektsusi.ch",
+              "url": "https://ai.sirth.ch",
               "description": pageDescription,
               "inLanguage": locale,
               "publisher": {
                 "@type": "Organization",
                 "name": "Projekt Susi AG",
-                "logo": "https://projektsusi.ch/logo.png"
+                "logo": "https://ai.sirth.ch/logo.png"
               },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://projektsusi.ch/search?q={search_term_string}",
+                "target": "https://ai.sirth.ch/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -75,7 +77,7 @@ export default function Home({ locale }: HomeProps) {
               "@type": "SoftwareApplication",
               "name": "Projekt Susi RAG System",
               "description": pageDescription,
-              "url": "https://projektsusi.ch",
+              "url": "https://ai.sirth.ch",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web",
               "offers": {
@@ -161,6 +163,16 @@ export default function Home({ locale }: HomeProps) {
           <Solutions locale={locale} />
         </motion.section>
 
+        {/* Trust Indicators Section */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <TrustIndicators locale={locale} />
+        </motion.section>
+
         {/* Testimonials Section */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}
@@ -179,6 +191,19 @@ export default function Home({ locale }: HomeProps) {
           transition={{ duration: 0.8 }}
         >
           <FAQ locale={locale} />
+        </motion.section>
+
+        {/* Newsletter Section */}
+        <motion.section
+          className="py-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <NewsletterSignup locale={locale} />
+          </div>
         </motion.section>
 
         {/* CTA Section */}

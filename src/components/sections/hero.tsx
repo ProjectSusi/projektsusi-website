@@ -6,6 +6,7 @@ import { Play, Shield, Zap, CheckCircle, ArrowRight, Star, Users, Building } fro
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import DemoWidget from '@/components/demo/demo-widget'
+import TrustIndicators from '@/components/ui/trust-indicators'
 import { cn, trackEvent } from '@/lib/utils'
 
 interface HeroProps {
@@ -252,6 +253,11 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
                     <span className="text-white font-medium text-sm">{company.name}</span>
                   </div>
                 ))}
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="my-12">
+                <TrustIndicators locale={locale} variant="hero" />
               </div>
 
               {/* Stats */}

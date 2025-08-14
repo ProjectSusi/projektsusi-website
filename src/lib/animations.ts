@@ -32,9 +32,9 @@ export const fadeIn: Variants = {
 export const fadeInUp: Variants = {
   hidden: { 
     opacity: 0,
-    y: 40,
+    y: 15,
     transition: {
-      duration: 0.4,
+      duration: 0.3,
       ease: "easeOut"
     }
   },
@@ -42,7 +42,7 @@ export const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
       ease: "easeOut"
     }
   }
@@ -178,9 +178,9 @@ export const pageTransition: Variants = {
 
 // Floating animation (toned down)
 export const float = {
-  y: [0, -5, 0],
+  y: [0, -2, 0],
   transition: {
-    duration: 4,
+    duration: 6,
     repeat: Infinity,
     ease: "easeInOut"
   }
@@ -200,15 +200,15 @@ export const pulse = {
 export const scrollReveal: Variants = {
   hidden: { 
     opacity: 0,
-    y: 60,
-    scale: 0.95
+    y: 20,
+    scale: 0.98
   },
   visible: { 
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.8,
+      duration: 0.4,
       ease: [0.25, 0.46, 0.45, 0.94]
     }
   }
@@ -338,9 +338,9 @@ export const scrollSlideRight: Variants = {
 
 // Floating animations (toned down)
 export const floatingAnimation = {
-  y: [-5, 5, -5],
+  y: [-2, 2, -2],
   transition: {
-    duration: 4,
+    duration: 6,
     repeat: Infinity,
     ease: "easeInOut"
   }
