@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Home",
+    "solutions": "Solutions",
+    "technology": "Technology",
+    "compliance": "Compliance",
+    "pricing": "Pricing", 
+    "about": "About",
+    "contact": "Contact",
+    "demo": "Demo"
+  },
+  "hero": {
+    "title": "The Swiss AI Solution for Enterprise Intelligence",
+    "subtitle": "Complete Data Sovereignty + Regulatory Excellence + Zero Hallucination AI",
+    "cta_demo": "Start Live Demo",
+    "cta_consultation": "Request Consultation"
+  },
+  "benefits": {
+    "title": "Why Swiss Enterprises Choose Projekt Susi",
+    "subtitle": "The only RAG solution specifically engineered for Swiss compliance, data privacy, and multilingual requirements.",
+    "data_sovereignty": "Swiss Data Sovereignty",
+    "zero_hallucination": "Zero-Hallucination AI",
+    "quick_setup": "5-Minute Setup"
+  },
+  "solutions": {
+    "title": "Tailored for Swiss Industries", 
+    "subtitle": "Specialized RAG solutions with industry-specific compliance requirements and workflows.",
+    "banking": "Banking & Finance",
+    "pharma": "Pharma & Life Sciences",
+    "manufacturing": "Manufacturing",
+    "government": "Government"
+  },
+  "pricing": {
+    "title": "Pricing & Plans",
+    "subtitle": "Fair, transparent pricing with no hidden costs. All plans include Swiss data sovereignty and compliance.",
+    "starter": "Starter",
+    "professional": "Professional", 
+    "enterprise": "Enterprise",
+    "custom": "Custom"
+  },
+  "footer": {
+    "newsletter_title": "Stay informed about Swiss AI innovations",
+    "newsletter_description": "Get monthly updates on new features, compliance updates, and success stories.",
+    "subscribe": "Subscribe",
+    "contact": "Contact",
+    "swiss_hosting": "Swiss Hosting",
+    "iso_certified": "ISO 27001 certified",
+    "all_rights_reserved": "All rights reserved.",
+    "made_in_switzerland": "Proudly engineered in Switzerland 🇨🇭 for Swiss businesses"
+  },
+  "common": {
+    "learn_more": "Learn more",
+    "get_started": "Get started",
+    "contact_us": "Contact us",
+    "request_demo": "Request demo",
+    "read_more": "Read more", 
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "name": "Name",
+    "company": "Company",
+    "message": "Message",
+    "send": "Send",
+    "cancel": "Cancel",
+    "save": "Save",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

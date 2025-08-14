@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "solutions": "Lösungen",
+    "technology": "Technologie",
+    "compliance": "Compliance", 
+    "pricing": "Preise",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "demo": "Demo"
+  },
+  "hero": {
+    "title": "Die Schweizer KI-Lösung für Schweizer Unternehmen",
+    "subtitle": "Vollständige Datenkontrolle + Regulatorische Compliance + Mehrsprachiger Support",
+    "cta_demo": "Live Demo starten",
+    "cta_consultation": "Beratung anfordern"
+  },
+  "benefits": {
+    "title": "Warum Schweizer Unternehmen Projekt Susi wählen",
+    "subtitle": "Die einzige RAG-Lösung, die speziell für Schweizer Compliance, Datenschutz und Mehrsprachigkeit entwickelt wurde.",
+    "data_sovereignty": "Swiss Data Sovereignty",
+    "zero_hallucination": "Zero-Hallucination AI",
+    "quick_setup": "5-Minuten Setup"
+  },
+  "solutions": {
+    "title": "Massgeschneidert für Schweizer Branchen",
+    "subtitle": "Spezialisierte RAG-Lösungen mit branchenspezifischen Compliance-Anforderungen und Workflows.",
+    "banking": "Finanzwesen",
+    "pharma": "Pharma & Life Sciences",
+    "manufacturing": "Produktion", 
+    "government": "Öffentlicher Sektor"
+  },
+  "pricing": {
+    "title": "Preise & Pakete",
+    "subtitle": "Faire, transparente Preise ohne versteckte Kosten. Alle Pakete beinhalten Swiss Data Sovereignty und Compliance.",
+    "starter": "Starter",
+    "professional": "Professional",
+    "enterprise": "Enterprise",
+    "custom": "Custom"
+  },
+  "footer": {
+    "newsletter_title": "Bleiben Sie über Swiss AI Innovationen informiert",
+    "newsletter_description": "Erhalten Sie monatliche Updates über neue Features, Compliance-Updates und Erfolgsgeschichten.",
+    "subscribe": "Anmelden",
+    "contact": "Kontakt",
+    "swiss_hosting": "Swiss Hosting",
+    "iso_certified": "ISO 27001 zertifiziert",
+    "all_rights_reserved": "Alle Rechte vorbehalten.",
+    "made_in_switzerland": "Stolz entwickelt in der Schweiz 🇨🇭 für Schweizer Unternehmen"
+  },
+  "common": {
+    "learn_more": "Mehr erfahren",
+    "get_started": "Loslegen",
+    "contact_us": "Kontakt aufnehmen",
+    "request_demo": "Demo anfordern",
+    "read_more": "Weiterlesen",
+    "close": "Schliessen",
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolgreich",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Adresse",
+    "name": "Name",
+    "company": "Unternehmen",
+    "message": "Nachricht",
+    "send": "Senden",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "yes": "Ja",
+    "no": "Nein"
+  }
+}
