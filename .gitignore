@@ -9,6 +9,9 @@ yarn-error.log*
 out/
 build/
 
+# Next.js cache (don't deploy this)
+.next/cache/
+
 # Runtime data
 pids
 *.pid
