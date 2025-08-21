@@ -1,0 +1,1 @@
+Quality management system test - this document contains information about Swiss quality standards and audit procedures for testing the RAG system.

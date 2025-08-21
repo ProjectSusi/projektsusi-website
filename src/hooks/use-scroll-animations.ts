@@ -69,7 +69,10 @@ export const useStaggeredScrollAnimation = (
     amount: threshold, 
     once: triggerOnce 
   })
-  const animations = Array.from({ length: itemCount }, () => useAnimation())
+  const animations = Array.from({ length: itemCount }, (_, index) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return useAnimation()
+  })
 
   useEffect(() => {
     if (isInView) {

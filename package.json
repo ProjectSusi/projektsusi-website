@@ -5,12 +5,24 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/generate-sitemap.js && next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
-    "export": "next export",
-    "deploy": "npm run build"
+    "export": "echo 'Static export is configured via output: export in next.config.js'",
+    "deploy": "npm run build",
+    "analyze": "ANALYZE=true npm run build",
+    "build:analyze": "npm run analyze",
+    "serve": "npx serve out",
+    "clean": "rm -rf .next out",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "cms:reset": "rm -rf content/cms-content.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "validate": "npm run type-check && npm run lint && npm run format:check"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
@@ -24,7 +36,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.303.0",
-    "next": "14.0.4",
+    "next": "^14.2.32",
     "next-i18next": "^15.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,6 +45,9 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.7.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
@@ -40,10 +55,14 @@
     "@typescript-eslint/parser": "^6.17.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4",
+    "eslint-config-next": "^14.2.32",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "postcss": "^8.4.32",
+    "prettier": "^3.1.1",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "webpack-bundle-analyzer": "^4.10.1"
   },
   "engines": {
     "node": ">=18.0.0"

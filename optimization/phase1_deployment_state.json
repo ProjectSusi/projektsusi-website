@@ -1,0 +1,9 @@
+{
+  "started_at": 1755709866.037536,
+  "phase": "deployment",
+  "status": "starting",
+  "components": {},
+  "rollback_info": {
+    "backup_dir": "backups/phase1_backup_1755709869"
+  }
+}

@@ -1,0 +1,44 @@
+# CODEOWNERS for ProjectSusi
+# This file defines who is responsible for code review in different parts of the codebase
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @ProjectSusi/core-team
+
+# Core application code
+/core/ @ProjectSusi/backend-team
+/core/services/ @ProjectSusi/backend-team @ProjectSusi/architects
+/core/routers/ @ProjectSusi/api-team
+
+# Frontend and UI
+/static/ @ProjectSusi/frontend-team
+*.html @ProjectSusi/frontend-team
+*.css @ProjectSusi/frontend-team
+*.js @ProjectSusi/frontend-team
+
+# Configuration and deployment
+/deployment/ @ProjectSusi/devops-team
+/config/ @ProjectSusi/devops-team
+*.yml @ProjectSusi/devops-team
+*.yaml @ProjectSusi/devops-team
+Dockerfile* @ProjectSusi/devops-team
+
+# Documentation
+*.md @ProjectSusi/documentation-team
+/docs/ @ProjectSusi/documentation-team
+
+# Tests
+/tests/ @ProjectSusi/qa-team
+test_*.py @ProjectSusi/qa-team
+
+# Security-sensitive files
+/core/utils/security.py @ProjectSusi/security-team
+/core/services/auth_service.py @ProjectSusi/security-team
+.env* @ProjectSusi/security-team
+
+# CI/CD workflows
+/.github/ @ProjectSusi/devops-team @ProjectSusi/core-team
+
+# Dependencies
+requirements.txt @ProjectSusi/backend-team @ProjectSusi/security-team
+package*.json @ProjectSusi/frontend-team @ProjectSusi/security-team

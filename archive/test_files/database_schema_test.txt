@@ -1,0 +1,1 @@
+FINAL SCHEMA TEST: This document tests the fixed database schema with document_id in embeddings table. Timestamp: Tue Aug 12 05:16:33 PM CEST 2025

@@ -1,0 +1,250 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rag-app-secret
+  namespace: rag-system
+type: Opaque
+data:
+  # rag-secret-key-2025 (base64 encoded)
+  secret-key: cmFnLXNlY3JldC1rZXktMjAyNQ==
+  # rag_user / rag123 (base64 encoded)
+  database-user: cmFnX3VzZXI=
+  database-password: cmFnMTIz
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rag-documents-pvc
+  namespace: rag-system
+spec:
+  accessModes:
+    - ReadWriteMany  # Multiple pods can access
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: nfs-storage  # Use NFS for shared document storage
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-app
+  namespace: rag-system
+  labels:
+    app: rag-app
+    component: api
+spec:
+  replicas: 3  # Horizontal scaling
+  selector:
+    matchLabels:
+      app: rag-app
+  template:
+    metadata:
+      labels:
+        app: rag-app
+        component: api
+    spec:
+      containers:
+      - name: rag-app
+        image: projectsusi/rag-system:latest
+        ports:
+        - containerPort: 8000
+        env:
+        # Application config
+        - name: RAG_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: RAG_ENV
+        - name: RAG_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: RAG_HOST
+        - name: RAG_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: RAG_PORT
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rag-app-secret
+              key: secret-key
+        
+        # Database config
+        - name: DATABASE_URL
+          value: "postgresql://$(DATABASE_USER):$(DATABASE_PASSWORD)@$(DATABASE_HOST):$(DATABASE_PORT)/$(DATABASE_NAME)"
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: DATABASE_HOST
+        - name: DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: DATABASE_PORT
+        - name: DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: DATABASE_NAME
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: rag-app-secret
+              key: database-user
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rag-app-secret
+              key: database-password
+        
+        # Redis config
+        - name: REDIS_URL
+          value: "redis://$(REDIS_HOST):$(REDIS_PORT)/$(REDIS_DB)"
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: REDIS_PORT
+        - name: REDIS_DB
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: REDIS_DB
+        
+        # Ollama config
+        - name: OLLAMA_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: OLLAMA_BASE_URL
+        - name: OLLAMA_DEFAULT_MODEL
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: OLLAMA_DEFAULT_MODEL
+        
+        # RAG config
+        - name: RAG_SIMILARITY_THRESHOLD
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: RAG_SIMILARITY_THRESHOLD
+        - name: RAG_MAX_RESULTS
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: RAG_MAX_RESULTS
+        - name: RAG_REQUIRE_SOURCES
+          valueFrom:
+            configMapKeyRef:
+              name: rag-config
+              key: RAG_REQUIRE_SOURCES
+        
+        volumeMounts:
+        - name: document-storage
+          mountPath: /app/data/storage
+        - name: logs
+          mountPath: /app/logs
+        
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        
+        livenessProbe:
+          httpGet:
+            path: /api/v1/health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+        
+        readinessProbe:
+          httpGet:
+            path: /api/v1/health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        
+        # Graceful shutdown
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 15"]
+      
+      volumes:
+      - name: document-storage
+        persistentVolumeClaim:
+          claimName: rag-documents-pvc
+      - name: logs
+        emptyDir: {}
+      
+      # Anti-affinity to spread pods across nodes
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - rag-app
+              topologyKey: kubernetes.io/hostname
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-app-service
+  namespace: rag-system
+  labels:
+    app: rag-app
+spec:
+  selector:
+    app: rag-app
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rag-app-hpa
+  namespace: rag-system
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rag-app
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80

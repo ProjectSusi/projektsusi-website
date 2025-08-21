@@ -1,0 +1,1 @@
+FINAL TEST: This document will test if the RAG system works with proper database schema!

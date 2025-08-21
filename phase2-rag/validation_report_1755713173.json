@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-08-20T20:06:13.437709",
+  "tests_passed": 4,
+  "tests_failed": 1,
+  "success_rate": 80.0,
+  "results": {
+    "system_health": true,
+    "phase1_status": true,
+    "response_times": {
+      "average": 22.55098819732666,
+      "median": 18.947839736938477,
+      "p95": 40.0043249130249,
+      "samples": 10
+    },
+    "concurrent_users": {
+      "total_users": 20,
+      "successful": 20,
+      "failed": 0,
+      "success_rate": 100.0
+    },
+    "cache_efficiency": {
+      "first_query_ms": 28.8236141204834,
+      "cached_avg_ms": 24.486422538757324,
+      "speedup_factor": 1.1771263880977767
+    },
+    "performance_improvement": {
+      "response_time_improvement": 74.94334644741483,
+      "concurrent_capacity_improvement": 50.0,
+      "combined_improvement": 62.47167322370741
+    }
+  }
+}

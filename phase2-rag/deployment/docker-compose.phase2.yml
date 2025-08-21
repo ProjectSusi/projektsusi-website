@@ -1,0 +1,265 @@
+version: '3.8'
+
+services:
+  # Phase 2 Enhanced RAG System
+  rag-system-phase2:
+    build:
+      context: .
+      dockerfile: Dockerfile.phase2
+      args:
+        - VERSION=phase2-v1.0.0
+        - BUILD_HASH=abc123def456
+    image: rag-system:phase2-v1.0.0
+    container_name: rag-system-phase2
+    ports:
+      - "8001:8000"  # Different port for A/B testing
+    environment:
+      - ENVIRONMENT=production
+      - PHASE=phase2
+      - VECTOR_OPTIMIZATION=enabled
+      - ASYNC_CONCURRENCY=enabled
+      - UI_OPTIMIZATION=enabled
+      - REDIS_URL=redis://redis-cluster:6379
+      - DATABASE_URL=postgresql://user:password@postgres-primary:5432/rag_db
+      - MONITORING_ENABLED=true
+      - PROMETHEUS_PORT=9090
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./phase2-rag/vector-optimization:/app/vector_optimization
+      - ./phase2-rag/concurrency:/app/concurrency
+      - ./phase2-rag/frontend:/app/frontend
+      - vector-index-phase2:/app/data/vector_index
+      - model-cache-phase2:/app/data/models
+    depends_on:
+      - postgres-primary
+      - redis-cluster
+      - prometheus
+      - grafana
+    networks:
+      - rag-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  # Load Balancer for A/B Testing
+  nginx-ab-proxy:
+    image: nginx:alpine
+    container_name: nginx-ab-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./phase2-rag/deployment/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./phase2-rag/deployment/nginx-ab.conf:/etc/nginx/conf.d/ab-testing.conf:ro
+      - ssl-certs:/etc/ssl/certs
+    depends_on:
+      - rag-system  # Phase 1 (blue)
+      - rag-system-phase2  # Phase 2 (green)
+    networks:
+      - rag-network
+    restart: unless-stopped
+    environment:
+      - PHASE1_WEIGHT=90
+      - PHASE2_WEIGHT=10
+
+  # Redis Cluster for Enhanced Caching
+  redis-cluster:
+    image: redis:7-alpine
+    container_name: redis-cluster
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --replica-read-only no --maxmemory 1gb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data-phase2:/data
+    networks:
+      - rag-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL Primary (enhanced for Phase 2)
+  postgres-primary:
+    image: postgres:15-alpine
+    container_name: postgres-primary
+    environment:
+      - POSTGRES_DB=rag_db
+      - POSTGRES_USER=rag_user
+      - POSTGRES_PASSWORD=secure_password_123
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - postgres-data-phase2:/var/lib/postgresql/data
+      - ./phase2-rag/deployment/init-phase2.sql:/docker-entrypoint-initdb.d/init-phase2.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - rag-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag_user -d rag_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Prometheus for Metrics Collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus-phase2
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./phase2-rag/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./phase2-rag/monitoring/rules:/etc/prometheus/rules:ro
+      - prometheus-data-phase2:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=15d'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+    networks:
+      - rag-network
+    restart: unless-stopped
+
+  # Grafana for Visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana-phase2
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data-phase2:/var/lib/grafana
+      - ./phase2-rag/monitoring/grafana:/etc/grafana/provisioning:ro
+    networks:
+      - rag-network
+    restart: unless-stopped
+
+  # Vector Database (Optimized for Phase 2)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant-phase2
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant-data-phase2:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+      - QDRANT__SERVICE__HTTP_PORT=6333
+    networks:
+      - rag-network
+    restart: unless-stopped
+
+  # Load Testing Service
+  load-tester:
+    build:
+      context: .
+      dockerfile: phase2-rag/testing/Dockerfile.loadtest
+    container_name: load-tester-phase2
+    volumes:
+      - ./phase2-rag/testing:/app/testing
+      - load-test-results:/app/results
+    environment:
+      - TARGET_URL=http://nginx-ab-proxy
+      - TEST_DURATION=300
+      - CONCURRENT_USERS=50
+      - TARGET_RESPONSE_TIME=0.080
+    networks:
+      - rag-network
+    profiles:
+      - testing
+
+  # Real-time Monitoring Service
+  monitor:
+    build:
+      context: .
+      dockerfile: phase2-rag/monitoring/Dockerfile.monitor
+    container_name: monitor-phase2
+    ports:
+      - "8765:8765"  # WebSocket server
+    volumes:
+      - ./phase2-rag/monitoring:/app/monitoring
+      - monitoring-logs:/app/logs
+    environment:
+      - API_ENDPOINT=http://nginx-ab-proxy/api
+      - REDIS_HOST=redis-cluster
+      - PROMETHEUS_PORT=9090
+      - ALERT_WEBHOOK_URL=${ALERT_WEBHOOK_URL:-}
+    networks:
+      - rag-network
+    restart: unless-stopped
+    depends_on:
+      - redis-cluster
+      - prometheus
+
+  # Backup and Recovery Service
+  backup-service:
+    image: postgres:15-alpine
+    container_name: backup-service-phase2
+    volumes:
+      - postgres-data-phase2:/source-data:ro
+      - vector-index-phase2:/source-vectors:ro
+      - backup-storage:/backups
+      - ./phase2-rag/deployment/backup-scripts:/scripts:ro
+    environment:
+      - POSTGRES_HOST=postgres-primary
+      - POSTGRES_DB=rag_db
+      - POSTGRES_USER=rag_user
+      - POSTGRES_PASSWORD=secure_password_123
+      - BACKUP_SCHEDULE=0 2 * * *  # Daily at 2 AM
+    command: /scripts/backup-cron.sh
+    networks:
+      - rag-network
+    restart: unless-stopped
+    profiles:
+      - backup
+
+volumes:
+  postgres-data-phase2:
+    driver: local
+  redis-data-phase2:
+    driver: local
+  vector-index-phase2:
+    driver: local
+  model-cache-phase2:
+    driver: local
+  prometheus-data-phase2:
+    driver: local
+  grafana-data-phase2:
+    driver: local
+  qdrant-data-phase2:
+    driver: local
+  ssl-certs:
+    driver: local
+  load-test-results:
+    driver: local
+  monitoring-logs:
+    driver: local
+  backup-storage:
+    driver: local
+
+networks:
+  rag-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

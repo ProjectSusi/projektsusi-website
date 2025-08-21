@@ -1,0 +1,173 @@
+# API endpoints configuration
+
+server {
+    listen 80;
+    server_name localhost;
+    
+    # Client body size for file uploads
+    client_max_body_size 100M;
+    client_body_buffer_size 1M;
+    
+    # Timeouts for long-running requests
+    proxy_read_timeout 300s;
+    proxy_connect_timeout 60s;
+    proxy_send_timeout 300s;
+    
+    # Main API endpoints
+    location /api/ {
+        # Rate limiting
+        limit_req zone=api burst=20 nodelay;
+        limit_conn addr 10;
+        
+        proxy_pass http://rag_backend;
+        include /etc/nginx/conf.d/proxy.conf;
+        
+        # CORS headers for API
+        add_header 'Access-Control-Allow-Origin' '$http_origin' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization' always;
+        add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
+        
+        # Handle preflight requests
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Content-Type' 'text/plain; charset=utf-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+    }
+    
+    # Document upload endpoint with specific settings
+    location /api/v1/documents {
+        # Lower rate limit for uploads
+        limit_req zone=upload burst=5 nodelay;
+        limit_conn addr 3;
+        
+        # Larger timeouts for file processing
+        proxy_read_timeout 600s;
+        proxy_send_timeout 600s;
+        
+        proxy_pass http://rag_backend;
+        include /etc/nginx/conf.d/proxy.conf;
+    }
+    
+    # Query endpoint with caching
+    location /api/v1/query {
+        # Higher rate limit for queries
+        limit_req zone=api burst=30 nodelay;
+        
+        proxy_pass http://rag_backend;
+        include /etc/nginx/conf.d/proxy.conf;
+        
+        # Cache successful responses for 5 minutes
+        proxy_cache api_cache;
+        proxy_cache_valid 200 5m;
+        proxy_cache_key "$scheme$request_method$host$request_uri$arg_q";
+        proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+        proxy_cache_background_update on;
+        proxy_cache_lock on;
+        
+        add_header X-Cache-Status $upstream_cache_status;
+    }
+    
+    # Admin interface
+    location /admin {
+        # Stricter rate limiting for admin
+        limit_req zone=general burst=10 nodelay;
+        limit_conn addr 5;
+        
+        # Add basic auth for extra security (optional)
+        # auth_basic "Admin Area";
+        # auth_basic_user_file /etc/nginx/.htpasswd;
+        
+        proxy_pass http://rag_backend;
+        include /etc/nginx/conf.d/proxy.conf;
+    }
+    
+    # Static files
+    location /static/ {
+        alias /usr/share/nginx/html/static/;
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+        
+        # Security headers for static files
+        add_header X-Content-Type-Options nosniff;
+        add_header X-Frame-Options DENY;
+    }
+    
+    # Health check endpoint
+    location /health {
+        access_log off;
+        proxy_pass http://rag_backend/health;
+        proxy_set_header Host $host;
+    }
+    
+    # Metrics endpoint (internal only)
+    location /metrics {
+        # Restrict to internal IPs
+        allow 172.20.0.0/16;  # Docker network
+        allow 127.0.0.1;
+        deny all;
+        
+        proxy_pass http://rag_backend/metrics;
+        include /etc/nginx/conf.d/proxy.conf;
+    }
+    
+    # WebSocket endpoint for real-time features
+    location /ws {
+        proxy_pass http://rag_backend;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # WebSocket specific timeouts
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
+    
+    # API documentation
+    location /docs {
+        proxy_pass http://rag_backend/docs;
+        include /etc/nginx/conf.d/proxy.conf;
+    }
+    
+    location /redoc {
+        proxy_pass http://rag_backend/redoc;
+        include /etc/nginx/conf.d/proxy.conf;
+    }
+    
+    location /openapi.json {
+        proxy_pass http://rag_backend/openapi.json;
+        include /etc/nginx/conf.d/proxy.conf;
+        
+        # Cache API spec for 1 hour
+        proxy_cache api_cache;
+        proxy_cache_valid 200 1h;
+    }
+    
+    # Root redirect
+    location = / {
+        return 301 /admin;
+    }
+    
+    # 404 handler
+    location @404 {
+        default_type application/json;
+        return 404 '{"error": "Not Found", "message": "The requested resource was not found"}';
+    }
+    
+    # Error pages
+    error_page 404 @404;
+    error_page 500 502 503 504 /50x.json;
+    
+    location = /50x.json {
+        default_type application/json;
+        return 500 '{"error": "Internal Server Error", "message": "An error occurred processing your request"}';
+    }
+}

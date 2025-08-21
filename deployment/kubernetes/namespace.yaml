@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rag-system
+  labels:
+    name: rag-system
+    app: projectsusi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rag-config
+  namespace: rag-system
+data:
+  # Application Configuration
+  RAG_ENV: "production"
+  RAG_HOST: "0.0.0.0"
+  RAG_PORT: "8000"
+  RAG_LOG_LEVEL: "info"
+  
+  # RAG Configuration
+  RAG_SIMILARITY_THRESHOLD: "0.3"
+  RAG_MAX_RESULTS: "5"
+  RAG_REQUIRE_SOURCES: "true"
+  RAG_MAX_QUERY_LENGTH: "500"
+  RAG_MAX_CONTEXT_LENGTH: "4000"
+  RAG_USE_EMOJI: "false"
+  
+  # Database Configuration
+  DATABASE_TYPE: "postgresql"
+  DATABASE_HOST: "postgresql-service"
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "rag_db"
+  
+  # Redis Configuration  
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  
+  # Ollama Configuration
+  OLLAMA_BASE_URL: "http://ollama-service:11434"
+  OLLAMA_DEFAULT_MODEL: "arlesheim-german"

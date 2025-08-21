@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 npm-debug.log*
@@ -29,6 +30,50 @@ coverage/
 .env.production.local
 
 # OS generated files
+=======
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+services/*/venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+>>>>>>> c9a42b49534be978fc101a81b057fd6560ee0f2a
 .DS_Store
 .DS_Store?
 ._*
@@ -37,6 +82,7 @@ coverage/
 ehthumbs.db
 Thumbs.db
 
+<<<<<<< HEAD
 # Editor directories and files
 .vscode/
 .idea/
@@ -60,3 +106,157 @@ temp/
 
 # TypeScript cache
 *.tsbuildinfo
+=======
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Storage directories
+storage/
+logs/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.test
+
+# Claude AI
+.claude/
+
+# Model files (AI/ML model files, not API models)
+/models/
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Redis dump
+dump.rdb
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Documentation builds
+docs/_build/
+site/
+
+# PyBuilder
+target/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Archived code (cleanup results)
+.archive/
+
+# Data files
+data/logs/
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.sqlite
+data/*.sqlite3
+
+# Additional cleanup items
+rag_database.db*
+test_download_endpoint.py
+cleanup_script.py
+CLEANUP_PLAN.md
+# Organized structure ignores
+data/storage/
+data/cache/
+data/logs/
+data/databases/
+*.db
+*.db-shm
+*.db-wal
+
+# Test artifacts
+tests/fixtures/temp/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Excel temp files
+~$*.xlsx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+>>>>>>> c9a42b49534be978fc101a81b057fd6560ee0f2a
