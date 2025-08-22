@@ -187,7 +187,7 @@ export default function CMSAdmin() {
   return (
     <>
       <Head>
-        <title>CMS Admin - Projekt Susi</title>
+        <title>CMS Admin - Temora AI</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
@@ -232,7 +232,7 @@ export default function CMSAdmin() {
         {message && (
           <div className={cn(
             "fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg",
-            message.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+            message.type === 'success' ? 'bg-green-500 text-white' : 'bg-primary-500 text-white'
           )}>
             {message.text}
           </div>
@@ -450,7 +450,7 @@ function ContentViewer({
             size="sm"
             onClick={onDelete}
             icon={<Trash2 className="w-4 h-4" />}
-            className="text-red-600 hover:bg-red-50"
+            className="text-primary-600 hover:bg-primary-50"
           >
             Delete
           </AnimatedButton>

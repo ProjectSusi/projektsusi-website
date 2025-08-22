@@ -112,7 +112,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
       title: isGerman ? 'Ende-zu-Ende Verschlüsselung' : 'End-to-End Encryption',
       description: isGerman ? 'AES-256 Verschlüsselung für alle Daten in Ruhe und Übertragung' : 'AES-256 encryption for all data at rest and in transit',
       icon: Lock,
-      color: 'text-red-500'
+      color: 'text-primary-500'
     },
     {
       title: isGerman ? 'Swiss Data Centers' : 'Swiss Data Centers',
@@ -171,7 +171,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -236,7 +236,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                 {[
                   { icon: CheckCircle, label: 'FADP Ready', color: 'text-green-500' },
                   { icon: Award, label: 'ISO 27001 Prep', color: 'text-primary' },
-                  { icon: Building, label: '100% Swiss Hosted', color: 'text-red-500' }
+                  { icon: Building, label: '100% Swiss Hosted', color: 'text-primary-500' }
                 ].map((item, index) => (
                   <motion.div key={index} className="text-center" variants={staggerItem}>
                     <AnimatedCard className="p-4 mb-2" hover={true} glass={true}>
@@ -387,7 +387,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Security Features */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50 relative overflow-hidden">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{
@@ -466,7 +466,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                       transition={{ duration: 1, delay: 0.3 }}
                     >
                       <motion.div
-                        className={`h-full bg-gradient-to-r ${feature.color.includes('red') ? 'from-red-400 to-red-600' : feature.color.includes('blue') ? 'from-red-400 to-red-600' : feature.color.includes('green') ? 'from-green-400 to-green-600' : feature.color.includes('purple') ? 'from-purple-400 to-purple-600' : feature.color.includes('orange') ? 'from-orange-400 to-orange-600' : 'from-teal-400 to-teal-600'} rounded-full`}
+                        className={`h-full bg-gradient-to-r ${feature.color.includes('red') ? 'from-primary-400 to-primary-600' : feature.color.includes('blue') ? 'from-primary-400 to-primary-600' : feature.color.includes('green') ? 'from-green-400 to-green-600' : feature.color.includes('purple') ? 'from-purple-400 to-purple-600' : feature.color.includes('orange') ? 'from-orange-400 to-orange-600' : 'from-teal-400 to-teal-600'} rounded-full`}
                         initial={{ width: 0 }}
                         whileInView={{ width: "100%" }}
                         transition={{ duration: 1.5, delay: 0.5 }}
@@ -532,7 +532,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                         {/* Animated connection line */}
                         {index < dataHandling.length - 1 && (
                           <motion.div 
-                            className="hidden lg:block absolute top-8 left-full w-6 h-0.5 bg-gradient-to-r from-red-300 to-gray-300"
+                            className="hidden lg:block absolute top-8 left-full w-6 h-0.5 bg-gradient-to-r from-primary-300 to-gray-300"
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
@@ -542,7 +542,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                         
                         {/* Step number */}
                         <motion.div
-                          className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold"
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center text-xs font-bold"
                           initial={{ scale: 0 }}
                           whileInView={{ scale: 1 }}
                           transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
@@ -576,7 +576,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Swiss Advantage */}
-        <motion.section className="py-20 bg-gradient-to-br from-red-50 to-gray-50">
+        <motion.section className="py-20 bg-gradient-to-br from-primary-50 to-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="max-w-4xl mx-auto text-center"
@@ -620,7 +620,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                       icon: Award, 
                       title: isGerman ? 'Premium Standards' : 'Premium Standards',
                       description: isGerman ? 'Schweizer Qualität und Präzision' : 'Swiss quality and precision',
-                      color: 'text-red-500'
+                      color: 'text-primary-500'
                     },
                     { 
                       icon: Shield, 
@@ -729,7 +729,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-gray-100 border-none shadow-lg"
                   icon={<Shield className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >
@@ -739,7 +739,7 @@ const CompliancePage: React.FC<CompliancePageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-red-600 backdrop-blur-sm"
+                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary-600 backdrop-blur-sm"
                   icon={<Eye className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
                 >

@@ -23,9 +23,9 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
       title: 'Swiss Made',
       subtitle: isGerman ? 'Schweizer Qualität' : 'Swiss Quality',
       description: isGerman ? 'Entwickelt in der Schweiz' : 'Developed in Switzerland',
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
-      borderColor: 'border-red-200'
+      color: 'text-primary-600',
+      bgColor: 'bg-primary-50',
+      borderColor: 'border-primary-200'
     },
     {
       id: 'fadp-compliant',

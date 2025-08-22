@@ -139,7 +139,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
       value: 'Zürich, Schweiz',
       description: isGerman ? 'Termine nach Vereinbarung' : 'Appointments by arrangement',
       action: '#',
-      color: 'text-red-500'
+      color: 'text-primary-500'
     },
     {
       icon: Calendar,
@@ -204,7 +204,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Success Animation */}
         <AnimatePresence>
           {showSuccess && (
@@ -289,7 +289,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                   {isGerman ? 'Kontakt & Beta' : 'Contact & Beta'}
                 </motion.h1>
                 <motion.div whileHover={{ scale: 1.05, rotate: -10 }}>
-                  <Users className="w-12 h-12 text-red-500" />
+                  <Users className="w-12 h-12 text-primary-500" />
                 </motion.div>
               </motion.div>
               
@@ -321,7 +321,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Heart className="w-5 h-5 text-red-500" />
+                  <Heart className="w-5 h-5 text-primary-500" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -406,7 +406,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Contact Form & Team */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto"
@@ -586,10 +586,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="p-4 bg-red-50 border border-red-200 rounded-lg"
+                          className="p-4 bg-red-50 border border-primary-200 rounded-lg"
                         >
                           <div className="flex items-center space-x-2">
-                            <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
                               <X className="w-3 h-3 text-white" />
                             </div>
                             <p className="text-red-700 text-sm">{error}</p>
@@ -680,7 +680,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                     transition={{ duration: 0.6 }}
                   >
                     <motion.div whileHover={{ scale: 1.05, rotate: 5 }}>
-                      <Users className="w-8 h-8 text-red-500" />
+                      <Users className="w-8 h-8 text-primary-500" />
                     </motion.div>
                     <motion.h2 
                       className="text-2xl font-bold text-gray-900"
@@ -727,7 +727,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                             {member.specialties.map((specialty, idx) => (
                               <motion.span 
                                 key={idx} 
-                                className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs"
+                                className="px-2 py-1 bg-primary-100 text-primary-800 rounded text-xs"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.3, delay: idx * 0.1 }}
@@ -859,7 +859,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-gray-100 border-none shadow-lg"
                   icon={<Rocket className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
                 >

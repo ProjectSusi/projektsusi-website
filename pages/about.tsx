@@ -113,7 +113,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
         ? 'Jede Zeile Code wird mit der gleichen Sorgfalt geschrieben wie eine Schweizer Uhr hergestellt.'
         : 'Every line of code is written with the same care as a Swiss watch is made.',
       icon: SwissClockElement,
-      color: 'text-red-500'
+      color: 'text-primary-500'
     },
     {
       title: isGerman ? 'Datensouveränität' : 'Data Sovereignty',
@@ -143,7 +143,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -185,7 +185,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  {isGerman ? 'Über Projekt Susi' : 'About Projekt Susi'}
+                  {isGerman ? 'Über Temora AI' : 'About Temora AI'}
                 </motion.h1>
                 <motion.div whileHover={{ scale: 1.1, rotate: -10 }}>
                   <SwissShield className="w-12 h-12" glowing />
@@ -250,13 +250,13 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                 {isGerman ? 'Unsere Mission' : 'Our Mission'}
               </motion.h2>
               
-              <AnimatedCard className="p-12 text-center bg-gradient-to-br from-red-50 to-gray-50" hover={true} gradient={true}>
+              <AnimatedCard className="p-12 text-center bg-gradient-to-br from-primary-50 to-gray-50" hover={true} gradient={true}>
                 <motion.div 
                   className="mb-8"
                   whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 0.6 }}
                 >
-                  <Target className="w-16 h-16 text-red-500 mx-auto mb-6" />
+                  <Target className="w-16 h-16 text-primary-500 mx-auto mb-6" />
                 </motion.div>
                 
                 <motion.blockquote 
@@ -280,7 +280,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                     <SwissFlag className="w-8 h-8" />
                   </motion.div>
                   <span className="text-gray-600 font-medium">
-                    {isGerman ? 'Das Projekt Susi Team' : 'The Projekt Susi Team'}
+                    {isGerman ? 'Das Temora AI Team' : 'The Temora AI Team'}
                   </span>
                 </motion.div>
               </AnimatedCard>
@@ -351,7 +351,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                       <AnimatedCard className="p-6" hover={true}>
                         <div className="flex items-center space-x-4 mb-4">
                           <motion.span 
-                            className="text-2xl font-bold text-red-500"
+                            className="text-2xl font-bold text-primary-500"
                             whileHover={{ scale: 1.05 }}
                           >
                             {item.year}
@@ -435,7 +435,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                       {member.name}
                     </motion.h3>
                     <motion.p 
-                      className="text-red-500 font-semibold mb-4"
+                      className="text-primary-500 font-semibold mb-4"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.2 }}
@@ -458,16 +458,16 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Values Section */}
-        <motion.section className="py-20 bg-gradient-to-br from-red-50 to-gray-50 relative overflow-hidden">
+        <motion.section className="py-20 bg-gradient-to-br from-primary-50 to-gray-50 relative overflow-hidden">
           {/* Background Elements */}
           <div className="absolute inset-0 opacity-10">
             <motion.div 
-              className="absolute top-10 left-10 w-32 h-32 bg-red-400 rounded-full blur-xl"
+              className="absolute top-10 left-10 w-32 h-32 bg-primary-400 rounded-full blur-xl"
               animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 6, repeat: Infinity }}
             />
             <motion.div 
-              className="absolute bottom-10 right-10 w-32 h-32 bg-red-400 rounded-full blur-xl"
+              className="absolute bottom-10 right-10 w-32 h-32 bg-primary-400 rounded-full blur-xl"
               animate={{ scale: [1.05, 1, 1.05], opacity: [0.6, 0.3, 0.6] }}
               transition={{ duration: 6, repeat: Infinity, delay: 3 }}
             />
@@ -542,7 +542,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                     
                     {/* Progress indicator */}
                     <motion.div
-                      className={`mt-4 h-1 bg-gradient-to-r ${value.color.includes('red') ? 'from-red-400 to-red-600' : value.color.includes('blue') ? 'from-red-400 to-red-600' : value.color.includes('green') ? 'from-green-400 to-green-600' : 'from-yellow-400 to-yellow-600'} rounded-full`}
+                      className={`mt-4 h-1 bg-gradient-to-r ${value.color.includes('red') ? 'from-primary-400 to-primary-600' : value.color.includes('blue') ? 'from-primary-400 to-primary-600' : value.color.includes('green') ? 'from-green-400 to-green-600' : 'from-yellow-400 to-yellow-600'} rounded-full`}
                       initial={{ width: 0 }}
                       whileInView={{ width: "100%" }}
                       transition={{ duration: 1, delay: 0.3 }}
@@ -571,7 +571,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                 transition={{ duration: 0.6 }}
               >
                 <motion.div whileHover={{ scale: 1.05 }}>
-                  <MapPin className="w-8 h-8 text-red-500" />
+                  <MapPin className="w-8 h-8 text-primary-500" />
                 </motion.div>
                 <motion.h2 
                   className="text-4xl font-bold text-gray-900"
@@ -586,7 +586,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                 </motion.div>
               </motion.div>
               
-              <AnimatedCard className="p-12 bg-gradient-to-br from-gray-50 to-red-50" hover={true} gradient={true}>
+              <AnimatedCard className="p-12 bg-gradient-to-br from-gray-50 to-primary-50" hover={true} gradient={true}>
                 <motion.div 
                   className="mb-8"
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -616,7 +616,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                 >
                   {[
                     { icon: Shield, text: "FADP Compliant", color: "text-primary" },
-                    { icon: Award, text: "Swiss Quality", color: "text-red-500" },
+                    { icon: Award, text: "Swiss Quality", color: "text-primary-500" },
                     { icon: Heart, text: "Local Support", color: "text-green-500" }
                   ].map((item, index) => (
                     <motion.div 
@@ -698,7 +698,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-gray-100 border-none shadow-lg"
                   icon={<Coffee className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >
@@ -708,7 +708,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-red-600 backdrop-blur-sm"
+                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary-600 backdrop-blur-sm"
                   icon={<Rocket className="w-6 h-6" />}
                   onClick={() => window.location.href = '/beta'}
                 >

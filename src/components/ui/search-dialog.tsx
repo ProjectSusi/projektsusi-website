@@ -68,7 +68,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ isOpen, onClose, locale }) 
     },
     {
       title: isGerman ? 'Live Demo' : 'Live Demo',
-      description: isGerman ? 'Testen Sie Projekt Susi sofort in Ihrem Browser' : 'Try Projekt Susi instantly in your browser',
+      description: isGerman ? 'Testen Sie Temora AI sofort in Ihrem Browser' : 'Try Temora AI instantly in your browser',
       url: '/technology/demo',
       category: isGerman ? 'Technologie' : 'Technology',
       icon: <Zap className="w-4 h-4" />
@@ -100,7 +100,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ isOpen, onClose, locale }) 
     },
     {
       title: isGerman ? 'Über uns' : 'About Us',
-      description: isGerman ? 'Erfahren Sie mehr über das Projekt Susi Team' : 'Learn more about the Projekt Susi team',
+      description: isGerman ? 'Erfahren Sie mehr über das Temora AI Team' : 'Learn more about the Temora AI team',
       url: '/about',
       category: isGerman ? 'Allgemein' : 'General',
       icon: <Globe className="w-4 h-4" />
@@ -265,11 +265,11 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ isOpen, onClose, locale }) 
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <div className="font-medium text-gray-900 truncate">
+                      <div className="font-medium text-secondary truncate">
                         {result.title}
                       </div>
                       <div className="flex items-center space-x-2 ml-4">
-                        <span className="text-xs text-muted-foreground bg-gray-100 px-2 py-1 rounded">
+                        <span className="text-xs text-muted-foreground bg-platin-100 px-2 py-1 rounded">
                           {result.category}
                         </span>
                         <ArrowRight className="w-4 h-4 text-muted-foreground" />

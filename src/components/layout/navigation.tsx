@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Menu, X, ChevronDown, Globe, Shield, Zap, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -73,7 +74,7 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
         {
           href: '/technology/demo',
           label: isGerman ? 'Live Demo' : 'Live Demo',
-          description: isGerman ? 'Testen Sie Projekt Susi sofort' : 'Try Projekt Susi instantly',
+          description: isGerman ? 'Testen Sie Temora AI sofort' : 'Try Temora AI instantly',
           icon: '🎪'
         },
         {
@@ -168,12 +169,17 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
               scrolled ? "text-primary hover:text-primary/80" : "text-white hover:text-white/80"
             )}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">P</span>
+            <div className="w-10 h-10 flex items-center justify-center">
+              <Image 
+                src="/temora-logo.png" 
+                alt="Temora AI Logo" 
+                width={40} 
+                height={40} 
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="hidden sm:block">
-              <span className={scrolled ? "text-primary" : "text-white"}>Projekt</span>
-              <span className={scrolled ? "text-secondary" : "text-red-300"}>Susi</span>
+              <span className={scrolled ? "text-primary" : "text-white"}>Temora AI</span>
             </span>
           </Link>
 
@@ -275,7 +281,7 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
               className={cn(
                 "hidden md:flex items-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors",
                 scrolled 
-                  ? "text-muted-foreground hover:text-primary bg-gray-100 hover:bg-gray-200" 
+                  ? "text-muted-foreground hover:text-primary bg-platin-100 hover:bg-platin-200" 
                   : "text-white/70 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm"
               )}
             >
@@ -402,7 +408,7 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
                     setSearchOpen(true)
                     closeDropdowns()
                   }}
-                  className="w-full flex items-center justify-start space-x-3 p-3 bg-gray-50 rounded-lg text-secondary hover:text-primary transition-colors"
+                  className="w-full flex items-center justify-start space-x-3 p-3 bg-platin-100 rounded-lg text-secondary hover:text-primary transition-colors"
                 >
                   <Search className="w-4 h-4" />
                   <span>{isGerman ? 'Suchen' : 'Search'}</span>
@@ -419,7 +425,7 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
                       "px-3 py-1 text-sm font-medium rounded transition-colors",
                       locale === 'de' 
                         ? "bg-primary text-white" 
-                        : "text-secondary hover:text-primary border border-gray-300"
+                        : "text-secondary hover:text-primary border border-platin-300"
                     )}
                   >
                     DE
@@ -431,7 +437,7 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
                       "px-3 py-1 text-sm font-medium rounded transition-colors",
                       locale === 'en' 
                         ? "bg-primary text-white" 
-                        : "text-secondary hover:text-primary border border-gray-300"
+                        : "text-secondary hover:text-primary border border-platin-300"
                     )}
                   >
                     EN

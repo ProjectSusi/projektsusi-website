@@ -58,7 +58,7 @@ const APIDocumentationPage: React.FC<APIDocumentationPageProps> = ({ locale }) =
       step: '1',
       title: isGerman ? 'API Key erhalten' : 'Get API Key',
       description: isGerman ? 'Registrieren Sie sich für einen kostenlosen API-Schlüssel' : 'Sign up for a free API key',
-      code: 'curl -X POST https://api.projekt-susi.ch/auth/register'
+      code: 'curl -X POST https://api.temora.ai/auth/register'
     },
     {
       step: '2',
@@ -70,10 +70,10 @@ const APIDocumentationPage: React.FC<APIDocumentationPageProps> = ({ locale }) =
       step: '3',
       title: isGerman ? 'Erste Anfrage' : 'First Request',
       description: isGerman ? 'Senden Sie Ihre erste Query an die RAG API' : 'Send your first query to the RAG API',
-      code: `curl -X POST https://api.projekt-susi.ch/api/v1/query \\
+      code: `curl -X POST https://api.temora.ai/api/v1/query \\
   -H "Authorization: Bearer your-api-key" \\
   -H "Content-Type: application/json" \\
-  -d '{"query": "Hello Susi!"}'`
+  -d '{"query": "Hello Temora AI!"}'`
     }
   ]
 
@@ -236,20 +236,20 @@ metadata: {
     {
       language: 'Python',
       icon: '🐍',
-      install: 'pip install projekt-susi-sdk',
-      example: `from projekt_susi import ProjektSusiClient
+      install: 'pip install temora-ai-sdk',
+      example: `from temora_ai import TemoraAIClient
 
-client = ProjektSusiClient(api_key="your-api-key")
+client = TemoraAIClient(api_key="your-api-key")
 result = client.query("What are the compliance requirements?")
 print(result.answer)`
     },
     {
       language: 'JavaScript',
       icon: '📜',
-      install: 'npm install @projekt-susi/sdk',
-      example: `import { ProjektSusiClient } from '@projekt-susi/sdk';
+      install: 'npm install @temora-ai/sdk',
+      example: `import { TemoraAIClient } from '@temora-ai/sdk';
 
-const client = new ProjektSusiClient('your-api-key');
+const client = new TemoraAIClient('your-api-key');
 const result = await client.query('What are the compliance requirements?');
 console.log(result.answer);`
     },
@@ -257,7 +257,7 @@ console.log(result.answer);`
       language: 'cURL',
       icon: '🌐',
       install: isGerman ? 'Bereits installiert auf den meisten Systemen' : 'Pre-installed on most systems',
-      example: `curl -X POST https://api.projekt-susi.ch/api/v1/query \\
+      example: `curl -X POST https://api.temora.ai/api/v1/query \\
   -H "Authorization: Bearer your-api-key" \\
   -H "Content-Type: application/json" \\
   -d '{"query": "What are the compliance requirements?"}'`
@@ -302,7 +302,7 @@ console.log(result.answer);`
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -351,14 +351,14 @@ console.log(result.answer);`
               </motion.div>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed"
+                className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 {isGerman 
-                  ? '📚 Vollständige Entwickler-Dokumentation für die Projekt Susi RAG API. RESTful, sicher und Swiss-engineered.'
-                  : '📚 Complete developer documentation for the Projekt Susi RAG API. RESTful, secure, and Swiss-engineered.'}
+                  ? '📚 Vollständige Entwickler-Dokumentation für die Temora AI RAG API. RESTful, sicher und Swiss-engineered.'
+                  : '📚 Complete developer documentation for the Temora AI RAG API. RESTful, secure, and Swiss-engineered.'}
               </motion.p>
 
               <motion.div 
@@ -379,9 +379,9 @@ console.log(result.answer);`
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-gray-300 text-gray-700 hover:bg-gray-100"
+                  className="border-platin-300 text-secondary hover:bg-platin-100"
                   icon={<Download className="w-6 h-6" />}
-                  onClick={() => window.open('https://api.projekt-susi.ch/docs', '_blank')}
+                  onClick={() => window.open('https://api.temora.ai/docs', '_blank')}
                 >
                   {isGerman ? 'OpenAPI Specs' : 'OpenAPI Specs'}
                 </AnimatedButton>
@@ -400,13 +400,13 @@ console.log(result.answer);`
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Schnellstart' : 'Quick Start'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
-                  ? 'In wenigen Minuten mit der Projekt Susi API starten'
-                  : 'Get started with Projekt Susi API in minutes'
+                  ? 'In wenigen Minuten mit der Temora AI API starten'
+                  : 'Get started with Temora AI API in minutes'
                 }
               </p>
             </motion.div>
@@ -433,10 +433,10 @@ console.log(result.answer);`
                         <span className="text-white font-bold text-lg">{step.step}</span>
                       </motion.div>
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-2xl font-bold text-secondary mb-2">
                           {step.title}
                         </h3>
-                        <p className="text-gray-600 mb-4">
+                        <p className="text-secondary/70 mb-4">
                           {step.description}
                         </p>
                         <div className="bg-gray-900 rounded-lg p-4 relative">
@@ -444,7 +444,7 @@ console.log(result.answer);`
                             {step.code}
                           </code>
                           <motion.button
-                            className="absolute top-2 right-2 p-2 text-gray-400 hover:text-white transition-colors"
+                            className="absolute top-2 right-2 p-2 text-secondary/60 hover:text-white transition-colors"
                             onClick={() => copyToClipboard(step.code, `step-${index}`)}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
@@ -466,7 +466,7 @@ console.log(result.answer);`
         </motion.section>
 
         {/* API Endpoints */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -475,10 +475,10 @@ console.log(result.answer);`
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'API Endpoints' : 'API Endpoints'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Vollständige Referenz aller verfügbaren Endpoints'
                   : 'Complete reference of all available endpoints'
@@ -495,7 +495,7 @@ console.log(result.answer);`
                 transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                <h3 className="text-2xl font-bold text-secondary mb-8 text-center">
                   {category.category}
                 </h3>
                 
@@ -515,7 +515,7 @@ console.log(result.answer);`
                             <span className={`px-3 py-1 text-xs font-bold rounded ${
                               endpoint.method === 'POST' ? 'bg-green-600 text-white' :
                               endpoint.method === 'GET' ? 'bg-primary text-white' :
-                              endpoint.method === 'DELETE' ? 'bg-red-600 text-white' : 'bg-gray-600 text-white'
+                              endpoint.method === 'DELETE' ? 'bg-primary-600 text-white' : 'bg-secondary text-white'
                             }`}>
                               {endpoint.method}
                             </span>
@@ -524,7 +524,7 @@ console.log(result.answer);`
                             </code>
                           </div>
                           <motion.button
-                            className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+                            className="p-2 text-secondary/60 hover:text-secondary/70 transition-colors"
                             onClick={() => copyToClipboard(endpoint.endpoint, endpoint.endpoint)}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
@@ -537,41 +537,41 @@ console.log(result.answer);`
                           </motion.button>
                         </div>
                         
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">
+                        <h4 className="text-xl font-bold text-secondary mb-2">
                           {endpoint.title}
                         </h4>
                         
-                        <p className="text-gray-600 mb-6">
+                        <p className="text-secondary/70 mb-6">
                           {endpoint.description}
                         </p>
 
                         {endpoint.parameters.length > 0 && (
                           <div className="mb-6">
-                            <h5 className="font-bold text-gray-900 mb-3">
+                            <h5 className="font-bold text-secondary mb-3">
                               {isGerman ? 'Parameter' : 'Parameters'}
                             </h5>
                             <div className="space-y-3">
                               {endpoint.parameters.map((param, paramIndex) => (
-                                <div key={paramIndex} className="bg-gray-50 p-3 rounded-lg">
+                                <div key={paramIndex} className="bg-platin-50 p-3 rounded-lg">
                                   <div className="flex items-center space-x-3 mb-1">
                                     <code className="font-mono text-primary font-medium">
                                       {param.name}
                                     </code>
                                     <span className={`px-2 py-1 text-xs rounded ${
                                       param.type === 'string' ? 'bg-green-100 text-green-800' :
-                                      param.type === 'number' ? 'bg-red-100 text-red-800' :
+                                      param.type === 'number' ? 'bg-primary-100 text-primary-800' :
                                       param.type === 'file' ? 'bg-purple-100 text-purple-800' :
-                                      'bg-gray-100 text-gray-800'
+                                      'bg-platin-100 text-secondary'
                                     }`}>
                                       {param.type}
                                     </span>
                                     {param.required && (
-                                      <span className="px-2 py-1 text-xs bg-red-100 text-red-800 rounded">
+                                      <span className="px-2 py-1 text-xs bg-primary-100 text-primary-800 rounded">
                                         {isGerman ? 'Erforderlich' : 'Required'}
                                       </span>
                                     )}
                                   </div>
-                                  <p className="text-sm text-gray-600">
+                                  <p className="text-sm text-secondary/70">
                                     {param.description}
                                   </p>
                                 </div>
@@ -583,7 +583,7 @@ console.log(result.answer);`
 
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div>
-                          <h5 className="font-bold text-gray-900 mb-3">
+                          <h5 className="font-bold text-secondary mb-3">
                             {isGerman ? 'Anfrage' : 'Request'}
                           </h5>
                           <div className="bg-gray-900 rounded-lg p-4">
@@ -594,7 +594,7 @@ console.log(result.answer);`
                         </div>
                         
                         <div>
-                          <h5 className="font-bold text-gray-900 mb-3">
+                          <h5 className="font-bold text-secondary mb-3">
                             {isGerman ? 'Antwort' : 'Response'}
                           </h5>
                           <div className="bg-gray-900 rounded-lg p-4">
@@ -622,10 +622,10 @@ console.log(result.answer);`
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'SDKs & Libraries' : 'SDKs & Libraries'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Nutzen Sie unsere offiziellen SDKs für eine einfache Integration'
                   : 'Use our official SDKs for easy integration'
@@ -645,10 +645,10 @@ console.log(result.answer);`
                   <AnimatedCard className="p-8 h-full" hover={true}>
                     <div className="text-center mb-6">
                       <div className="text-6xl mb-4">{sdk.icon}</div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-2xl font-bold text-secondary mb-2">
                         {sdk.language}
                       </h3>
-                      <code className="bg-gray-100 px-3 py-1 rounded text-sm">
+                      <code className="bg-platin-100 px-3 py-1 rounded text-sm">
                         {sdk.install}
                       </code>
                     </div>
@@ -666,7 +666,7 @@ console.log(result.answer);`
         </motion.section>
 
         {/* Rate Limits */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -675,10 +675,10 @@ console.log(result.answer);`
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'API Limits & Pricing' : 'API Limits & Pricing'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Transparente Preise für jeden Bedarf'
                   : 'Transparent pricing for every need'
@@ -707,15 +707,15 @@ console.log(result.answer);`
                       </div>
                     )}
                     
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    <h3 className="text-2xl font-bold text-secondary mb-4">
                       {tier.tier}
                     </h3>
                     
                     <div className="mb-6">
-                      <div className="text-lg text-gray-600 mb-1">
+                      <div className="text-lg text-secondary/70 mb-1">
                         {tier.requests}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-secondary/60">
                         {tier.rate}
                       </div>
                     </div>
@@ -724,7 +724,7 @@ console.log(result.answer);`
                       {tier.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center text-left">
                           <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-secondary/80">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -795,7 +795,7 @@ console.log(result.answer);`
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary hover:bg-platin-100 border-none shadow-lg"
                   icon={<Key className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >
@@ -807,7 +807,7 @@ console.log(result.answer);`
                   size="lg"
                   className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary backdrop-blur-sm"
                   icon={<ExternalLink className="w-6 h-6" />}
-                  onClick={() => window.open('https://api.projekt-susi.ch/docs', '_blank')}
+                  onClick={() => window.open('https://api.temora.ai/docs', '_blank')}
                 >
                   {isGerman ? 'OpenAPI Explorer' : 'OpenAPI Explorer'}
                 </AnimatedButton>

@@ -207,7 +207,7 @@ export const MobileCardStack: React.FC<{
             className={cn(
               'w-3 h-3 rounded-full transition-all duration-200',
               index === currentIndex
-                ? 'bg-red-500 scale-125'
+                ? 'bg-primary-500 scale-125'
                 : 'bg-white/30 hover:bg-white/50'
             )}
             onClick={() => setCurrentIndex(index)}
@@ -348,7 +348,7 @@ export const PullToRefresh: React.FC<{
     >
       {/* Refresh Indicator */}
       <div
-        className="absolute top-0 left-0 right-0 flex justify-center items-center bg-gradient-to-r from-red-500 to-blue-500 text-white font-semibold rounded-b-xl transition-all duration-200"
+        className="absolute top-0 left-0 right-0 flex justify-center items-center bg-gradient-to-r from-primary-500 to-blue-500 text-white font-semibold rounded-b-xl transition-all duration-200"
         style={{
           height: `${pullDistance}px`,
           opacity: pullDistance > 0 ? 1 : 0,

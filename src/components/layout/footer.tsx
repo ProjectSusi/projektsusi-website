@@ -73,8 +73,8 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
 
   const contactInfo = {
     address: isGerman 
-      ? 'Projekt Susi AG\nBahnhofstrasse 45\n8001 Zürich\nSchweiz'
-      : 'Projekt Susi AG\nBahnhofstrasse 45\n8001 Zurich\nSwitzerland',
+      ? 'Temora AI AG\nBahnhofstrasse 45\n8001 Zürich\nSchweiz'
+      : 'Temora AI AG\nBahnhofstrasse 45\n8001 Zurich\nSwitzerland',
     phone: '+41 44 123 45 67',
     email: 'info@projektsusui.ch',
     support: 'support@projektsusui.ch'
@@ -119,7 +119,7 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
             {/* Social Links */}
             <div className="flex space-x-4">
               <a 
-                href="https://linkedin.com/company/projektsusui" 
+                href="https://linkedin.com/company/temoraai" 
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
                 aria-label="LinkedIn"
               >
@@ -289,7 +289,7 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/60 pt-8 border-t border-white/20">
           <div className="mb-4 md:mb-0">
             <p>
-              © 2024 Projekt Susi AG. {isGerman ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}
+              © 2024 Temora AI AG. {isGerman ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}
             </p>
             <p className="mt-1">
               {isGerman 

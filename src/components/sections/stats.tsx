@@ -21,8 +21,8 @@ const Stats: React.FC<StatsProps> = ({ locale }) => {
       number: "100%",
       label: isGerman ? "Datenschutz-Compliance" : "Data Privacy Compliance",
       description: isGerman ? "FADP/GDPR konform" : "FADP/GDPR compliant",
-      color: "text-red-500",
-      bgColor: "bg-red-50"
+      color: "text-primary-500",
+      bgColor: "bg-primary-50"
     },
     {
       icon: Zap,
@@ -88,7 +88,7 @@ const Stats: React.FC<StatsProps> = ({ locale }) => {
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-blue-600 rounded-full mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-500 to-blue-600 rounded-full mb-6"
           >
             <Star className="w-8 h-8 text-white" />
           </motion.div>
@@ -136,7 +136,7 @@ const Stats: React.FC<StatsProps> = ({ locale }) => {
                 className="h-full"
               >
                 <AnimatedCard 
-                  className="p-8 h-full text-center hover:shadow-xl transition-all duration-500 border-l-4 border-transparent hover:border-l-red-500"
+                  className="p-8 h-full text-center hover:shadow-xl transition-all duration-500 border-l-4 border-transparent hover:border-l-primary-500"
                   hover={true}
                   glass={true}
                 >
@@ -189,9 +189,9 @@ const Stats: React.FC<StatsProps> = ({ locale }) => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <AnimatedCard className="inline-flex items-center space-x-4 px-8 py-4 bg-gradient-to-r from-red-50 to-blue-50">
+          <AnimatedCard className="inline-flex items-center space-x-4 px-8 py-4 bg-gradient-to-r from-primary-50 to-blue-50">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-red-600 rounded-sm flex items-center justify-center">
+              <div className="w-8 h-8 bg-primary-600 rounded-sm flex items-center justify-center">
                 <div className="w-3 h-6 bg-white"></div>
                 <div className="w-6 h-3 bg-white absolute"></div>
               </div>

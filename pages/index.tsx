@@ -23,8 +23,8 @@ export default function Home({ locale }: HomeProps) {
   const isGerman = locale === 'de'
   
   const pageTitle = isGerman 
-    ? 'Projekt Susi - Die Schweizer KI-Lösung für Unternehmen'
-    : 'Projekt Susi - Swiss AI Solution for Enterprise Intelligence'
+    ? 'Temora AI - Die Schweizer KI-Lösung für Unternehmen'
+    : 'Temora AI - Swiss AI Solution for Enterprise Intelligence'
   
   const pageDescription = isGerman
     ? 'Die führende Schweizer RAG-Lösung mit vollständiger Datensouveränität, FADP/GDPR Compliance und Zero-Hallucination AI. Speziell entwickelt für Schweizer Finanzwesen, Pharma und Produktion.'
@@ -50,13 +50,13 @@ export default function Home({ locale }: HomeProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Projekt Susi",
+              "name": "Temora AI",
               "url": "https://ai.sirth.ch",
               "description": pageDescription,
               "inLanguage": locale,
               "publisher": {
                 "@type": "Organization",
-                "name": "Projekt Susi AG",
+                "name": "Temora AI AG",
                 "logo": "https://ai.sirth.ch/logo.png"
               },
               "potentialAction": {
@@ -75,7 +75,7 @@ export default function Home({ locale }: HomeProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "Projekt Susi RAG System",
+              "name": "Temora AI RAG System",
               "description": pageDescription,
               "url": "https://ai.sirth.ch",
               "applicationCategory": "BusinessApplication",
@@ -96,7 +96,7 @@ export default function Home({ locale }: HomeProps) {
               },
               "author": {
                 "@type": "Organization",
-                "name": "Projekt Susi AG"
+                "name": "Temora AI AG"
               },
               "datePublished": "2024-01-01",
               "dateModified": "2024-12-01",

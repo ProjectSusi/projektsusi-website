@@ -222,11 +222,11 @@ const PremiumHero: React.FC<PremiumHeroProps> = ({ locale }) => {
                       onClick={handleDemoClick}
                     >
                       {/* Dynamic Background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20 animate-pulse" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-blue-500/20 animate-pulse" />
                       
                       {/* Premium Play Button */}
                       <div className="relative z-10 text-center">
-                        <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 mx-auto shadow-2xl">
+                        <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 mx-auto shadow-2xl">
                           <Play className="w-12 h-12 text-white ml-2" />
                           <div className="absolute inset-0 rounded-full animate-ping bg-white/20"></div>
                         </div>
@@ -258,7 +258,7 @@ const PremiumHero: React.FC<PremiumHeroProps> = ({ locale }) => {
                       </div>
 
                       {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div className="text-white text-center">
                           <Sparkles className="w-16 h-16 mx-auto mb-4 animate-pulse" />
                           <p className="text-xl font-semibold">
@@ -352,7 +352,7 @@ const PremiumHero: React.FC<PremiumHeroProps> = ({ locale }) => {
                     { icon: Star, value: '2025', label: isGerman ? 'Swiss Innovation' : 'Swiss Innovation', color: 'text-yellow-400' },
                     { icon: Users, value: 'Beta', label: isGerman ? 'Program Ready' : 'Program Ready', color: 'text-blue-400' },
                     { icon: Building, value: '100%', label: isGerman ? 'Swiss Hosted' : 'Swiss Hosted', color: 'text-green-400' },
-                    { icon: Shield, value: 'Open', label: isGerman ? 'For Partners' : 'For Partners', color: 'text-red-400' }
+                    { icon: Shield, value: 'Open', label: isGerman ? 'For Partners' : 'For Partners', color: 'text-primary-400' }
                   ].map((stat, index) => (
                     <div key={index} className="text-center group">
                       <div className="flex items-center justify-center mb-2">
@@ -375,7 +375,7 @@ const PremiumHero: React.FC<PremiumHeroProps> = ({ locale }) => {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce">
         <div className="flex flex-col items-center hover-lift cursor-pointer">
           <div className="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center mb-2">
-            <div className="w-1 h-4 bg-gradient-to-b from-red-400 to-blue-400 rounded-full mt-2 animate-pulse" />
+            <div className="w-1 h-4 bg-gradient-to-b from-primary-400 to-primary-600 rounded-full mt-2 animate-pulse" />
           </div>
           <p className="text-xs font-medium tracking-wider uppercase">
             {isGerman ? 'Entdecken Sie mehr' : 'Discover More'}

@@ -97,7 +97,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
       id: 'swiss-security',
       title: isGerman ? 'Swiss Security Stack' : 'Swiss Security Stack',
       icon: Shield,
-      color: 'from-red-500 to-red-700',
+      color: 'from-primary-500 to-primary-700',
       description: isGerman 
         ? 'Bank-Grade Sicherheit entwickelt für Schweizer Compliance-Anforderungen'
         : 'Bank-grade security built for Swiss compliance requirements',
@@ -185,7 +185,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <section className="relative py-20 lg:py-32 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
@@ -199,13 +199,13 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
             <div className="text-center mb-16">
               <div className="flex items-center justify-center space-x-4 mb-8">
                 <Brain className="w-12 h-12 text-primary" />
-                <h1 className="text-5xl lg:text-7xl font-bold text-gray-900">
+                <h1 className="text-5xl lg:text-7xl font-bold text-secondary">
                   {isGerman ? 'Swiss AI Technologie' : 'Swiss AI Technology'}
                 </h1>
                 <SwissShield className="w-12 h-12" glowing />
               </div>
               
-              <p className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed">
                 {isGerman 
                   ? '🔬 Zero-Hallucination RAG-Technologie entwickelt mit Schweizer Präzision für maximale Zuverlässigkeit und Compliance.'
                   : '🔬 Zero-hallucination RAG technology built with Swiss precision for maximum reliability and compliance.'}
@@ -219,15 +219,15 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="glass-morphism rounded-xl p-4 mb-2">
-                      <stat.icon className="w-8 h-8 text-red-500 mx-auto mb-2" />
+                      <stat.icon className="w-8 h-8 text-primary-500 mx-auto mb-2" />
                       <AnimatedCounter 
                         value={stat.value} 
                         suffix={stat.suffix || ''}
                         prefix={stat.suffix === '<' ? '<' : ''}
-                        className="text-2xl font-bold text-gray-900" 
+                        className="text-2xl font-bold text-secondary" 
                       />
                     </div>
-                    <p className="text-sm text-gray-600">{stat.label}</p>
+                    <p className="text-sm text-secondary/70">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -239,10 +239,10 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Kern-Technologien' : 'Core Technologies'}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary/70">
                 {isGerman 
                   ? 'Vier Säulen unserer Swiss AI Innovation'
                   : 'Four pillars of our Swiss AI innovation'}
@@ -260,14 +260,14 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                           <feature.icon className="w-10 h-10 text-white" />
                         </div>
                         
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                        <p className="text-gray-700 mb-6">{feature.description}</p>
+                        <h3 className="text-2xl font-bold text-secondary mb-4">{feature.title}</h3>
+                        <p className="text-secondary/80 mb-6">{feature.description}</p>
                         
                         <ul className="space-y-2">
                           {feature.details.map((detail, idx) => (
                             <li key={idx} className="flex items-center space-x-3">
                               <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                              <span className="text-gray-700">{detail}</span>
+                              <span className="text-secondary/80">{detail}</span>
                             </li>
                           ))}
                         </ul>
@@ -285,7 +285,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                               >
                                 <span className="text-lg font-bold">{value}{typeof value === 'number' && value <= 100 ? '%' : ''}</span>
                               </ProgressRing>
-                              <p className="text-gray-600 font-medium capitalize">{key}</p>
+                              <p className="text-secondary/70 font-medium capitalize">{key}</p>
                             </div>
                           ))}
                         </div>
@@ -299,13 +299,13 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
         </section>
 
         {/* Architecture Overview */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Swiss Clean Architecture' : 'Swiss Clean Architecture'}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary/70">
                 {isGerman 
                   ? 'Fünf-Schichten Architektur für maximale Skalierbarkeit und Wartbarkeit'
                   : 'Five-layer architecture for maximum scalability and maintainability'}
@@ -322,11 +322,11 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                       </div>
                       
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{layer.layer}</h3>
-                        <p className="text-gray-700 mb-3">{layer.description}</p>
+                        <h3 className="text-xl font-bold text-secondary mb-2">{layer.layer}</h3>
+                        <p className="text-secondary/80 mb-3">{layer.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {layer.technologies.map((tech, idx) => (
-                            <span key={idx} className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">
+                            <span key={idx} className="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium">
                               {tech}
                             </span>
                           ))}
@@ -344,10 +344,10 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'RAG Process Flow' : 'RAG Process Flow'}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary/70">
                 {isGerman 
                   ? 'Wie Ihre Dokumente zu intelligenten Antworten werden'
                   : 'How your documents become intelligent answers'}
@@ -366,13 +366,13 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                       
                       {/* Connection Line */}
                       {index < ragFlow.length - 1 && (
-                        <div className="hidden lg:block absolute top-6 left-full w-6 h-0.5 bg-gradient-to-r from-red-300 to-transparent" />
+                        <div className="hidden lg:block absolute top-6 left-full w-6 h-0.5 bg-gradient-to-r from-primary-300 to-transparent" />
                       )}
                     </div>
                     
                     <step.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">{step.title}</h3>
-                    <p className="text-gray-700 text-sm">{step.description}</p>
+                    <h3 className="text-lg font-bold text-secondary mb-3">{step.title}</h3>
+                    <p className="text-secondary/80 text-sm">{step.description}</p>
                   </MorphingCard>
                 ))}
               </div>
@@ -381,13 +381,13 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
         </section>
 
         {/* Technical Specifications */}
-        <section className="py-20 bg-gradient-to-br from-red-50 to-gray-50">
+        <section className="py-20 bg-gradient-to-br from-primary-50 to-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Technische Spezifikationen' : 'Technical Specifications'}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary/70">
                 {isGerman 
                   ? 'Enterprise-Grade Performance und Sicherheit'
                   : 'Enterprise-grade performance and security'}
@@ -416,7 +416,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                     'ISO 27001 Ready'
                   ],
                   icon: Shield,
-                  color: 'text-red-500'
+                  color: 'text-primary-500'
                 },
                 {
                   category: isGerman ? 'Skalierbarkeit' : 'Scalability',
@@ -466,14 +466,14 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                 <MorphingCard key={index} className="p-6 hover-lift">
                   <div className="flex items-center space-x-3 mb-4">
                     <category.icon className={`w-8 h-8 ${category.color}`} />
-                    <h3 className="text-xl font-bold text-gray-900">{category.category}</h3>
+                    <h3 className="text-xl font-bold text-secondary">{category.category}</h3>
                   </div>
                   
                   <ul className="space-y-3">
                     {category.specs.map((spec, idx) => (
                       <li key={idx} className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
-                        <span className="text-gray-700">{spec}</span>
+                        <span className="text-secondary/80">{spec}</span>
                       </li>
                     ))}
                   </ul>
@@ -500,14 +500,14 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-lg" asChild>
+                <Button size="lg" className="bg-white text-primary-600 hover:bg-platin-100 px-8 py-4 text-lg" asChild>
                   <Link href="/demo">
                     <Brain className="w-6 h-6 mr-2" />
                     {isGerman ? 'Live Tech Demo' : 'Live Tech Demo'}
                   </Link>
                 </Button>
                 
-                <Button variant="outline" size="lg" className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-red-600 px-8 py-4 text-lg backdrop-blur-sm" asChild>
+                <Button variant="outline" size="lg" className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary-600 px-8 py-4 text-lg backdrop-blur-sm" asChild>
                   <Link href="/contact">
                     <Code className="w-6 h-6 mr-2" />
                     {isGerman ? 'Technical Deep Dive' : 'Technical Deep Dive'}

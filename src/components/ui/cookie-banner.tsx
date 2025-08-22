@@ -33,7 +33,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ locale }) => {
 
   // Check for existing consent on mount
   useEffect(() => {
-    const savedConsent = localStorage.getItem('projektsusi-cookie-consent')
+    const savedConsent = localStorage.getItem('temora-ai-cookie-consent')
     if (!savedConsent) {
       // Show banner after a short delay for better UX
       const timer = setTimeout(() => setShowBanner(true), 1500)
@@ -55,7 +55,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ locale }) => {
 
   const saveConsent = (newConsent: CookieConsent) => {
     const consentWithTimestamp = { ...newConsent, timestamp: Date.now() }
-    localStorage.setItem('projektsusi-cookie-consent', JSON.stringify(consentWithTimestamp))
+    localStorage.setItem('temora-ai-cookie-consent', JSON.stringify(consentWithTimestamp))
     setConsent(consentWithTimestamp)
     setShowBanner(false)
     setShowDetails(false)
@@ -262,7 +262,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ locale }) => {
                               <div className="flex items-center gap-2 mb-2">
                                 <h4 className="font-semibold text-gray-900">{type.name}</h4>
                                 {type.required && (
-                                  <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full font-medium">
+                                  <span className="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded-full font-medium">
                                     {isGerman ? 'Erforderlich' : 'Required'}
                                   </span>
                                 )}

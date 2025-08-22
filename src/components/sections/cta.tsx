@@ -47,7 +47,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
     {
       icon: Shield,
       text: isGerman ? "100% Schweizer Datenschutz" : "100% Swiss Data Privacy",
-      color: "text-red-500"
+      color: "text-primary-500"
     },
     {
       icon: Zap,
@@ -85,23 +85,23 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
     },
     {
       icon: Play,
-      title: isGerman ? "Sofort testen" : "Try Instantly",
+      title: isGerman ? "Live System testen" : "Try Live System",
       description: isGerman 
-        ? "Interaktive Demo ohne Anmeldung direkt im Browser"
-        : "Interactive demo without registration directly in browser",
-      action: isGerman ? "Demo starten" : "Start Demo",
-      href: "/try-now",
+        ? "Vollzugriff auf produktives RAG-System - laden Sie Ihre eigenen Dokumente hoch"
+        : "Full access to production RAG system - upload your own documents",
+      action: isGerman ? "Live System starten" : "Start Live System",
+      href: "/demo",
       primary: false
     }
   ]
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-900 via-blue-900 to-red-900 relative overflow-hidden">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-900 via-blue-900 to-primary-900 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-red-500 to-blue-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-blue-500 to-red-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-yellow-400 to-red-500 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-blue-500 to-primary-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-yellow-400 to-primary-500 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       {/* Swiss Alps Silhouette */}
@@ -127,7 +127,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-yellow-400 to-red-500 rounded-full mb-8"
+            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-yellow-400 to-primary-500 rounded-full mb-8"
           >
             <Sparkles className="w-10 h-10 text-white animate-pulse" />
           </motion.div>
@@ -137,7 +137,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
               <>
                 Bereit für die
                 <br />
-                <span className="bg-gradient-to-r from-yellow-400 to-red-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-yellow-400 to-primary-400 bg-clip-text text-transparent">
                   KI-Revolution?
                 </span>
               </>
@@ -145,7 +145,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
               <>
                 Ready for the
                 <br />
-                <span className="bg-gradient-to-r from-yellow-400 to-red-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-yellow-400 to-primary-400 bg-clip-text text-transparent">
                   AI Revolution?
                 </span>
               </>
@@ -154,8 +154,8 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
 
           <p className="text-xl lg:text-2xl text-white/80 max-w-4xl mx-auto mb-8 leading-relaxed">
             {isGerman 
-              ? "Schließen Sie sich den führenden Schweizer Unternehmen an, die bereits mit Projekt Susi ihre Dokumentenverarbeitung revolutioniert haben."
-              : "Join leading Swiss enterprises who have already revolutionized their document processing with Projekt Susi."
+              ? "Schließen Sie sich den führenden Schweizer Unternehmen an, die bereits mit Temora AI ihre Dokumentenverarbeitung revolutioniert haben."
+              : "Join leading Swiss enterprises who have already revolutionized their document processing with Temora AI."
             }
           </p>
 
@@ -198,7 +198,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
             <div className="w-px h-8 bg-white/30 hidden sm:block"></div>
             
             <div className="flex items-center space-x-2 text-white/90">
-              <Shield className="w-5 h-5 text-red-400" />
+              <Shield className="w-5 h-5 text-primary-400" />
               <span className="text-lg">
                 {isGerman ? "Swiss Made" : "Swiss Made"}
               </span>
@@ -236,7 +236,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
                     <motion.div
                       initial={{ scale: 0, rotate: -45 }}
                       animate={{ scale: 1, rotate: 0 }}
-                      className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-red-500 text-white px-3 py-1 rounded-full text-sm font-bold transform rotate-12 shadow-lg"
+                      className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-primary-500 text-white px-3 py-1 rounded-full text-sm font-bold transform rotate-12 shadow-lg"
                     >
                       {option.badge}
                     </motion.div>
@@ -248,7 +248,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
                     transition={{ duration: 0.6 }}
                     className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 ${
                       option.primary 
-                        ? 'bg-gradient-to-r from-yellow-400 to-red-500 text-white' 
+                        ? 'bg-gradient-to-r from-yellow-400 to-primary-500 text-white' 
                         : 'bg-gray-100 text-gray-700'
                     }`}
                   >
@@ -282,7 +282,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
                   {/* Gradient Overlay for Primary */}
                   {option.primary && (
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-red-500/5 pointer-events-none"
+                      className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-primary-500/5 pointer-events-none"
                       animate={{ opacity: [0.5, 0.8, 0.5] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     />
@@ -352,12 +352,12 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
             </motion.a>
             
             <motion.a
-              href="mailto:hello@projektsusi.ch"
+              href="mailto:hello@temora.ai"
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2 text-white hover:text-yellow-400 transition-colors"
             >
               <Mail className="w-5 h-5" />
-              <span>hello@projektsusi.ch</span>
+              <span>hello@temora.ai</span>
             </motion.a>
           </div>
 
@@ -368,7 +368,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex items-center justify-center space-x-2 mt-8 text-white/70"
           >
-            <div className="w-8 h-8 bg-red-600 rounded-sm flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary-600 rounded-sm flex items-center justify-center">
               <div className="w-2 h-6 bg-white"></div>
               <div className="w-6 h-2 bg-white absolute"></div>
             </div>

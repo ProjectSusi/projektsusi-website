@@ -173,7 +173,7 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
         isGerman ? '99.99% SLA Garantie' : '99.99% SLA guarantee',
         isGerman ? 'Dedicated Success Manager' : 'Dedicated success manager'
       ],
-      color: 'from-red-500 to-red-700',
+      color: 'from-primary-500 to-primary-700',
       icon: Crown,
       badge: isGerman ? 'Premium' : 'Premium'
     }
@@ -291,7 +291,7 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
               )}
 
               {/* Discount Badge */}
-              <div className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm animate-bounce">
+              <div className="absolute -top-3 -right-3 bg-primary-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm animate-bounce">
                 -{plan.discount}
               </div>
 
@@ -540,7 +540,7 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           <h3 className="text-3xl font-bold text-white mb-8 flex items-center justify-center">
-            <Shield className="w-8 h-8 mr-3 text-red-400" />
+            <Shield className="w-8 h-8 mr-3 text-primary-400" />
             {isGerman ? 'Swiss Enterprise Features' : 'Swiss Enterprise Features'}
             <Crown className="w-8 h-8 ml-3 text-yellow-400 animate-pulse" />
           </h3>

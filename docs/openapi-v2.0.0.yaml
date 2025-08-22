@@ -1,0 +1,1772 @@
+openapi: 3.0.0
+info:
+  title: RAG System v2.0.0 API
+  description: |
+    Comprehensive OpenAPI specification for the Retrieval-Augmented Generation (RAG) System v2.0.0.
+    
+    This system provides intelligent document processing and question-answering capabilities with 
+    zero-hallucination protection, page-level citations, and Swiss data protection compliance.
+    
+    ## Key Features
+    - **Zero-Hallucination Protection**: AI answers only based on document content
+    - **Page Citations**: Precise "Seite X", "Zeile X", "Abschnitt X" references
+    - **German Localization**: Optimized for German municipal documents
+    - **Confidence Scoring**: Transparent answer reliability metrics
+    - **Source Attribution**: Complete traceability to source documents
+    - **Multi-tenancy**: Enterprise-grade tenant isolation
+    - **Horizontal Scaling**: Auto-scaling capabilities
+    - **Swiss Compliance**: FADP and FINMA compliance features
+    
+    ## Authentication
+    Optional authentication system supporting:
+    - JWT Bearer tokens
+    - SSO integration (SAML, OAuth2, OIDC)
+    - Multi-factor authentication
+    - API key authentication for service accounts
+    
+    ## Rate Limiting
+    - Default: 100 requests per minute per IP
+    - Authenticated users: 1000 requests per minute
+    - Enterprise accounts: Custom limits
+    
+    ## Citation Format
+    Sources are provided with German localized references:
+    - `[Quelle 1] Dokument 123 - Seite 5, Zeile 12-15`
+    - `[Quelle 2] Dokument 456 - Abschnitt 3.2`
+    
+    For more information, visit: https://github.com/your-repo/rag-system
+  version: 2.0.0
+  contact:
+    name: RAG System Support
+    url: https://github.com/your-repo/rag-system
+    email: support@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: https://example.com/terms
+
+servers:
+  - url: https://api.rag.example.com
+    description: Production server
+  - url: https://staging-api.rag.example.com
+    description: Staging server
+  - url: http://localhost:8000
+    description: Local development server
+  - url: http://localhost:8002
+    description: Alternative local development server
+
+paths:
+  # Core Query Endpoints
+  /api/v1/query:
+    post:
+      summary: Execute RAG Query
+      description: |
+        Execute a question against the RAG system and receive an AI-generated answer with source citations.
+        
+        This is the primary endpoint for querying the system. It:
+        1. Searches for relevant document chunks using vector similarity
+        2. Generates an AI answer based only on found documents (zero-hallucination)
+        3. Provides precise source citations with page/line references
+        4. Returns confidence scores for transparency
+        
+        ## German Citation Format
+        Sources are returned with German localized references:
+        - "Seite X" for page references
+        - "Zeile X" for line references  
+        - "Abschnitt X" for section references
+      tags:
+        - Query
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+            example:
+              query: "Wie hoch sind die Parkgebühren in Arlesheim?"
+      responses:
+        '200':
+          description: Successful query response with AI answer and sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+              example:
+                answer: |
+                  Die Parkgebühren in Arlesheim betragen 1,50 CHF pro Stunde für Kurzparkplätze im Zentrum. 
+                  Für Anwohnerparkplätze gelten reduzierte Tarife von 0,50 CHF pro Stunde.
+                  
+                  Quellen:
+                  [Quelle 1] Dokument 123 - /api/v1/documents/123/download
+                  [Quelle 2] Dokument 456 - /api/v1/documents/456/download
+                sources:
+                  - id: 1
+                    document_id: 123
+                    similarity: 0.89
+                    download_url: "/api/v1/documents/123/download"
+                    page_reference: "Seite 15, Zeile 8-12"
+                    section_reference: "Abschnitt 4.2 - Parkgebühren"
+                  - id: 2
+                    document_id: 456
+                    similarity: 0.76
+                    download_url: "/api/v1/documents/456/download"
+                    page_reference: "Seite 7, Abschnitt 2.1"
+                confidence: 0.89
+                timestamp: "2025-01-25T14:30:00Z"
+                query: "Wie hoch sind die Parkgebühren in Arlesheim?"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/v1/status:
+    get:
+      summary: Get RAG Service Status
+      description: Get current status and configuration of the RAG service
+      tags:
+        - Query
+        - System
+      responses:
+        '200':
+          description: Service status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+              example:
+                service: "Simple RAG Service"
+                mode: "AI answers only"
+                config:
+                  similarity_threshold: 0.3
+                  max_results: 3
+                  require_sources: true
+                  max_query_length: 500
+                healthy: true
+
+  /api/v1/health:
+    get:
+      summary: Health Check
+      description: Simple health check endpoint for monitoring and load balancers
+      tags:
+        - System
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  service:
+                    type: string
+                    example: "Simple RAG Query API"
+
+  # Document Management Endpoints
+  /api/v1/documents:
+    post:
+      summary: Upload Document
+      description: |
+        Upload a new document for processing and indexing into the RAG system.
+        
+        Supported formats:
+        - PDF documents (.pdf)
+        - Text files (.txt, .md)
+        - Microsoft Word documents (.docx)
+        
+        The document will be:
+        1. Validated for security and format
+        2. Processed and chunked for optimal retrieval
+        3. Indexed in the vector database
+        4. Made available for querying
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Document file to upload
+              required:
+                - file
+      responses:
+        '200':
+          description: Document uploaded and processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+              example:
+                id: 123
+                obfuscated_id: "doc_abc123def456"
+                filename: "parkgebuehren_arlesheim.pdf"
+                size: 1048576
+                content_type: "application/pdf"
+                status: "processed"
+                upload_date: "2025-01-25T14:30:00Z"
+                processing_time: 3.5
+                chunk_count: 15
+                metadata:
+                  pages: 5
+                  language: "de"
+                  category: "municipal_regulation"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '413':
+          description: File too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "File size exceeds maximum limit of 10MB"
+                code: "FILE_TOO_LARGE"
+        '422':
+          description: Unsupported file format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Unsupported file format. Please upload PDF, TXT, or DOCX files."
+                code: "UNSUPPORTED_FORMAT"
+
+    get:
+      summary: List Documents
+      description: Retrieve a list of all uploaded documents with pagination support
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+        - {}
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: page_size
+          in: query
+          description: Number of documents per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: search
+          in: query
+          description: Search term to filter documents by filename or content
+          schema:
+            type: string
+            maxLength: 100
+      responses:
+        '200':
+          description: List of documents retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DocumentSummary'
+                  total:
+                    type: integer
+                    description: Total number of documents
+                  page:
+                    type: integer
+                    description: Current page number
+                  page_size:
+                    type: integer
+                    description: Number of documents per page
+                  total_pages:
+                    type: integer
+                    description: Total number of pages
+              example:
+                documents:
+                  - id: 123
+                    filename: "parkgebuehren_arlesheim.pdf"
+                    size: 1048576
+                    content_type: "application/pdf"
+                    status: "processed"
+                    upload_date: "2025-01-25T14:30:00Z"
+                total: 45
+                page: 1
+                page_size: 20
+                total_pages: 3
+
+  /api/v1/documents/{document_id}:
+    get:
+      summary: Get Document Details
+      description: Retrieve detailed information about a specific document
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+        - {}
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          description: Obfuscated document identifier
+          schema:
+            type: string
+            pattern: '^doc_[a-zA-Z0-9]+$'
+            example: "doc_abc123def456"
+      responses:
+        '200':
+          description: Document details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDetails'
+              example:
+                document:
+                  id: "doc_abc123def456"
+                  filename: "parkgebuehren_arlesheim.pdf"
+                  size: 1048576
+                  content_type: "application/pdf"
+                  status: "processed"
+                  upload_date: "2025-01-25T14:30:00Z"
+                  metadata:
+                    pages: 5
+                    language: "de"
+                    category: "municipal_regulation"
+                    processing_stats:
+                      chunks_created: 15
+                      processing_time: 3.5
+                      avg_chunk_size: 256
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      summary: Update Document Metadata
+      description: Update metadata and properties of an existing document
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          description: Document identifier
+          schema:
+            type: integer
+            example: 123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentUpdate'
+            example:
+              description: "Municipal parking regulations for Arlesheim"
+              tags: ["parking", "municipal", "regulations"]
+              status: "processed"
+      responses:
+        '200':
+          description: Document updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Document metadata updated successfully"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Delete Document
+      description: |
+        Permanently delete a document and all associated data.
+        
+        This operation:
+        1. Removes the document file from storage
+        2. Deletes all associated chunks from the vector index
+        3. Removes metadata from the database
+        4. Cannot be undone
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          description: Document identifier
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Document deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Document deleted successfully"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Document cannot be deleted due to active references
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Document cannot be deleted as it is referenced in active queries"
+                code: "DELETION_CONFLICT"
+
+  /api/v1/documents/{document_id}/download:
+    get:
+      summary: Download Document
+      description: Download the original document file
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+        - {}
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          description: Document identifier
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Document file
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              description: Attachment filename
+              schema:
+                type: string
+                example: 'attachment; filename="parkgebuehren_arlesheim.pdf"'
+            Content-Type:
+              description: MIME type of the file
+              schema:
+                type: string
+                example: "application/pdf"
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/documents/{document_id}/chunks:
+    get:
+      summary: Get Document Chunks
+      description: Retrieve text chunks for a specific document with optional search
+      tags:
+        - Documents
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+        - {}
+      parameters:
+        - name: document_id
+          in: path
+          required: true
+          description: Document identifier
+          schema:
+            type: integer
+            example: 123
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: page_size
+          in: query
+          description: Number of chunks per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+        - name: search_query
+          in: query
+          description: Search within chunks
+          schema:
+            type: string
+            maxLength: 200
+      responses:
+        '200':
+          description: Document chunks retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chunks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DocumentChunk'
+                  total_chunks:
+                    type: integer
+                  page:
+                    type: integer
+                  page_size:
+                    type: integer
+              example:
+                chunks:
+                  - chunk_id: "chunk_abc123"
+                    content: "Die Parkgebühren in der Gemeinde Arlesheim betragen..."
+                    page_number: 15
+                    line_numbers: [8, 9, 10, 11, 12]
+                    section: "4.2 Parkgebühren"
+                    similarity_score: 0.89
+                    metadata:
+                      char_start: 1205
+                      char_end: 1456
+                      language: "de"
+                total_chunks: 15
+                page: 1
+                page_size: 20
+
+  # System Management Endpoints
+  /health:
+    get:
+      summary: Legacy Health Check
+      description: Legacy health check endpoint for backwards compatibility
+      tags:
+        - System
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                  version:
+                    type: string
+                    example: "2.0.0"
+
+  /api/v1/system/status:
+    get:
+      summary: Detailed System Status
+      description: Get comprehensive system status including all service components
+      tags:
+        - System
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Detailed system status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStatus'
+              example:
+                system:
+                  status: "running"
+                  uptime: "24h 15m"
+                  memory_usage: "45%"
+                  cpu_usage: "12%"
+                services:
+                  ollama:
+                    status: "connected"
+                    host: "http://localhost:11434"
+                    current_model: "arlesheim-german"
+                  vector_search:
+                    status: "available"
+                    type: "FAISS"
+                    total_embeddings: 12543
+                  storage:
+                    status: "ready"
+                    type: "persistent"
+                    total_documents: 45
+                  encryption:
+                    status: "enabled"
+                  authentication:
+                    status: "enabled"
+                  mfa:
+                    status: "disabled"
+                configuration:
+                  encryption_enabled: true
+                  auth_enabled: true
+                  mfa_enabled: false
+                  tenant_isolation: true
+                statistics:
+                  total_documents: 45
+                  total_queries: 1253
+                  cache_hit_rate: "78%"
+                  avg_response_time: "0.8s"
+
+  # LLM Management Endpoints
+  /api/v1/llm/status:
+    get:
+      summary: LLM Service Status
+      description: Get status of the Large Language Model service
+      tags:
+        - LLM Management
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: LLM service status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLMStatus'
+              example:
+                status: "connected"
+                host: "http://localhost:11434"
+                current_model: "arlesheim-german"
+                available: true
+                last_check: "2025-01-25T14:30:00Z"
+                response_time: "0.5s"
+                model_info:
+                  name: "arlesheim-german"
+                  size: "4.1GB"
+                  context_length: 8192
+                  fine_tuned: true
+                  specialization: "German municipal documents"
+
+  /api/v1/llm/models:
+    get:
+      summary: List Available Models
+      description: Get list of all available LLM models
+      tags:
+        - LLM Management
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: List of available models
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LLMModel'
+                  current_model:
+                    type: string
+                  total_models:
+                    type: integer
+              example:
+                models:
+                  - name: "arlesheim-german"
+                    size: "4.1GB"
+                    status: "active"
+                    description: "Fine-tuned model for Arlesheim municipality"
+                    specialization: "German municipal documents"
+                    performance:
+                      avg_response_time: "0.5s"
+                      accuracy_score: 0.94
+                  - name: "mistral:latest"
+                    size: "4.1GB"
+                    status: "available"
+                    description: "General purpose model"
+                    specialization: "General knowledge"
+                current_model: "arlesheim-german"
+                total_models: 2
+
+  # Admin Interface Endpoints
+  /admin:
+    get:
+      summary: Admin Dashboard
+      description: Main administrative interface (HTML)
+      tags:
+        - Administration
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Admin dashboard HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          description: Insufficient privileges for admin access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /admin/models:
+    get:
+      summary: Get Model Configuration
+      description: Get all available models with their configurations and status
+      tags:
+        - Administration
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Model configuration data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current_model:
+                    type: string
+                  models:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/ModelConfig'
+                  total_count:
+                    type: integer
+              example:
+                current_model: "arlesheim-german"
+                models:
+                  arlesheim-german:
+                    name: "arlesheim-german"
+                    context_length: 8192
+                    max_tokens: 4000
+                    temperature: 0.2
+                    description: "Fine-tuned model for Arlesheim municipality"
+                    prompt_template: "German municipal assistant template"
+                    status: "available"
+                    is_current: true
+                total_count: 2
+
+  /admin/models/switch:
+    post:
+      summary: Switch Active Model
+      description: Switch to a different LLM model
+      tags:
+        - Administration
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelSelection'
+            example:
+              model_key: "mistral-latest"
+              reason: "Testing general purpose model performance"
+      responses:
+        '200':
+          description: Model switched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  previous_model:
+                    type: string
+                  new_model:
+                    type: string
+                  restart_required:
+                    type: boolean
+              example:
+                success: true
+                message: "Successfully switched from arlesheim-german to mistral-latest"
+                previous_model: "arlesheim-german"
+                new_model: "mistral-latest"
+                restart_required: true
+
+  # Authentication Endpoints
+  /api/v1/auth/login:
+    post:
+      summary: User Login
+      description: Authenticate user and receive JWT tokens
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              username: "admin@arlesheim.ch"
+              password: "secure_password"
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+              example:
+                access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                token_type: "Bearer"
+                expires_in: 3600
+                user:
+                  user_id: "user_123"
+                  username: "admin@arlesheim.ch"
+                  role: "admin"
+                  permissions: ["read", "write", "admin"]
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Invalid username or password"
+                code: "INVALID_CREDENTIALS"
+
+  /api/v1/csrf-token:
+    get:
+      summary: Get CSRF Token
+      description: Retrieve CSRF token for form submissions
+      tags:
+        - Security
+      responses:
+        '200':
+          description: CSRF token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  csrf_token:
+                    type: string
+                    description: CSRF token for form protection
+                  expires_in:
+                    type: integer
+                    description: Token expiration time in seconds
+              example:
+                csrf_token: "abc123def456ghi789"
+                expires_in: 86400
+
+# Component Definitions
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Bearer token authentication
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for service accounts
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Basic HTTP authentication
+
+  schemas:
+    # Core Query Schemas
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          minLength: 3
+          maxLength: 500
+          description: User question in natural language
+          example: "Wie hoch sind die Parkgebühren in Arlesheim?"
+      additionalProperties: false
+
+    QueryResponse:
+      type: object
+      required:
+        - answer
+        - sources
+        - confidence
+        - timestamp
+        - query
+      properties:
+        answer:
+          type: string
+          description: |
+            AI-generated answer based on document content with embedded source citations.
+            Includes German localized source references in the format:
+            "[Quelle X] Dokument Y - download_url"
+          example: |
+            Die Parkgebühren in Arlesheim betragen 1,50 CHF pro Stunde für Kurzparkplätze im Zentrum.
+            
+            Quellen:
+            [Quelle 1] Dokument 123 - /api/v1/documents/123/download
+            [Quelle 2] Dokument 456 - /api/v1/documents/456/download
+        sources:
+          type: array
+          description: Array of source documents with detailed citation information
+          items:
+            $ref: '#/components/schemas/SourceReference'
+        confidence:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence score for the answer quality (0.0 = low, 1.0 = high)
+          example: 0.89
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the response was generated
+          example: "2025-01-25T14:30:00Z"
+        query:
+          type: string
+          description: Original user query that was processed
+          example: "Wie hoch sind die Parkgebühren in Arlesheim?"
+        metadata:
+          type: object
+          description: Additional response metadata
+          properties:
+            processing_time_ms:
+              type: number
+              description: Time taken to process the query in milliseconds
+            model_used:
+              type: string
+              description: LLM model used for answer generation
+            search_results_count:
+              type: integer
+              description: Number of documents found in vector search
+            filter_applied:
+              type: array
+              items:
+                type: string
+              description: Content filters applied during search
+
+    SourceReference:
+      type: object
+      required:
+        - id
+        - document_id
+        - similarity
+        - download_url
+      properties:
+        id:
+          type: integer
+          description: Sequential source number for citation
+          example: 1
+        document_id:
+          type: integer
+          description: Unique identifier of the source document
+          example: 123
+        similarity:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Similarity score between query and document chunk
+          example: 0.89
+        download_url:
+          type: string
+          format: uri
+          description: URL to download the source document
+          example: "/api/v1/documents/123/download"
+        page_reference:
+          type: string
+          description: German page and line reference
+          example: "Seite 15, Zeile 8-12"
+        section_reference:
+          type: string
+          description: German section reference if available
+          example: "Abschnitt 4.2 - Parkgebühren"
+        chunk_id:
+          type: string
+          description: Unique identifier of the text chunk
+          example: "chunk_abc123def456"
+        excerpt:
+          type: string
+          description: Relevant text excerpt from the document
+          maxLength: 500
+          example: "Die Parkgebühren in der Gemeinde Arlesheim betragen 1,50 CHF pro Stunde..."
+
+    StatusResponse:
+      type: object
+      required:
+        - service
+        - mode
+        - config
+        - healthy
+      properties:
+        service:
+          type: string
+          description: Service name
+          example: "Simple RAG Service"
+        mode:
+          type: string
+          description: Current operation mode
+          example: "AI answers only"
+        config:
+          type: object
+          description: Current service configuration
+          properties:
+            similarity_threshold:
+              type: number
+              format: float
+            max_results:
+              type: integer
+            require_sources:
+              type: boolean
+            max_query_length:
+              type: integer
+        healthy:
+          type: boolean
+          description: Overall service health status
+          example: true
+
+    # Document Management Schemas
+    DocumentResponse:
+      type: object
+      required:
+        - id
+        - filename
+        - size
+        - content_type
+        - status
+      properties:
+        id:
+          type: integer
+          description: Unique document identifier
+          example: 123
+        obfuscated_id:
+          type: string
+          description: Obfuscated document ID for security
+          example: "doc_abc123def456"
+        filename:
+          type: string
+          description: Original filename
+          example: "parkgebuehren_arlesheim.pdf"
+        size:
+          type: integer
+          description: File size in bytes
+          example: 1048576
+        content_type:
+          type: string
+          description: MIME type of the file
+          example: "application/pdf"
+        status:
+          type: string
+          enum: ["uploading", "processing", "processed", "error"]
+          description: Current processing status
+          example: "processed"
+        upload_date:
+          type: string
+          format: date-time
+          description: Upload timestamp
+          example: "2025-01-25T14:30:00Z"
+        processing_time:
+          type: number
+          format: float
+          description: Time taken to process the document in seconds
+          example: 3.5
+        chunk_count:
+          type: integer
+          description: Number of text chunks created
+          example: 15
+        metadata:
+          type: object
+          description: Additional document metadata
+          properties:
+            pages:
+              type: integer
+              description: Number of pages (for PDF documents)
+            language:
+              type: string
+              description: Detected document language
+            category:
+              type: string
+              description: Document category classification
+            keywords:
+              type: array
+              items:
+                type: string
+              description: Extracted keywords
+
+    DocumentSummary:
+      type: object
+      required:
+        - id
+        - filename
+        - size
+        - content_type
+        - status
+        - upload_date
+      properties:
+        id:
+          type: integer
+          example: 123
+        filename:
+          type: string
+          example: "parkgebuehren_arlesheim.pdf"
+        size:
+          type: integer
+          example: 1048576
+        content_type:
+          type: string
+          example: "application/pdf"
+        status:
+          type: string
+          enum: ["uploading", "processing", "processed", "error"]
+          example: "processed"
+        upload_date:
+          type: string
+          format: date-time
+          example: "2025-01-25T14:30:00Z"
+        chunk_count:
+          type: integer
+          example: 15
+
+    DocumentDetails:
+      type: object
+      required:
+        - document
+      properties:
+        document:
+          allOf:
+            - $ref: '#/components/schemas/DocumentResponse'
+            - type: object
+              properties:
+                processing_stats:
+                  type: object
+                  properties:
+                    chunks_created:
+                      type: integer
+                    processing_time:
+                      type: number
+                      format: float
+                    avg_chunk_size:
+                      type: integer
+                    error_count:
+                      type: integer
+
+    DocumentUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+          maxLength: 1000
+          description: Document description
+        tags:
+          type: array
+          items:
+            type: string
+            maxLength: 50
+          maxItems: 10
+          description: Document tags for categorization
+        status:
+          type: string
+          enum: ["active", "archived", "deleted"]
+          description: Document status
+
+    DocumentChunk:
+      type: object
+      required:
+        - chunk_id
+        - content
+        - page_number
+      properties:
+        chunk_id:
+          type: string
+          description: Unique chunk identifier
+          example: "chunk_abc123def456"
+        content:
+          type: string
+          description: Text content of the chunk
+          example: "Die Parkgebühren in der Gemeinde Arlesheim betragen..."
+        page_number:
+          type: integer
+          description: Page number where this chunk appears
+          example: 15
+        line_numbers:
+          type: array
+          items:
+            type: integer
+          description: Line numbers within the page
+          example: [8, 9, 10, 11, 12]
+        section:
+          type: string
+          description: Document section where chunk appears
+          example: "4.2 Parkgebühren"
+        similarity_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Similarity score if from a search
+        metadata:
+          type: object
+          properties:
+            char_start:
+              type: integer
+              description: Character start position in document
+            char_end:
+              type: integer
+              description: Character end position in document
+            language:
+              type: string
+              description: Detected language of the chunk
+            confidence:
+              type: number
+              format: float
+              description: Confidence in language detection
+
+    # System Status Schemas
+    SystemStatus:
+      type: object
+      required:
+        - system
+        - services
+        - configuration
+        - statistics
+      properties:
+        system:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: ["running", "degraded", "down"]
+            uptime:
+              type: string
+              example: "24h 15m"
+            memory_usage:
+              type: string
+              example: "45%"
+            cpu_usage:
+              type: string
+              example: "12%"
+            disk_usage:
+              type: string
+              example: "23%"
+        services:
+          type: object
+          properties:
+            ollama:
+              $ref: '#/components/schemas/ServiceStatus'
+            vector_search:
+              $ref: '#/components/schemas/ServiceStatus'
+            storage:
+              $ref: '#/components/schemas/ServiceStatus'
+            encryption:
+              $ref: '#/components/schemas/ServiceStatus'
+            authentication:
+              $ref: '#/components/schemas/ServiceStatus'
+            mfa:
+              $ref: '#/components/schemas/ServiceStatus'
+        configuration:
+          type: object
+          properties:
+            encryption_enabled:
+              type: boolean
+            auth_enabled:
+              type: boolean
+            mfa_enabled:
+              type: boolean
+            tenant_isolation:
+              type: boolean
+            auto_scaling:
+              type: boolean
+        statistics:
+          type: object
+          properties:
+            total_documents:
+              type: integer
+            total_queries:
+              type: integer
+            cache_hit_rate:
+              type: string
+              example: "78%"
+            avg_response_time:
+              type: string
+              example: "0.8s"
+
+    ServiceStatus:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: ["connected", "available", "ready", "enabled", "disabled", "error"]
+        host:
+          type: string
+          description: Service host URL
+        type:
+          type: string
+          description: Service type or implementation
+        current_model:
+          type: string
+          description: Currently active model (for LLM services)
+        total_embeddings:
+          type: integer
+          description: Total number of embeddings (for vector services)
+        total_documents:
+          type: integer
+          description: Total number of documents (for storage services)
+        last_check:
+          type: string
+          format: date-time
+          description: Last health check timestamp
+        response_time:
+          type: string
+          description: Average response time
+        error_message:
+          type: string
+          description: Error message if status is error
+
+    # LLM Management Schemas
+    LLMStatus:
+      type: object
+      required:
+        - status
+        - host
+        - current_model
+        - available
+      properties:
+        status:
+          type: string
+          enum: ["connected", "disconnected", "error"]
+        host:
+          type: string
+          example: "http://localhost:11434"
+        current_model:
+          type: string
+          example: "arlesheim-german"
+        available:
+          type: boolean
+        last_check:
+          type: string
+          format: date-time
+        response_time:
+          type: string
+          example: "0.5s"
+        model_info:
+          $ref: '#/components/schemas/LLMModelInfo'
+
+    LLMModel:
+      type: object
+      required:
+        - name
+        - size
+        - status
+        - description
+      properties:
+        name:
+          type: string
+          example: "arlesheim-german"
+        size:
+          type: string
+          example: "4.1GB"
+        status:
+          type: string
+          enum: ["active", "available", "downloading", "error"]
+        description:
+          type: string
+          example: "Fine-tuned model for Arlesheim municipality"
+        specialization:
+          type: string
+          example: "German municipal documents"
+        performance:
+          type: object
+          properties:
+            avg_response_time:
+              type: string
+            accuracy_score:
+              type: number
+              format: float
+            throughput:
+              type: string
+
+    LLMModelInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        size:
+          type: string
+        context_length:
+          type: integer
+        fine_tuned:
+          type: boolean
+        specialization:
+          type: string
+        capabilities:
+          type: array
+          items:
+            type: string
+
+    # Admin Interface Schemas
+    ModelConfig:
+      type: object
+      required:
+        - name
+        - context_length
+        - max_tokens
+        - temperature
+        - description
+        - prompt_template
+      properties:
+        name:
+          type: string
+          description: Model name
+          example: "arlesheim-german"
+        context_length:
+          type: integer
+          description: Maximum context window size
+          example: 8192
+        max_tokens:
+          type: integer
+          description: Maximum tokens per response
+          example: 4000
+        temperature:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 2.0
+          description: Model temperature for response generation
+          example: 0.2
+        description:
+          type: string
+          description: Human-readable model description
+          example: "Fine-tuned model for Arlesheim municipality"
+        prompt_template:
+          type: string
+          description: Prompt template identifier
+          example: "German municipal assistant template"
+        status:
+          type: string
+          enum: ["available", "not_downloaded", "error"]
+        is_current:
+          type: boolean
+          description: Whether this is the currently active model
+
+    ModelSelection:
+      type: object
+      required:
+        - model_key
+      properties:
+        model_key:
+          type: string
+          description: Model key to switch to
+          example: "mistral-latest"
+        reason:
+          type: string
+          description: Reason for model switch (for audit logs)
+          example: "Testing general purpose model performance"
+          maxLength: 200
+
+    # Authentication Schemas
+    LoginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          format: email
+          description: User email address
+          example: "admin@arlesheim.ch"
+        password:
+          type: string
+          format: password
+          description: User password
+          minLength: 8
+        remember_me:
+          type: boolean
+          description: Whether to issue a long-lived refresh token
+          default: false
+
+    LoginResponse:
+      type: object
+      required:
+        - access_token
+        - token_type
+        - expires_in
+        - user
+      properties:
+        access_token:
+          type: string
+          description: JWT access token
+        refresh_token:
+          type: string
+          description: JWT refresh token for obtaining new access tokens
+        token_type:
+          type: string
+          example: "Bearer"
+        expires_in:
+          type: integer
+          description: Access token expiration time in seconds
+          example: 3600
+        user:
+          $ref: '#/components/schemas/UserResponse'
+
+    UserResponse:
+      type: object
+      required:
+        - user_id
+        - username
+        - role
+        - created_at
+        - is_active
+      properties:
+        user_id:
+          type: string
+          example: "user_123"
+        username:
+          type: string
+          example: "admin@arlesheim.ch"
+        email:
+          type: string
+          format: email
+          example: "admin@arlesheim.ch"
+        role:
+          type: string
+          enum: ["admin", "editor", "viewer", "api_user"]
+          example: "admin"
+        permissions:
+          type: array
+          items:
+            type: string
+          example: ["read", "write", "admin"]
+        created_at:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+        is_active:
+          type: boolean
+        profile:
+          type: object
+          properties:
+            display_name:
+              type: string
+            organization:
+              type: string
+            department:
+              type: string
+
+    # Error Response Schemas
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - code
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: "Invalid query format"
+        code:
+          type: string
+          description: Machine-readable error code
+          example: "INVALID_INPUT"
+        details:
+          type: object
+          description: Additional error details
+          additionalProperties: true
+        timestamp:
+          type: string
+          format: date-time
+          description: Error timestamp
+        request_id:
+          type: string
+          description: Unique request identifier for debugging
+          example: "req_abc123def456"
+
+    ValidationError:
+      type: object
+      required:
+        - error
+        - code
+        - validation_errors
+      properties:
+        error:
+          type: string
+          example: "Validation failed"
+        code:
+          type: string
+          example: "VALIDATION_ERROR"
+        validation_errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field that failed validation
+              message:
+                type: string
+                description: Validation error message
+              code:
+                type: string
+                description: Specific validation error code
+
+  responses:
+    BadRequest:
+      description: Bad request - invalid input parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Query must be between 3 and 500 characters"
+            code: "INVALID_QUERY_LENGTH"
+            timestamp: "2025-01-25T14:30:00Z"
+
+    Unauthorized:
+      description: Unauthorized - authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Authentication required"
+            code: "AUTHENTICATION_REQUIRED"
+            timestamp: "2025-01-25T14:30:00Z"
+
+    Forbidden:
+      description: Forbidden - insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Insufficient permissions for this operation"
+            code: "INSUFFICIENT_PERMISSIONS"
+            timestamp: "2025-01-25T14:30:00Z"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Document not found"
+            code: "DOCUMENT_NOT_FOUND"
+            timestamp: "2025-01-25T14:30:00Z"
+
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Rate limit exceeded. Try again later."
+            code: "RATE_LIMIT_EXCEEDED"
+            timestamp: "2025-01-25T14:30:00Z"
+      headers:
+        X-RateLimit-Limit:
+          description: Request limit per time window
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Remaining requests in current window
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: Time when rate limit resets
+          schema:
+            type: integer
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "An internal server error occurred"
+            code: "INTERNAL_SERVER_ERROR"
+            timestamp: "2025-01-25T14:30:00Z"
+            request_id: "req_abc123def456"
+
+# API Tags for organization
+tags:
+  - name: Query
+    description: Core RAG query endpoints for question answering
+  - name: Documents
+    description: Document upload, management, and retrieval operations
+  - name: System
+    description: System health, status, and monitoring endpoints
+  - name: LLM Management
+    description: Large Language Model configuration and status
+  - name: Administration
+    description: Administrative interface and configuration management
+  - name: Authentication
+    description: User authentication and authorization
+  - name: Security
+    description: Security-related endpoints (CSRF, etc.)
+
+# External Documentation
+externalDocs:
+  description: RAG System Documentation
+  url: https://github.com/your-repo/rag-system/wiki

@@ -39,7 +39,7 @@ export const SwissFlag: React.FC<{ className?: string; animated?: boolean }> = (
     <div 
       ref={flagRef}
       className={cn(
-        "relative inline-block bg-red-600 border border-red-700 shadow-lg transition-all duration-500",
+        "relative inline-block bg-primary-600 border border-primary-700 shadow-lg transition-all duration-500",
         animated && "hover:scale-110",
         className
       )}
@@ -376,7 +376,7 @@ export const DataVisualization: React.FC<{
       {data.map((value, index) => (
         <div
           key={index}
-          className="relative flex-1 bg-gradient-to-t from-red-500 to-blue-500 rounded-t-sm transition-all duration-1000 hover:scale-110"
+          className="relative flex-1 bg-gradient-to-t from-primary-500 to-blue-500 rounded-t-sm transition-all duration-1000 hover:scale-110"
           style={{
             height: animated ? `${(value / maxValue) * 100}%` : '100%',
             animationDelay: `${index * 100}ms`,

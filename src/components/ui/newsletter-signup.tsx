@@ -73,8 +73,8 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     submitting: isGerman ? 'Wird angemeldet...' : 'Subscribing...',
     success: isGerman ? 'Erfolgreich angemeldet!' : 'Successfully subscribed!',
     successMessage: isGerman 
-      ? 'Vielen Dank! Sie erhalten nun Updates zu Projekt Susi.'
-      : 'Thank you! You will now receive updates about Projekt Susi.',
+      ? 'Vielen Dank! Sie erhalten nun Updates zu Temora AI.'
+      : 'Thank you! You will now receive updates about Temora AI.',
     privacy: isGerman 
       ? 'Wir respektieren Ihre Privatsphäre. Jederzeit abbestellbar.'
       : 'We respect your privacy. Unsubscribe at any time.'

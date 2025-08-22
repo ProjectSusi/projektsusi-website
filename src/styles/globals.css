@@ -10,10 +10,10 @@
     --card-foreground: 220 13% 18%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 18%;
-    --primary: 351 69% 44%;
+    --primary: 215 79% 48%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 220 13% 18%;
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
     --accent: 0 0% 96%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 351 69% 44%;
+    --ring: 215 79% 48%;
     --radius: 0.75rem;
   }
 
@@ -33,9 +33,9 @@
     --card-foreground: 0 0% 96%;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 96%;
-    --primary: 351 69% 44%;
+    --primary: 215 79% 48%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 18%;
+    --secondary: 220 13% 18%;
     --secondary-foreground: 0 0% 96%;
     --muted: 0 0% 18%;
     --muted-foreground: 0 0% 64%;
@@ -45,7 +45,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 351 69% 44%;
+    --ring: 215 79% 48%;
   }
 
   * {
@@ -99,7 +99,7 @@
 
   /* Gradient backgrounds */
   .swiss-gradient {
-    background: linear-gradient(135deg, #C41E3A 0%, #1F2937 100%);
+    background: linear-gradient(135deg, #1D4ED8 0%, #1F2937 100%);
   }
 
   .alpine-gradient {

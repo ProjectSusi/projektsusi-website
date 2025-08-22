@@ -15,14 +15,14 @@ interface SEOProps {
 }
 
 const SEOHead: React.FC<SEOProps> = ({
-  title = 'Projekt Susi - Swiss AI RAG Solution',
+  title = 'Temora AI - Swiss AI RAG Solution',
   description = 'The leading Swiss RAG solution with complete data sovereignty, FADP/GDPR compliance, and zero-hallucination AI. Specifically engineered for Swiss banking, pharma, and manufacturing.',
   keywords = 'RAG System, Switzerland, AI, Artificial Intelligence, FADP, GDPR, Compliance, Data Privacy, Swiss AI, Banking, Pharma, Manufacturing',
   ogImage = 'https://ai.sirth.ch/og-image.jpg',
   ogType = 'website',
   noindex = false,
   canonical,
-  author = 'Projekt Susi AG',
+  author = 'Temora AI AG',
   publishedTime,
   modifiedTime
 }) => {
@@ -35,8 +35,8 @@ const SEOHead: React.FC<SEOProps> = ({
   const isGerman = locale === 'de'
   
   // Localized defaults
-  const localizedTitle = title === 'Projekt Susi - Swiss AI RAG Solution' && isGerman 
-    ? 'Projekt Susi - Die Schweizer KI-Lösung für Unternehmen' 
+  const localizedTitle = title === 'Temora AI - Swiss AI RAG Solution' && isGerman 
+    ? 'Temora AI - Die Schweizer KI-Lösung für Unternehmen' 
     : title
     
   const localizedDescription = description === 'The leading Swiss RAG solution with complete data sovereignty, FADP/GDPR compliance, and zero-hallucination AI. Specifically engineered for Swiss banking, pharma, and manufacturing.' && isGerman
@@ -66,7 +66,7 @@ const SEOHead: React.FC<SEOProps> = ({
       <meta property="og:title" content={localizedTitle} />
       <meta property="og:description" content={localizedDescription} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:site_name" content="Projekt Susi" />
+      <meta property="og:site_name" content="Temora AI" />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:alt" content={localizedTitle} />
       <meta property="og:image:width" content="1200" />
@@ -78,13 +78,13 @@ const SEOHead: React.FC<SEOProps> = ({
       <meta name="twitter:description" content={localizedDescription} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={localizedTitle} />
-      <meta name="twitter:site" content="@ProjektSusi" />
-      <meta name="twitter:creator" content="@ProjektSusi" />
+      <meta name="twitter:site" content="@TemoreAI" />
+      <meta name="twitter:creator" content="@TemoreAI" />
       
       {/* Additional Meta Tags */}
       <meta name="theme-color" content="#C41E3A" />
       <meta name="msapplication-TileColor" content="#C41E3A" />
-      <meta name="application-name" content="Projekt Susi" />
+      <meta name="application-name" content="Temora AI" />
       
       {/* Mobile Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -115,7 +115,7 @@ const SEOHead: React.FC<SEOProps> = ({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Projekt Susi AG",
+            "name": "Temora AI AG",
             "url": "https://ai.sirth.ch",
             "logo": "https://ai.sirth.ch/logo.png",
             "description": localizedDescription,
@@ -127,11 +127,11 @@ const SEOHead: React.FC<SEOProps> = ({
             "contactPoint": {
               "@type": "ContactPoint",
               "contactType": "customer service",
-              "email": "hello@projektsusi.ch"
+              "email": "hello@temora.ai"
             },
             "sameAs": [
-              "https://twitter.com/ProjektSusi",
-              "https://linkedin.com/company/projektsusi"
+              "https://twitter.com/TemoreAI",
+              "https://linkedin.com/company/temoraai"
             ]
           })
         }}

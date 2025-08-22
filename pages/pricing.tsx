@@ -12,12 +12,12 @@ export default function PricingPage({ locale }: PricingPageProps) {
   const isGerman = locale === 'de'
   
   const pageTitle = isGerman 
-    ? 'Preise - Projekt Susi Swiss AI RAG Lösung'
-    : 'Pricing - Projekt Susi Swiss AI RAG Solution'
+    ? 'Preise - Temora AI Swiss AI RAG Lösung'
+    : 'Pricing - Temora AI Swiss AI RAG Solution'
   
   const pageDescription = isGerman
-    ? 'Transparente Preise für Projekt Susi RAG System. Von CHF 15,000 für Starter bis Enterprise-Lösungen. Inklusive Swiss Data Sovereignty, FADP/GDPR Compliance und ROI-Garantie.'
-    : 'Transparent pricing for Projekt Susi RAG System. From CHF 15,000 for Starter to Enterprise solutions. Including Swiss data sovereignty, FADP/GDPR compliance, and ROI guarantee.'
+    ? 'Transparente Preise für Temora AI RAG System. Von CHF 15,000 für Starter bis Enterprise-Lösungen. Inklusive Swiss Data Sovereignty, FADP/GDPR Compliance und ROI-Garantie.'
+    : 'Transparent pricing for Temora AI RAG System. From CHF 15,000 for Starter to Enterprise solutions. Including Swiss data sovereignty, FADP/GDPR compliance, and ROI guarantee.'
 
   return (
     <>
@@ -38,11 +38,11 @@ export default function PricingPage({ locale }: PricingPageProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Product",
-              "name": "Projekt Susi RAG System",
+              "name": "Temora AI RAG System",
               "description": pageDescription,
               "brand": {
                 "@type": "Organization",
-                "name": "Projekt Susi AG"
+                "name": "Temora AI AG"
               },
               "offers": [
                 {

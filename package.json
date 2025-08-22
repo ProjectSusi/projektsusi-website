@@ -1,7 +1,7 @@
 {
   "name": "projektsusui-website",
   "version": "1.0.0",
-  "description": "Projekt Susi - Swiss AI RAG Solution Website",
+  "description": "Temora AI - Swiss AI RAG Solution Website",
   "private": true,
   "scripts": {
     "dev": "next dev",

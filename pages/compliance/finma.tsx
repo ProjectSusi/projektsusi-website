@@ -203,7 +203,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -252,7 +252,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
               </motion.div>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed"
+                className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -263,7 +263,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
               </motion.p>
 
               <motion.div 
-                className="inline-flex items-center space-x-3 bg-red-100 text-red-800 rounded-full px-6 py-3"
+                className="inline-flex items-center space-x-3 bg-primary-100 text-primary-800 rounded-full px-6 py-3"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
@@ -296,10 +296,10 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'FINMA Anforderungen' : 'FINMA Requirements'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Vollständige Abdeckung aller regulatorischen Anforderungen für Finanzinstitute'
                   : 'Complete coverage of all regulatory requirements for financial institutions'
@@ -325,11 +325,11 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                       <requirement.icon className="w-8 h-8 text-white" />
                     </motion.div>
                     
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    <h3 className="text-2xl font-bold text-secondary mb-4">
                       {requirement.title}
                     </h3>
                     
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-secondary/70 mb-6">
                       {requirement.description}
                     </p>
 
@@ -337,7 +337,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                       {requirement.requirements.map((req, reqIndex) => (
                         <div key={reqIndex} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">{req}</span>
+                          <span className="text-sm text-secondary/80">{req}</span>
                         </div>
                       ))}
                     </div>
@@ -349,7 +349,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
         </motion.section>
 
         {/* Risk Management */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -358,10 +358,10 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Risikomanagement' : 'Risk Management'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'KI-gestützte Risikoanalyse für alle FINMA-relevanten Risikokategorien'
                   : 'AI-powered risk analysis for all FINMA-relevant risk categories'
@@ -381,11 +381,11 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                 <AnimatedCard className="p-8" hover={true}>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      <h3 className="text-2xl font-bold text-secondary mb-4">
                         {category.category}
                       </h3>
                       
-                      <p className="text-gray-600 mb-6">
+                      <p className="text-secondary/70 mb-6">
                         {category.description}
                       </p>
 
@@ -393,14 +393,14 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                         {category.features.map((feature, featureIndex) => (
                           <div key={featureIndex} className="flex items-start space-x-3">
                             <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-gray-700">{feature}</span>
+                            <span className="text-sm text-secondary/80">{feature}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     <div className="bg-gray-50 p-6 rounded-lg">
-                      <h4 className="font-bold text-gray-900 mb-4">
+                      <h4 className="font-bold text-secondary mb-4">
                         {isGerman ? 'Performance-Metriken' : 'Performance Metrics'}
                       </h4>
                       <div className="space-y-4">
@@ -433,10 +433,10 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Compliance-Framework' : 'Compliance Framework'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Strukturierter Ansatz für FINMA-Compliance-Implementierung'
                   : 'Structured approach to FINMA compliance implementation'
@@ -469,14 +469,14 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                       <div className="flex-1">
                         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
                           <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                            <h3 className="text-2xl font-bold text-secondary mb-2">
                               {phase.phase}
                             </h3>
-                            <p className="text-gray-600 mb-4">
+                            <p className="text-secondary/70 mb-4">
                               {phase.description}
                             </p>
                           </div>
-                          <div className="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap">
+                          <div className="bg-primary-100 text-primary-800 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap">
                             ⏱️ {phase.duration}
                           </div>
                         </div>
@@ -485,7 +485,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                           {phase.deliverables.map((deliverable, delIndex) => (
                             <div key={delIndex} className="flex items-start space-x-3">
                               <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm text-gray-700">{deliverable}</span>
+                              <span className="text-sm text-secondary/80">{deliverable}</span>
                             </div>
                           ))}
                         </div>
@@ -499,7 +499,7 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
         </motion.section>
 
         {/* Certifications */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -508,10 +508,10 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Zertifizierungen & Standards' : 'Certifications & Standards'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Anerkannte Zertifizierungen und Compliance-Standards'
                   : 'Recognized certifications and compliance standards'
@@ -544,11 +544,11 @@ const FINMACompliancePage: React.FC<FINMACompliancePageProps> = ({ locale }) => 
                       )}
                     </motion.div>
                     
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-secondary mb-2">
                       {cert.name}
                     </h3>
                     
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-secondary/70 text-sm mb-4">
                       {cert.description}
                     </p>
 

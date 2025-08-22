@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAG System Administration</title>
+    <title>Temora AI Administration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Temora AI Color Palette */
+            --primary-color: #8B5CF6;
+            --secondary-color: #7C3AED;
+            --accent-color: #06B6D4;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --error-color: #EF4444;
+            --background-color: #0F0F1A;
+            --card-background: #1A1B2E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A3A3A3;
+            --border-color: #2A2B3E;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+            --gradient-header: linear-gradient(135deg, #1A1B2E 0%, #16213E 100%);
+            --gradient-card: linear-gradient(135deg, #1A1B2E 0%, #0F0F1A 100%);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -12,26 +32,30 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background-color);
             min-height: 100vh;
             padding: 20px;
+            color: var(--text-primary);
         }
         
         .admin-container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: var(--gradient-card);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
             overflow: hidden;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
         }
         
         .admin-header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: var(--gradient-header);
             color: white;
             padding: 30px;
             text-align: center;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .admin-header h1 {
@@ -46,6 +70,7 @@
         
         .admin-content {
             padding: 30px;
+            background: transparent;
         }
         
         .status-grid {
@@ -56,17 +81,23 @@
         }
         
         .status-card {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 20px;
             text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-2px);
         }
         
         .status-card.current {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: var(--gradient-primary);
             color: white;
             border: none;
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
         }
         
         .status-card h3 {
@@ -87,8 +118,8 @@
         .section-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
         }
         
@@ -99,26 +130,27 @@
         }
         
         .model-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 20px;
-            background: white;
+            background: var(--card-background);
             transition: all 0.3s ease;
         }
         
         .model-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+            transform: translateY(-4px);
         }
         
         .model-card.current {
-            border: 2px solid #28a745;
-            background: #f8fff9;
+            border: 2px solid var(--primary-color);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
         }
         
         .model-card.unavailable {
             opacity: 0.6;
-            background: #f8f9fa;
+            background: var(--card-background);
         }
         
         .model-header {
@@ -131,7 +163,7 @@
         .model-name {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #2c3e50;
+            color: var(--text-primary);
         }
         
         .model-status {
@@ -163,7 +195,7 @@
         }
         
         .model-description {
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 15px;
             font-size: 0.9rem;
             line-height: 1.4;
@@ -178,14 +210,15 @@
         }
         
         .spec-item {
-            background: #f8f9fa;
+            background: rgba(139, 92, 246, 0.1);
             padding: 5px 10px;
-            border-radius: 4px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
         }
         
         .spec-label {
             font-weight: bold;
-            color: #495057;
+            color: var(--text-primary);
         }
         
         .model-actions {
@@ -207,21 +240,26 @@
         }
         
         .btn-primary {
-            background: #3498db;
+            background: var(--gradient-primary);
             color: white;
+            border: none;
         }
         
         .btn-primary:hover {
-            background: #2980b9;
+            background: var(--secondary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
         }
         
         .btn-success {
-            background: #28a745;
+            background: var(--success-color);
             color: white;
         }
         
         .btn-success:hover {
-            background: #218838;
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
         
         .btn-warning {
@@ -250,8 +288,8 @@
         .admin-actions {
             text-align: center;
             padding: 30px;
-            border-top: 1px solid #eee;
-            background: #f8f9fa;
+            border-top: 1px solid var(--border-color);
+            background: var(--card-background);
         }
         
         .admin-actions .btn {
@@ -313,12 +351,15 @@
     </style>
 </head>
 <body>
-    <a href="/" class="btn btn-primary back-button">← Back to RAG System</a>
+    <a href="/" class="btn btn-primary back-button">← Back to Temora AI</a>
     
     <div class="admin-container">
         <div class="admin-header">
-            <h1>🛠️ RAG System Administration</h1>
-            <p>Model Management & System Configuration</p>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; justify-content: center;">
+                <img src="/static/temoralogo.png" alt="Temora AI Logo" style="height: 60px; width: auto;">
+                <h1 class="title" style="margin: 0; font-size: 2.5rem;">🛠️ Temora AI Administration</h1>
+            </div>
+            <p>Intelligent Document System Management & Configuration</p>
             <div style="margin-top: 20px;">
                 <a href="/admin/documents/management" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-right: 10px;">
                     📄 Document Management
@@ -580,7 +621,7 @@
         async function restartSystem() {
             if (isProcessing) return;
             
-            if (!confirm('Restart the RAG system? This will briefly interrupt service.')) return;
+            if (!confirm('Restart Temora AI? This will briefly interrupt service.')) return;
             
             showLoading();
             

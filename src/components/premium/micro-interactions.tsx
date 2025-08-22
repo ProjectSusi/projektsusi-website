@@ -170,7 +170,7 @@ export const SwissCrossLoader: React.FC<{
           <div className="relative">
             {/* Swiss Cross */}
             <div 
-              className="absolute bg-red-600"
+              className="absolute bg-primary-600"
               style={{
                 width: size * 0.6,
                 height: size * 0.15,
@@ -180,7 +180,7 @@ export const SwissCrossLoader: React.FC<{
               }}
             />
             <div 
-              className="absolute bg-red-600"
+              className="absolute bg-primary-600"
               style={{
                 width: size * 0.15,
                 height: size * 0.6,
@@ -582,7 +582,7 @@ export const GlitchText: React.FC<{
       {isGlitching && (
         <>
           <span
-            className="absolute top-0 left-0 text-red-500 opacity-80"
+            className="absolute top-0 left-0 text-primary-500 opacity-80"
             style={{
               transform: `translate(${Math.random() * intensity - intensity/2}px, ${Math.random() * intensity - intensity/2}px)`,
               clipPath: 'inset(0 0 50% 0)'

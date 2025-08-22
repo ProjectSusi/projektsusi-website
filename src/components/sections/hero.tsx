@@ -6,6 +6,7 @@ import { Play, Shield, Zap, CheckCircle, ArrowRight, Star, Users, Building } fro
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import DemoWidget from '@/components/demo/demo-widget'
+import LiveRAGIntegration from '@/components/demo/live-rag-integration'
 import TrustIndicators from '@/components/ui/trust-indicators'
 import { cn, trackEvent } from '@/lib/utils'
 
@@ -15,6 +16,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ locale }) => {
   const [showDemo, setShowDemo] = useState(false)
+  const [useLiveSystem, setUseLiveSystem] = useState(true)
   const [animationPhase, setAnimationPhase] = useState(0)
   
   const isGerman = locale === 'de'
@@ -73,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
               )}>
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span className="text-white text-sm font-medium">
-                  🇨🇭 {isGerman ? 'Swiss-engineered • Trusted by 500+ enterprises' : 'Swiss-engineered • Trusted by 500+ enterprises'}
+                  {isGerman ? 'Swiss-engineered • Trusted by 500+ enterprises' : 'Swiss-engineered • Trusted by 500+ enterprises'}
                 </span>
               </div>
 
@@ -84,13 +86,13 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
               )}>
                 {isGerman ? (
                   <>
-                    Die <span className="text-primary-foreground bg-primary/20 px-2 rounded">Schweizer</span> KI-Lösung<br />
-                    für Schweizer <span className="text-gradient">Unternehmen</span>
+                    Die <span className="text-blue-200 font-semibold">Schweizer</span> KI-Lösung<br />
+                    für Schweizer <span className="text-white font-bold">Unternehmen</span>
                   </>
                 ) : (
                   <>
-                    The <span className="text-primary-foreground bg-primary/20 px-2 rounded">Swiss</span> AI Solution<br />
-                    for Enterprise <span className="text-gradient">Intelligence</span>
+                    The <span className="text-blue-200 font-semibold">Swiss</span> AI Solution<br />
+                    for Enterprise <span className="text-white font-bold">Intelligence</span>
                   </>
                 )}
               </h1>
@@ -208,15 +210,43 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
                 <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-8">
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-secondary mb-4">
-                      {isGerman ? 'Testen Sie Projekt Susi Live' : 'Try Projekt Susi Live'}
+                      {isGerman ? 'Erleben Sie Temora AI Live' : 'Experience Temora AI Live'}
                     </h2>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground mb-4">
                       {isGerman 
-                        ? 'Laden Sie Ihre eigenen Dokumente hoch oder testen Sie mit Beispieldateien'
-                        : 'Upload your own documents or try with sample files'}
+                        ? 'Vollzugriff auf das produktive RAG-System - laden Sie Ihre eigenen Dokumente hoch'
+                        : 'Full access to the production RAG system - upload your own documents'}
                     </p>
+                    
+                    {/* Demo Mode Toggle */}
+                    <div className="flex items-center justify-center space-x-4 mb-6">
+                      <Button
+                        variant={useLiveSystem ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setUseLiveSystem(true)}
+                        className="flex items-center space-x-2"
+                      >
+                        <span>🚀</span>
+                        <span>{isGerman ? 'Live System' : 'Live System'}</span>
+                      </Button>
+                      <Button
+                        variant={!useLiveSystem ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setUseLiveSystem(false)}
+                        className="flex items-center space-x-2"
+                      >
+                        <Play className="w-4 h-4" />
+                        <span>{isGerman ? 'Interaktive Demo' : 'Interactive Demo'}</span>
+                      </Button>
+                    </div>
                   </div>
-                  <DemoWidget locale={locale} />
+                  
+                  {/* Demo Content */}
+                  {useLiveSystem ? (
+                    <LiveRAGIntegration locale={locale} variant="embedded" height="600px" />
+                  ) : (
+                    <DemoWidget locale={locale} />
+                  )}
                   
                   <div className="text-center mt-8">
                     <Button 
@@ -249,7 +279,9 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
                       `animate-delay-${index * 100}`
                     )}
                   >
-                    <span className="text-2xl">{company.logo}</span>
+                    <div className="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                      {company.logo}
+                    </div>
                     <span className="text-white font-medium text-sm">{company.name}</span>
                   </div>
                 ))}

@@ -33,13 +33,13 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
       icon: Shield,
       category: isGerman ? "Sicherheit" : "Security",
       question: isGerman 
-        ? "Wie stellt Projekt Susi Schweizer Datenschutz-Compliance sicher?"
-        : "How does Projekt Susi ensure Swiss data privacy compliance?",
+        ? "Wie stellt Temora AI Schweizer Datenschutz-Compliance sicher?"
+        : "How does Temora AI ensure Swiss data privacy compliance?",
       answer: isGerman 
-        ? "Projekt Susi ist vollständig FADP/GDPR-konform und ISO 27001 zertifiziert. Alle Daten werden ausschliesslich in Schweizer Rechenzentren verarbeitet und gespeichert. Wir verwenden Ende-zu-Ende-Verschlüsselung und bieten vollständige Audit-Trails für alle Datenverarbeitungsprozesse."
-        : "Projekt Susi is fully FADP/GDPR compliant and ISO 27001 certified. All data is exclusively processed and stored in Swiss data centers. We use end-to-end encryption and provide complete audit trails for all data processing operations.",
-      color: "text-red-500",
-      bgColor: "bg-red-50"
+        ? "Temora AI ist vollständig FADP/GDPR-konform und ISO 27001 zertifiziert. Alle Daten werden ausschliesslich in Schweizer Rechenzentren verarbeitet und gespeichert. Wir verwenden Ende-zu-Ende-Verschlüsselung und bieten vollständige Audit-Trails für alle Datenverarbeitungsprozesse."
+        : "Temora AI is fully FADP/GDPR compliant and ISO 27001 certified. All data is exclusively processed and stored in Swiss data centers. We use end-to-end encryption and provide complete audit trails for all data processing operations.",
+      color: "text-primary-500",
+      bgColor: "bg-primary-50"
     },
     {
       id: 1,
@@ -88,8 +88,8 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
         ? "Kann das System mit unserem Unternehmenswachstum skalieren?"
         : "Can the system scale with our company growth?",
       answer: isGerman 
-        ? "Ja, Projekt Susi ist für Enterprise-Skalierung konzipiert. Unterstützt Millionen von Dokumenten, Tausende gleichzeitige Nutzer und Multi-Tenant-Architekturen. Horizontale Skalierung erfolgt automatisch basierend auf Last und Anforderungen."
-        : "Yes, Projekt Susi is designed for enterprise scaling. Supports millions of documents, thousands of concurrent users, and multi-tenant architectures. Horizontal scaling occurs automatically based on load and requirements.",
+        ? "Ja, Temora AI ist für Enterprise-Skalierung konzipiert. Unterstützt Millionen von Dokumenten, Tausende gleichzeitige Nutzer und Multi-Tenant-Architekturen. Horizontale Skalierung erfolgt automatisch basierend auf Last und Anforderungen."
+        : "Yes, Temora AI is designed for enterprise scaling. Supports millions of documents, thousands of concurrent users, and multi-tenant architectures. Horizontal scaling occurs automatically based on load and requirements.",
       color: "text-indigo-500",
       bgColor: "bg-indigo-50"
     },
@@ -116,8 +116,8 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
     <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-blue-500 to-red-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-red-500 to-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-blue-500 to-primary-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -133,7 +133,7 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-blue-600 rounded-full mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-500 to-blue-600 rounded-full mb-6"
           >
             <HelpCircle className="w-8 h-8 text-white" />
           </motion.div>
@@ -158,8 +158,8 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {isGerman 
-              ? "Alles was Sie über Projekt Susi wissen müssen - von Sicherheit bis Implementation."
-              : "Everything you need to know about Projekt Susi - from security to implementation."
+              ? "Alles was Sie über Temora AI wissen müssen - von Sicherheit bis Implementation."
+              : "Everything you need to know about Temora AI - from security to implementation."
             }
           </p>
         </motion.div>
@@ -183,13 +183,13 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
                 className="group"
               >
                 <AnimatedCard 
-                  className={`transition-all duration-300 ${isOpen ? 'shadow-lg ring-2 ring-red-500/20' : 'hover:shadow-md'}`}
+                  className={`transition-all duration-300 ${isOpen ? 'shadow-lg ring-2 ring-primary-500/20' : 'hover:shadow-md'}`}
                   hover={false}
                 >
                   {/* FAQ Header */}
                   <motion.button
                     onClick={() => toggleFAQ(faq.id)}
-                    className="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-inset rounded-xl"
+                    className="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset rounded-xl"
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                   >
@@ -212,7 +212,7 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
                           <div className={`text-sm font-medium ${faq.color} mb-1`}>
                             {faq.category}
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
+                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
                             {faq.question}
                           </h3>
                         </div>
@@ -246,7 +246,7 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
                             transition={{ duration: 0.3, delay: 0.1 }}
                             className="ml-16"
                           >
-                            <div className="w-full h-px bg-gradient-to-r from-gray-200 via-red-500/20 to-gray-200 mb-4"></div>
+                            <div className="w-full h-px bg-gradient-to-r from-gray-200 via-primary-500/20 to-gray-200 mb-4"></div>
                             
                             <p className="text-gray-700 leading-relaxed text-lg">
                               {faq.answer}
@@ -283,7 +283,7 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <AnimatedCard className="inline-block p-8 bg-gradient-to-r from-red-50 to-blue-50">
+          <AnimatedCard className="inline-block p-8 bg-gradient-to-r from-primary-50 to-blue-50">
             <HelpCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -305,7 +305,7 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
                 href={`/contact${locale === 'en' ? '?lang=en' : ''}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-gradient-to-r from-red-500 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
+                className="px-6 py-3 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
               >
                 {isGerman ? "Kontakt aufnehmen" : "Get in touch"}
               </motion.a>
@@ -314,7 +314,7 @@ const FAQ: React.FC<FAQProps> = ({ locale }) => {
                 href={`/demo${locale === 'en' ? '?lang=en' : ''}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-red-500 hover:text-red-500 transition-all duration-300"
+                className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-primary-500 hover:text-primary-500 transition-all duration-300"
               >
                 {isGerman ? "Demo vereinbaren" : "Schedule demo"}
               </motion.a>

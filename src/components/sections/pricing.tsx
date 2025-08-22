@@ -150,7 +150,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
         ],
         notIncluded: []
       },
-      gradient: 'from-red-500 to-red-600'
+      gradient: 'from-primary-500 to-primary-600'
     }
   ]
 
@@ -195,7 +195,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
 
   return (
     <motion.section 
-      className="py-20 bg-gradient-to-br from-gray-50 to-red-50 relative overflow-hidden"
+      className="py-20 bg-gradient-to-br from-gray-50 to-primary-50 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -320,7 +320,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
               <AnimatedCard 
                 className={cn(
                   "relative overflow-hidden cursor-pointer",
-                  plan.popular && "ring-2 ring-red-500",
+                  plan.popular && "ring-2 ring-primary-500",
                   selectedPlan === plan.id && "ring-2 ring-blue-500 bg-blue-50"
                 )}
                 hover={true}
@@ -331,7 +331,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
                 <AnimatePresence>
                   {plan.popular && (
                     <motion.div 
-                      className="absolute top-0 left-0 right-0 bg-gradient-to-r from-red-500 to-red-600 text-white text-center py-2 text-sm font-medium z-10"
+                      className="absolute top-0 left-0 right-0 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-center py-2 text-sm font-medium z-10"
                       initial={{ y: -40, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -40, opacity: 0 }}
@@ -589,7 +589,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <AnimatedCard className="mb-16 bg-gradient-to-br from-red-50 to-gray-50 border-2 border-red-200" hover={true}>
+          <AnimatedCard className="mb-16 bg-gradient-to-br from-primary-50 to-gray-50 border-2 border-primary-200" hover={true}>
             <CardHeader className="text-center">
               <motion.div
                 className="flex items-center justify-center space-x-3 mb-4"
@@ -618,7 +618,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                {isGerman ? 'Berechnen Sie Ihre Einsparungen und ROI mit Projekt Susi in Echtzeit' : 'Calculate your savings and ROI with Projekt Susi in real-time'}
+                {isGerman ? 'Berechnen Sie Ihre Einsparungen und ROI mit Temora AI in Echtzeit' : 'Calculate your savings and ROI with Temora AI in real-time'}
               </motion.p>
             </CardHeader>
             <CardContent>
@@ -838,7 +838,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                {isGerman ? 'Projekt Susi vs. internationale Konkurrenz' : 'Projekt Susi vs. international competitors'}
+                {isGerman ? 'Temora AI vs. internationale Konkurrenz' : 'Temora AI vs. international competitors'}
               </motion.p>
             </CardHeader>
             <CardContent>
@@ -878,10 +878,10 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
                         whileHover={{ backgroundColor: 'rgba(239, 246, 255, 0.5)', x: 5 }}
                       >
                         <td className="py-4 font-medium">{comp.competitor}</td>
-                        <td className="py-4 text-right font-bold text-red-600">
+                        <td className="py-4 text-right font-bold text-primary-600">
                           {formatCurrency(comp.price)}
                         </td>
-                        <td className="py-4 text-red-600">{comp.issues}</td>
+                        <td className="py-4 text-primary-600">{comp.issues}</td>
                       </motion.tr>
                     ))}
                     <motion.tr 
@@ -896,7 +896,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
                           animate={{ scale: [1, 1.05, 1] }}
                           transition={{ duration: 2, repeat: Infinity }}
                         >
-                          Projekt Susi Professional
+                          Temora AI Professional
                         </motion.span>
                       </td>
                       <td className="py-4 text-right font-bold text-green-600 text-xl">
@@ -1005,7 +1005,7 @@ const Pricing: React.FC<PricingProps> = ({ locale }) => {
               >
                 <AnimatedButton
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-lg border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 text-lg border-none shadow-lg"
                   icon={<ArrowRight className="w-6 h-6" />}
                   iconPosition="right"
                   onClick={() => window.location.href = '/contact'}

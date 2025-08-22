@@ -26,7 +26,7 @@ const Benefits: React.FC<BenefitsProps> = ({ locale }) => {
         isGerman ? 'Keine Cloud-Abhängigkeit' : 'No cloud dependency',
         isGerman ? 'Audit-ready Logging' : 'Audit-ready logging'
       ],
-      gradient: 'from-red-500 to-red-600',
+      gradient: 'from-primary-500 to-primary-600',
       href: '/compliance'
     },
     {
@@ -107,8 +107,8 @@ const Benefits: React.FC<BenefitsProps> = ({ locale }) => {
           
           <h2 className="text-4xl lg:text-5xl font-bold text-secondary mb-6">
             {isGerman 
-              ? 'Warum Schweizer Unternehmen Projekt Susi wählen'
-              : 'Why Swiss Enterprises Choose Projekt Susi'}
+              ? 'Warum Schweizer Unternehmen Temora AI wählen'
+              : 'Why Swiss Enterprises Choose Temora AI'}
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

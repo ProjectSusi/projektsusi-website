@@ -126,7 +126,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
       id: 'manufacturing',
       title: isGerman ? 'Manufacturing & Engineering' : 'Manufacturing & Engineering',
       icon: Factory,
-      color: 'from-orange-500 to-red-600',
+      color: 'from-orange-500 to-primary-600',
       description: isGerman 
         ? 'Industrie 4.0 KI-Lösungen für Schweizer Präzisionsfertigung'
         : 'Industry 4.0 AI solutions for Swiss precision manufacturing',
@@ -223,7 +223,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -266,7 +266,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
               </motion.div>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed"
+                className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -290,10 +290,10 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                   <motion.div key={index} className="text-center" variants={staggerItem}>
                     <AnimatedCard className="p-4 mb-2" hover={true} glass={true}>
                       <motion.div whileHover={{ scale: 1.05, rotate: 3 }}>
-                        <stat.icon className="w-8 h-8 text-red-500 mx-auto mb-2" />
+                        <stat.icon className="w-8 h-8 text-primary-500 mx-auto mb-2" />
                       </motion.div>
                       <motion.div 
-                        className="text-2xl font-bold text-gray-900"
+                        className="text-2xl font-bold text-secondary"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
@@ -301,7 +301,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                         {stat.count}{stat.suffix || ''}
                       </motion.div>
                     </AnimatedCard>
-                    <p className="text-sm text-gray-600">{stat.label}</p>
+                    <p className="text-sm text-secondary/70">{stat.label}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -320,7 +320,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2 
-                className="text-3xl font-bold text-gray-900 mb-4"
+                className="text-3xl font-bold text-secondary mb-4"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
@@ -328,7 +328,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                 {isGerman ? 'Swiss Standard Features' : 'Swiss Standard Features'}
               </motion.h2>
               <motion.p 
-                className="text-gray-600"
+                className="text-secondary/70"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -354,7 +354,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                       <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
                     </motion.div>
                     <motion.h3 
-                      className="font-bold text-gray-900 mb-2"
+                      className="font-bold text-secondary mb-2"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 }}
@@ -362,7 +362,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                       {feature.title}
                     </motion.h3>
                     <motion.p 
-                      className="text-sm text-gray-600"
+                      className="text-sm text-secondary/70"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.2 }}
@@ -377,7 +377,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Industry Solutions */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50 relative overflow-hidden">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{
@@ -394,7 +394,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
               viewport={{ once: true, amount: 0.3 }}
             >
               <motion.h2 
-                className="text-4xl font-bold text-gray-900 mb-4"
+                className="text-4xl font-bold text-secondary mb-4"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
@@ -402,7 +402,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                 {isGerman ? 'Branchenspezifische Lösungen' : 'Industry-Specific Solutions'}
               </motion.h2>
               <motion.p 
-                className="text-xl text-gray-600"
+                className="text-xl text-secondary/70"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -444,7 +444,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                       
                       <div className="flex-1">
                         <motion.h3 
-                          className="text-3xl font-bold text-gray-900 mb-4"
+                          className="text-3xl font-bold text-secondary mb-4"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
@@ -452,7 +452,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                           {industry.title}
                         </motion.h3>
                         <motion.p 
-                          className="text-xl text-gray-700 mb-6"
+                          className="text-xl text-secondary/80 mb-6"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
@@ -476,14 +476,14 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                               whileHover={{ scale: 1.05 }}
                             >
                               <motion.div 
-                                className="text-2xl font-bold text-red-500"
+                                className="text-2xl font-bold text-primary-500"
                                 initial={{ scale: 0 }}
                                 whileInView={{ scale: 1 }}
                                 transition={{ duration: 0.6, delay: 0.3 + statIndex * 0.1 }}
                               >
                                 {value}
                               </motion.div>
-                              <div className="text-sm text-gray-600 capitalize">{key}</div>
+                              <div className="text-sm text-secondary/70 capitalize">{key}</div>
                             </motion.div>
                           ))}
                         </motion.div>
@@ -507,12 +507,12 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                       >
                         <div>
                           <motion.h4 
-                            className="text-xl font-bold text-gray-900 mb-4 flex items-center"
+                            className="text-xl font-bold text-secondary mb-4 flex items-center"
                             whileHover={{ x: 5 }}
                             transition={{ duration: 0.2 }}
                           >
                             <motion.div whileHover={{ scale: 1.05, rotate: 5 }}>
-                              <Target className="w-6 h-6 text-red-500 mr-2" />
+                              <Target className="w-6 h-6 text-primary-500 mr-2" />
                             </motion.div>
                             {isGerman ? 'Herausforderungen' : 'Challenges'}
                           </motion.h4>
@@ -531,10 +531,10 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                                 whileHover={{ x: 5 }}
                               >
                                 <motion.div 
-                                  className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"
+                                  className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"
                                   whileHover={{ scale: 1.1 }}
                                 />
-                                <span className="text-gray-700">{challenge}</span>
+                                <span className="text-secondary/80">{challenge}</span>
                               </motion.li>
                             ))}
                           </motion.ul>
@@ -542,7 +542,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
 
                         <div>
                           <motion.h4 
-                            className="text-xl font-bold text-gray-900 mb-4 flex items-center"
+                            className="text-xl font-bold text-secondary mb-4 flex items-center"
                             whileHover={{ x: 5 }}
                             transition={{ duration: 0.2 }}
                           >
@@ -568,7 +568,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                                 <motion.div whileHover={{ scale: 1.05 }}>
                                   <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                                 </motion.div>
-                                <span className="text-gray-700">{solution}</span>
+                                <span className="text-secondary/80">{solution}</span>
                               </motion.li>
                             ))}
                           </motion.ul>
@@ -585,7 +585,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                       >
                         <div>
                           <motion.h4 
-                            className="text-xl font-bold text-gray-900 mb-4 flex items-center"
+                            className="text-xl font-bold text-secondary mb-4 flex items-center"
                             whileHover={{ x: 5 }}
                             transition={{ duration: 0.2 }}
                           >
@@ -604,13 +604,13 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                             {industry.useCases.map((useCase, idx) => (
                               <motion.div 
                                 key={idx} 
-                                className="bg-gradient-to-r from-red-50 to-gray-50 p-4 rounded-lg border border-red-100"
+                                className="bg-gradient-to-r from-primary-50 to-gray-50 p-4 rounded-lg border border-primary-100"
                                 variants={staggerItem}
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 transition={{ duration: 0.2 }}
                               >
-                                <h5 className="font-semibold text-gray-900 mb-2">{useCase.title}</h5>
-                                <p className="text-gray-700 text-sm">{useCase.description}</p>
+                                <h5 className="font-semibold text-secondary mb-2">{useCase.title}</h5>
+                                <p className="text-secondary/80 text-sm">{useCase.description}</p>
                               </motion.div>
                             ))}
                           </motion.div>
@@ -618,7 +618,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
 
                         <div>
                           <motion.h4 
-                            className="text-xl font-bold text-gray-900 mb-4 flex items-center"
+                            className="text-xl font-bold text-secondary mb-4 flex items-center"
                             whileHover={{ x: 5 }}
                             transition={{ duration: 0.2 }}
                           >
@@ -645,7 +645,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                                 <motion.div whileHover={{ scale: 1.05 }}>
                                   <FileText className="w-5 h-5 text-gray-500" />
                                 </motion.div>
-                                <span className="text-gray-700 text-sm">{file}</span>
+                                <span className="text-secondary/80 text-sm">{file}</span>
                               </motion.div>
                             ))}
                           </motion.div>
@@ -743,7 +743,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-platin-100 border-none shadow-lg"
                   icon={<Users className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >
@@ -753,7 +753,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-red-600 backdrop-blur-sm"
+                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary-600 backdrop-blur-sm"
                   icon={<Target className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
                 >

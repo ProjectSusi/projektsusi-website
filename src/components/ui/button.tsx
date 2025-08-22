@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: "text-foreground hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         swiss: "bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 button-hover",
-        alpine: "bg-gradient-to-r from-secondary to-accent text-white hover:from-secondary/90 hover:to-accent/90 button-hover",
+        alpine: "bg-gradient-to-r from-platin to-accent text-secondary hover:from-platin/90 hover:to-accent/90 button-hover",
       },
       size: {
         default: "h-10 px-4 py-2",

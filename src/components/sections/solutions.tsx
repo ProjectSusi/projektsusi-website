@@ -119,7 +119,7 @@ const Solutions: React.FC<SolutionsProps> = ({ locale }) => {
         isGerman ? 'Gesetzesnavigation' : 'Legal navigation',
         isGerman ? 'Verwaltungseffizienz' : 'Administrative efficiency'
       ],
-      gradient: 'from-red-500 to-red-600',
+      gradient: 'from-primary-500 to-primary-600',
       href: '/solutions/government'
     }
   ]
@@ -221,8 +221,8 @@ const Solutions: React.FC<SolutionsProps> = ({ locale }) => {
                   
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-1">
-                      <Shield className="w-4 h-4 text-red-500 mr-1" />
-                      <span className="font-bold text-red-600">{solution.benefits.complianceImprovement}</span>
+                      <Shield className="w-4 h-4 text-primary-500 mr-1" />
+                      <span className="font-bold text-primary-600">{solution.benefits.complianceImprovement}</span>
                     </div>
                     <div className="text-xs text-muted-foreground">
                       {isGerman ? 'Compliance' : 'Compliance'}

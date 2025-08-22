@@ -16,6 +16,7 @@ import {
 import AnimatedCard from '@/components/ui/animated-card'
 import AnimatedButton from '@/components/ui/animated-button'
 import PremiumDemoWidget from '@/components/premium/premium-demo-widget'
+import LiveRAGIntegration from '@/components/demo/live-rag-integration'
 import { 
   Cpu,
   Database,
@@ -128,7 +129,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -177,7 +178,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               </motion.div>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed"
+                className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -188,7 +189,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               </motion.p>
 
               <motion.div 
-                className="inline-flex items-center space-x-3 bg-red-100 text-red-800 rounded-full px-6 py-3"
+                className="inline-flex items-center space-x-3 bg-primary-100 text-primary-800 rounded-full px-6 py-3"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
@@ -226,22 +227,41 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Interaktive Demo' : 'Interactive Demo'}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary/70">
                 {isGerman 
                   ? 'Testen Sie unsere RAG-API direkt in Ihrem Browser'
                   : 'Test our RAG API directly in your browser'
                 }
               </p>
             </motion.div>
-            <PremiumDemoWidget locale={locale} />
+            {/* Primary: Live RAG Integration */}
+            <div className="mb-8">
+              <LiveRAGIntegration locale={locale} variant="embedded" height="600px" />
+            </div>
+            
+            {/* Secondary: Interactive Demo */}
+            <div className="mt-8">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-secondary mb-2">
+                  {isGerman ? 'Alternative: Interaktive Demo' : 'Alternative: Interactive Demo'}
+                </h3>
+                <p className="text-secondary/70">
+                  {isGerman 
+                    ? 'Oder testen Sie mit vorbereiteten Beispieldokumenten'
+                    : 'Or try with prepared sample documents'
+                  }
+                </p>
+              </div>
+              <PremiumDemoWidget locale={locale} />
+            </div>
           </div>
         </motion.section>
 
         {/* Architecture Overview */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -250,10 +270,10 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Swiss-Engineered Architecture' : 'Swiss-Engineered Architecture'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Hochperformante, skalierbare und sichere RAG-Architektur'
                   : 'High-performance, scalable, and secure RAG architecture'
@@ -278,13 +298,13 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
                     >
                       <component.icon className="w-8 h-8 text-white" />
                     </motion.div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-secondary mb-2">
                       {component.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-3">
+                    <p className="text-secondary/70 text-sm mb-3">
                       {component.description}
                     </p>
-                    <div className="bg-red-50 px-3 py-2 rounded-lg">
+                    <div className="bg-primary-50 px-3 py-2 rounded-lg">
                       <span className="text-xs font-medium text-primary">
                         {component.specs}
                       </span>
@@ -306,10 +326,10 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Technische Spezifikationen' : 'Technical Specifications'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Messbare Performance-Metriken und System-Capabilities'
                   : 'Measurable performance metrics and system capabilities'
@@ -327,14 +347,14 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               {technicalFeatures.map((category, categoryIndex) => (
                 <motion.div key={categoryIndex} variants={staggerItem}>
                   <AnimatedCard className="p-8 h-full" hover={true}>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                    <h3 className="text-2xl font-bold text-secondary mb-6 text-center">
                       {category.category}
                     </h3>
                     <div className="space-y-6">
                       {category.items.map((item, itemIndex) => (
                         <motion.div 
                           key={itemIndex}
-                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                          className="flex items-center justify-between p-4 bg-platin-50 rounded-lg"
                           whileHover={{ scale: 1.02, backgroundColor: '#f0f9ff' }}
                           transition={{ duration: 0.2 }}
                         >
@@ -345,7 +365,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
                             >
                               <item.icon className="w-4 h-4 text-white" />
                             </motion.div>
-                            <span className="font-medium text-gray-700">{item.name}</span>
+                            <span className="font-medium text-secondary/80">{item.name}</span>
                           </div>
                           <span className="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                             {item.value}
@@ -373,7 +393,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               <h2 className="text-4xl font-bold mb-4">
                 {isGerman ? 'API Endpoints' : 'API Endpoints'}
               </h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/60 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'RESTful API mit vollständiger OpenAPI-Dokumentation'
                   : 'RESTful API with complete OpenAPI documentation'
@@ -400,7 +420,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
                         <span className={`px-3 py-1 text-xs font-bold rounded ${
                           endpoint.method === 'POST' ? 'bg-green-600' :
                           endpoint.method === 'GET' ? 'bg-primary' :
-                          endpoint.method === 'DELETE' ? 'bg-red-600' : 'bg-gray-600'
+                          endpoint.method === 'DELETE' ? 'bg-primary-600' : 'bg-gray-600'
                         }`}>
                           {endpoint.method}
                         </span>
@@ -409,10 +429,10 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
                         </code>
                       </div>
                       <motion.div whileHover={{ scale: 1.1 }}>
-                        <Code className="w-5 h-5 text-gray-400" />
+                        <Code className="w-5 h-5 text-secondary/60" />
                       </motion.div>
                     </div>
-                    <p className="text-gray-300 mb-4">{endpoint.description}</p>
+                    <p className="text-secondary/50 mb-4">{endpoint.description}</p>
                     <div className="bg-gray-900 p-4 rounded-lg">
                       <code className="text-sm text-green-400">
                         {endpoint.example}
@@ -432,7 +452,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
               <AnimatedButton 
                 variant="outline"
                 size="lg"
-                className="border-primary text-secondary hover:bg-red-500 hover:text-white"
+                className="border-primary text-secondary hover:bg-primary-500 hover:text-white"
                 icon={<ArrowRight className="w-6 h-6" />}
                 onClick={() => window.location.href = '/technology/api'}
               >
@@ -493,7 +513,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary hover:bg-platin-100 border-none shadow-lg"
                   icon={<Play className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
                 >

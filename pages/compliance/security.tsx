@@ -218,7 +218,7 @@ const SecurityPage: React.FC<SecurityPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -404,7 +404,7 @@ const SecurityPage: React.FC<SecurityPageProps> = ({ locale }) => {
                 <motion.div key={index} variants={staggerItem}>
                   <AnimatedCard className="p-8 h-full text-center" hover={true}>
                     <motion.div 
-                      className="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                      className="w-16 h-16 bg-gradient-to-r from-primary-500 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                       whileHover={{ scale: 1.05, rotate: 3 }}
                       transition={{ duration: 0.3 }}
                     >

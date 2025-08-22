@@ -57,7 +57,7 @@ export const WorldClassLoader: React.FC<{
 
   return (
     <div className={cn(
-      'fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-red-900',
+      'fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-primary-900',
       className
     )}>
       {/* Animated Background */}
@@ -134,7 +134,7 @@ export const WorldClassLoader: React.FC<{
         {/* Swiss Quality Indicators */}
         <div className="flex justify-center space-x-6 mt-8">
           <div className="flex items-center space-x-2 text-white/60">
-            <Shield className="w-4 h-4 text-red-400" />
+            <Shield className="w-4 h-4 text-primary-400" />
             <span className="text-sm">Swiss Security</span>
           </div>
           <div className="flex items-center space-x-2 text-white/60">
@@ -223,7 +223,7 @@ export const SwissSuccessAnimation: React.FC<{
             <>
               <Sparkles className="absolute -top-4 -left-4 w-8 h-8 text-yellow-400 animate-bounce" />
               <Sparkles className="absolute -top-4 -right-4 w-6 h-6 text-blue-400 animate-pulse" />
-              <Sparkles className="absolute -bottom-4 -left-4 w-6 h-6 text-red-400 animate-pulse" />
+              <Sparkles className="absolute -bottom-4 -left-4 w-6 h-6 text-primary-400 animate-pulse" />
               <Sparkles className="absolute -bottom-4 -right-4 w-8 h-8 text-green-400 animate-bounce" />
             </>
           )}
@@ -400,7 +400,7 @@ export const PerformanceOverlay: React.FC = () => {
         onClick={() => setShowDetails(!showDetails)}
         className={cn(
           'glass-morphism rounded-lg p-3 text-white hover-lift micro-bounce',
-          metrics.fps < 30 && 'bg-red-500/20',
+          metrics.fps < 30 && 'bg-primary-500/20',
           metrics.fps >= 30 && metrics.fps < 55 && 'bg-yellow-500/20',
           metrics.fps >= 55 && 'bg-green-500/20'
         )}
@@ -414,7 +414,7 @@ export const PerformanceOverlay: React.FC = () => {
             <div className="flex justify-between">
               <span>FPS:</span>
               <span className={cn(
-                metrics.fps < 30 && 'text-red-400',
+                metrics.fps < 30 && 'text-primary-400',
                 metrics.fps >= 30 && metrics.fps < 55 && 'text-yellow-400',
                 metrics.fps >= 55 && 'text-green-400'
               )}>
@@ -481,7 +481,7 @@ export const WorldClassErrorBoundary: React.FC<{
 
   if (hasError) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-red-900">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-primary-900">
         <div className="text-center max-w-md mx-auto p-8">
           <SwissShield className="w-16 h-16 mx-auto mb-6" />
           
@@ -494,7 +494,7 @@ export const WorldClassErrorBoundary: React.FC<{
           </p>
           
           <div className="glass-morphism rounded-lg p-4 mb-6 text-left">
-            <p className="text-red-300 text-sm font-mono">{errorInfo}</p>
+            <p className="text-primary-300 text-sm font-mono">{errorInfo}</p>
           </div>
           
           <button
@@ -506,7 +506,7 @@ export const WorldClassErrorBoundary: React.FC<{
           </button>
           
           <div className="mt-6 flex items-center justify-center space-x-2 text-white/60 text-sm">
-            <Heart className="w-4 h-4 text-red-400" />
+            <Heart className="w-4 h-4 text-primary-400" />
             <span>Engineered in Switzerland</span>
           </div>
         </div>

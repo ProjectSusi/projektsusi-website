@@ -39,7 +39,7 @@ interface DemoPageProps {
 
 const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
   const isGerman = locale === 'de'
-  const [showLiveSystem, setShowLiveSystem] = useState(false)
+  const [showLiveSystem, setShowLiveSystem] = useState(true)
 
   const demoFeatures = [
     {
@@ -89,7 +89,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -133,7 +133,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                   {isGerman ? 'Live Demo' : 'Live Demo'}
                 </motion.h1>
                 <motion.div whileHover={{ scale: 1.05, rotate: -10 }}>
-                  <Rocket className="w-12 h-12 text-red-500" />
+                  <Rocket className="w-12 h-12 text-primary-500" />
                 </motion.div>
               </motion.div>
               
@@ -144,8 +144,8 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 {isGerman 
-                  ? '🚀 Testen Sie Projekt Susi sofort! Laden Sie Ihre Dokumente hoch und erleben Sie Swiss AI in Aktion - keine Registrierung erforderlich.'
-                  : '🚀 Try Projekt Susi instantly! Upload your documents and experience Swiss AI in action - no registration required.'}
+                  ? '🚀 Erleben Sie das produktive RAG-System sofort! Laden Sie Ihre eigenen Dokumente hoch und testen Sie Swiss AI ohne Limitierungen.'
+                  : '🚀 Experience the production RAG system instantly! Upload your own documents and test Swiss AI without limitations.'}
               </motion.p>
 
               <motion.div 
@@ -191,19 +191,6 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
               >
                 <motion.button
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center space-x-2 ${
-                    !showLiveSystem 
-                      ? 'bg-white text-primary shadow-lg' 
-                      : 'text-gray-600 hover:text-gray-800'
-                  }`}
-                  onClick={() => setShowLiveSystem(false)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Play className="w-4 h-4" />
-                  <span>{isGerman ? 'Demo Modus' : 'Demo Mode'}</span>
-                </motion.button>
-                <motion.button
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center space-x-2 ${
                     showLiveSystem 
                       ? 'bg-white text-primary shadow-lg' 
                       : 'text-gray-600 hover:text-gray-800'
@@ -222,6 +209,19 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                     LIVE
                   </motion.span>
                 </motion.button>
+                <motion.button
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    !showLiveSystem 
+                      ? 'bg-white text-primary shadow-lg' 
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                  onClick={() => setShowLiveSystem(false)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Play className="w-4 h-4" />
+                  <span>{isGerman ? 'Interaktive Demo' : 'Interactive Demo'}</span>
+                </motion.button>
               </motion.div>
             </div>
 
@@ -236,14 +236,14 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                 {showLiveSystem ? (
                   <>
                     {isGerman 
-                      ? '🔴 Sie verwenden jetzt unser produktives RAG-System. Laden Sie Ihre Dokumente hoch und erleben Sie Swiss AI in Echtzeit!'
-                      : '🔴 You are now using our production RAG system. Upload your documents and experience Swiss AI in real-time!'}
+                      ? '🚀 Das produktive RAG-System - laden Sie Ihre eigenen Dokumente hoch und erleben Sie Swiss AI in Echtzeit! Vollständige Funktionalität ohne Einschränkungen.'
+                      : '🚀 The production RAG system - upload your own documents and experience Swiss AI in real-time! Full functionality without limitations.'}
                   </>
                 ) : (
                   <>
                     {isGerman 
-                      ? '🎮 Testen Sie Projekt Susi mit vorbereiteten Beispielen - keine eigenen Dokumente erforderlich.'
-                      : '🎮 Try Projekt Susi with prepared examples - no need to upload your own documents.'}
+                      ? '🎮 Interaktive Demo mit vorbereiteten Beispielen - testen Sie die Funktionalität ohne eigene Dokumente hochzuladen.'
+                      : '🎮 Interactive demo with prepared examples - test the functionality without uploading your own documents.'}
                   </>
                 )}
               </p>
@@ -322,7 +322,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Demo Features */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -416,8 +416,8 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 {isGerman 
-                  ? 'Entdecken Sie, wie Projekt Susi Ihr Unternehmen transformieren kann'
-                  : 'Discover how Projekt Susi can transform your business'}
+                  ? 'Entdecken Sie, wie Temora AI Ihr Unternehmen transformieren kann'
+                  : 'Discover how Temora AI can transform your business'}
               </motion.p>
             </motion.div>
 
@@ -525,7 +525,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-gray-100 border-none shadow-lg"
                   icon={<MessageSquare className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >
@@ -535,7 +535,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-red-600 backdrop-blur-sm"
+                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary-600 backdrop-blur-sm"
                   icon={<Users className="w-6 h-6" />}
                   onClick={() => window.location.href = '/about'}
                 >

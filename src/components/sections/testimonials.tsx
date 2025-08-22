@@ -35,8 +35,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
       company: "Swiss FinTech",
       industry: isGerman ? "Finanzwesen" : "Financial Services",
       quote: isGerman 
-        ? "Projekt Susi hat unsere Dokumentenanalyse revolutioniert. Die Zero-Hallucination-Garantie gibt uns die Sicherheit, die wir im Finanzbereich benötigen."
-        : "Projekt Susi revolutionized our document analysis. The zero-hallucination guarantee gives us the security we need in financial services.",
+        ? "Temora AI hat unsere Dokumentenanalyse revolutioniert. Die Zero-Hallucination-Garantie gibt uns die Sicherheit, die wir im Finanzbereich benötigen."
+        : "Temora AI revolutionized our document analysis. The zero-hallucination guarantee gives us the security we need in financial services.",
       rating: 5,
       metrics: {
         efficiency: isGerman ? "85% effizienter" : "85% more efficient",
@@ -53,8 +53,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
       company: "Pharma Helvetica",
       industry: isGerman ? "Pharmazie" : "Pharmaceutical",
       quote: isGerman 
-        ? "Die FADP-Compliance und Schweizer Datensouveränität waren entscheidend für uns. Projekt Susi erfüllt alle unsere Compliance-Anforderungen perfekt."
-        : "FADP compliance and Swiss data sovereignty were crucial for us. Projekt Susi perfectly meets all our compliance requirements.",
+        ? "Die FADP-Compliance und Schweizer Datensouveränität waren entscheidend für uns. Temora AI erfüllt alle unsere Compliance-Anforderungen perfekt."
+        : "FADP compliance and Swiss data sovereignty were crucial for us. Temora AI perfectly meets all our compliance requirements.",
       rating: 5,
       metrics: {
         compliance: "100% FADP",
@@ -147,7 +147,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-blue-600 rounded-full mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-500 to-blue-600 rounded-full mb-6"
           >
             <Award className="w-8 h-8 text-white" />
           </motion.div>
@@ -172,8 +172,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {isGerman 
-              ? "Führende Schweizer Unternehmen setzen bereits auf Projekt Susi für ihre unternehmenskritischen RAG-Anforderungen."
-              : "Leading Swiss enterprises already rely on Projekt Susi for their mission-critical RAG requirements."
+              ? "Führende Schweizer Unternehmen setzen bereits auf Temora AI für ihre unternehmenskritischen RAG-Anforderungen."
+              : "Leading Swiss enterprises already rely on Temora AI for their mission-critical RAG requirements."
             }
           </p>
         </motion.div>
@@ -238,7 +238,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
                   <div className="flex items-center space-x-4 mb-4 md:mb-0">
                     <motion.div
                       whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 bg-gradient-to-r from-red-500 to-blue-600 rounded-full flex items-center justify-center text-2xl"
+                      className="w-16 h-16 bg-gradient-to-r from-primary-500 to-blue-600 rounded-full flex items-center justify-center text-2xl"
                     >
                       {current.avatar}
                     </motion.div>
@@ -306,7 +306,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
                   }}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentTestimonial 
-                      ? 'bg-red-500 w-8' 
+                      ? 'bg-primary-500 w-8' 
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}

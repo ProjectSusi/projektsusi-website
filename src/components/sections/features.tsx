@@ -51,8 +51,8 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
       benefits: isGerman 
         ? ["Schweizer Rechtsraum", "Ende-zu-Ende Verschlüsselung", "Audit-ready Compliance"]
         : ["Swiss jurisdiction", "End-to-end encryption", "Audit-ready compliance"],
-      color: "from-red-500 to-red-600",
-      bgColor: "bg-red-50"
+      color: "from-primary-500 to-primary-600",
+      bgColor: "bg-primary-50"
     },
     {
       icon: Zap,
@@ -85,7 +85,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
       icon: Lock,
       title: isGerman ? "Zero-Trust Security" : "Zero-Trust Security",
       description: isGerman ? "Bankgrad-Sicherheit für alle Daten" : "Bank-grade security for all data",
-      color: "text-red-600"
+      color: "text-primary-600"
     },
     {
       icon: Search,
@@ -111,8 +111,8 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
     <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-red-500 to-blue-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-blue-500 to-red-500 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-blue-500 to-primary-500 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -128,7 +128,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-blue-600 rounded-full mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-500 to-blue-600 rounded-full mb-6"
           >
             <Star className="w-8 h-8 text-white" />
           </motion.div>
@@ -277,7 +277,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <AnimatedCard className="inline-block p-8 bg-gradient-to-r from-red-50 to-blue-50">
+          <AnimatedCard className="inline-block p-8 bg-gradient-to-r from-primary-50 to-blue-50">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               {isGerman 
                 ? "Bereit für die Zukunft der Unternehmens-KI?"
@@ -287,8 +287,8 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
             
             <p className="text-gray-600 mb-6 max-w-md">
               {isGerman 
-                ? "Erleben Sie selbst, wie Projekt Susi Ihr Unternehmen transformiert."
-                : "Experience how Projekt Susi transforms your enterprise."
+                ? "Erleben Sie selbst, wie Temora AI Ihr Unternehmen transformiert."
+                : "Experience how Temora AI transforms your enterprise."
               }
             </p>
 

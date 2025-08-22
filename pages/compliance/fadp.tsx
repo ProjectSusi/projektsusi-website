@@ -178,7 +178,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -211,7 +211,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <motion.div whileHover={{ scale: 1.05, rotate: 10 }}>
-                  <Scale className="w-12 h-12 text-red-500" />
+                  <Scale className="w-12 h-12 text-primary-500" />
                 </motion.div>
                 <motion.h1 
                   className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
@@ -227,7 +227,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
               </motion.div>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed"
+                className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -238,7 +238,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
               </motion.p>
 
               <motion.div 
-                className="inline-flex items-center space-x-3 bg-red-100 text-red-800 rounded-full px-6 py-3"
+                className="inline-flex items-center space-x-3 bg-primary-100 text-primary-800 rounded-full px-6 py-3"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
@@ -254,7 +254,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <CheckCircle className="w-5 h-5 text-red-600" />
+                  <CheckCircle className="w-5 h-5 text-primary-600" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -271,13 +271,13 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'FADP Grundsätze' : 'FADP Principles'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
-                  ? 'Wie Projekt Susi alle Grundsätze des Schweizer Datenschutzgesetzes umsetzt'
-                  : 'How Projekt Susi implements all Swiss Data Protection Act principles'
+                  ? 'Wie Temora AI alle Grundsätze des Schweizer Datenschutzgesetzes umsetzt'
+                  : 'How Temora AI implements all Swiss Data Protection Act principles'
                 }
               </p>
             </motion.div>
@@ -293,26 +293,26 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                 <motion.div key={index} variants={staggerItem}>
                   <AnimatedCard className="p-8 h-full" hover={true}>
                     <motion.div 
-                      className="w-16 h-16 bg-gradient-to-r from-red-500 to-secondary rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                      className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                       whileHover={{ scale: 1.05, rotate: 3 }}
                       transition={{ duration: 0.3 }}
                     >
                       <principle.icon className="w-8 h-8 text-white" />
                     </motion.div>
                     
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                    <h3 className="text-xl font-bold text-secondary mb-4 text-center">
                       {principle.title}
                     </h3>
                     
-                    <p className="text-gray-600 mb-4 text-center">
+                    <p className="text-secondary/70 mb-4 text-center">
                       {principle.description}
                     </p>
 
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <p className="text-sm font-medium text-gray-700 mb-2">
+                      <p className="text-sm font-medium text-secondary/80 mb-2">
                         {isGerman ? 'Umsetzung:' : 'Implementation:'}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-secondary/70">
                         {principle.implementation}
                       </p>
                     </div>
@@ -324,7 +324,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
         </motion.section>
 
         {/* Compliance Features */}
-        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-red-50">
+        <motion.section className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div 
               className="text-center mb-16"
@@ -333,10 +333,10 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Compliance-Maßnahmen' : 'Compliance Measures'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Technische und organisatorische Maßnahmen für vollständige FADP-Konformität'
                   : 'Technical and organizational measures for complete FADP compliance'
@@ -353,7 +353,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                 transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                <h3 className="text-2xl font-bold text-secondary mb-8 text-center">
                   {category.category}
                 </h3>
                 
@@ -368,7 +368,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                     <motion.div key={itemIndex} variants={staggerItem}>
                       <AnimatedCard className="p-6 h-full" hover={true}>
                         <div className="flex items-start justify-between mb-4">
-                          <h4 className="text-lg font-bold text-gray-900">
+                          <h4 className="text-lg font-bold text-secondary">
                             {item.title}
                           </h4>
                           <motion.div
@@ -379,7 +379,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                           </motion.div>
                         </div>
                         
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-secondary/70 text-sm">
                           {item.description}
                         </p>
                       </AnimatedCard>
@@ -401,10 +401,10 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Ihre Rechte unter FADP' : 'Your Rights under FADP'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Vollständige Kontrolle über Ihre persönlichen Daten'
                   : 'Complete control over your personal data'
@@ -428,14 +428,14 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                   <AnimatedCard className="p-8" hover={true}>
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                       <div className="flex-1 mb-4 lg:mb-0">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-xl font-bold text-secondary mb-2">
                           {right.right}
                         </h3>
-                        <p className="text-gray-600 mb-3">
+                        <p className="text-secondary/70 mb-3">
                           {right.description}
                         </p>
                         <div className="flex items-center space-x-4 text-sm">
-                          <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full">
+                          <span className="bg-primary-100 text-primary-800 px-3 py-1 rounded-full">
                             {right.implementation}
                           </span>
                           <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full">
@@ -523,7 +523,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
               <motion.div variants={staggerItem}>
                 <AnimatedCard className="p-8 bg-gray-800 border-gray-700 h-full" hover={true}>
                   <div className="flex items-center mb-6">
-                    <Lock className="w-8 h-8 text-red-400 mr-3" />
+                    <Lock className="w-8 h-8 text-primary-400 mr-3" />
                     <h3 className="text-2xl font-bold">
                       {isGerman ? 'Datenverarbeitung' : 'Data Processing'}
                     </h3>
@@ -603,7 +603,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-primary-600 hover:bg-gray-100 border-none shadow-lg"
                   icon={<CheckCircle className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
                 >
@@ -613,7 +613,7 @@ const FADPCompliancePage: React.FC<FADPCompliancePageProps> = ({ locale }) => {
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-red-600 backdrop-blur-sm"
+                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-primary-600 backdrop-blur-sm"
                   icon={<Scale className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >

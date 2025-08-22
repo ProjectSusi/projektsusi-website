@@ -351,7 +351,7 @@ const DemoWidget: React.FC<DemoWidgetProps> = ({ locale, className }) => {
                       <button
                         key={index}
                         onClick={() => setQuery(sampleQuery)}
-                        className="block w-full text-left text-sm text-muted-foreground hover:text-primary hover:bg-gray-50 p-2 rounded transition-colors"
+                        className="block w-full text-left text-sm text-muted-foreground hover:text-primary hover:bg-platin-50 p-2 rounded transition-colors"
                       >
                         "{ sampleQuery }"
                       </button>

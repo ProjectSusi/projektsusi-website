@@ -38,7 +38,7 @@ const AnimatedCard = React.forwardRef<HTMLDivElement, AnimatedCardProps>(
         {/* Gradient border effect */}
         {gradient && (
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-primary via-red-400 to-primary opacity-0 hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 bg-gradient-to-r from-primary via-primary-400 to-primary opacity-0 hover:opacity-100 transition-opacity duration-300"
             style={{ padding: '1px' }}
           >
             <div className="h-full w-full bg-white rounded-xl" />
@@ -48,7 +48,7 @@ const AnimatedCard = React.forwardRef<HTMLDivElement, AnimatedCardProps>(
         {/* Animated gradient background */}
         {gradient && (
           <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-red-50 to-gray-50 opacity-0 hover:opacity-100 transition-opacity duration-500"
+            className="absolute inset-0 bg-gradient-to-br from-primary-50 to-gray-50 opacity-0 hover:opacity-100 transition-opacity duration-500"
           />
         )}
 

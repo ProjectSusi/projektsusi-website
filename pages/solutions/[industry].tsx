@@ -51,11 +51,11 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
       title: isGerman ? 'Finanzwesen & Banking' : 'Banking & Finance',
       subtitle: isGerman ? 'FINMA-konforme KI für das Schweizer Finanzwesen' : 'FINMA-compliant AI for Swiss Finance',
       description: isGerman 
-        ? 'Projekt Susi erfüllt die strengsten Schweizer Finanzregulierungen und bietet sichere, präzise Dokumentenanalyse für Banken, Versicherungen und Fintech-Unternehmen.'
-        : 'Projekt Susi meets the strictest Swiss financial regulations and provides secure, precise document analysis for banks, insurance companies, and fintech firms.',
+        ? 'Temora AI erfüllt die strengsten Schweizer Finanzregulierungen und bietet sichere, präzise Dokumentenanalyse für Banken, Versicherungen und Fintech-Unternehmen.'
+        : 'Temora AI meets the strictest Swiss financial regulations and provides secure, precise document analysis for banks, insurance companies, and fintech firms.',
       hero: {
         gradient: 'from-primary to-secondary',
-        background: 'from-red-50 to-gray-50'
+        background: 'from-primary-50 to-gray-50'
       },
       features: [
         {
@@ -108,8 +108,8 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
       title: isGerman ? 'Pharma & Life Sciences' : 'Pharma & Life Sciences',
       subtitle: isGerman ? 'Beschleunigte Arzneimittelforschung mit Schweizer Präzision' : 'Accelerated drug discovery with Swiss precision',
       description: isGerman 
-        ? 'Nutzen Sie Projekt Susi für die Analyse klinischer Studien, Forschungsdaten und regulatorischer Dokumente - sicher und FADP-konform.'
-        : 'Use Projekt Susi to analyze clinical trials, research data, and regulatory documents - securely and FADP-compliant.',
+        ? 'Nutzen Sie Temora AI für die Analyse klinischer Studien, Forschungsdaten und regulatorischer Dokumente - sicher und FADP-konform.'
+        : 'Use Temora AI to analyze clinical trials, research data, and regulatory documents - securely and FADP-compliant.',
       hero: {
         gradient: 'from-green-600 to-teal-700',
         background: 'from-green-50 to-teal-50'
@@ -168,8 +168,8 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
         ? 'Optimieren Sie Ihre Produktionsprozesse mit KI-gestützter Dokumentenanalyse für Qualitätssicherung, Compliance und Effizienzsteigerung.'
         : 'Optimize your production processes with AI-powered document analysis for quality assurance, compliance, and efficiency improvements.',
       hero: {
-        gradient: 'from-orange-600 to-red-700',
-        background: 'from-orange-50 to-red-50'
+        gradient: 'from-primary-500 to-primary-700',
+        background: 'from-orange-50 to-primary-50'
       },
       features: [
         {
@@ -226,7 +226,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
         : 'Improve citizen services with AI-powered document processing - fully FADP-compliant and in German, French, and Italian languages.',
       hero: {
         gradient: 'from-primary to-secondary',
-        background: 'from-red-50 to-gray-50'
+        background: 'from-primary-50 to-gray-50'
       },
       features: [
         {
@@ -281,10 +281,10 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
   if (!data) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="min-h-screen flex items-center justify-center bg-platin-50">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-            <p className="text-xl text-gray-600">
+            <h1 className="text-4xl font-bold text-secondary mb-4">404</h1>
+            <p className="text-xl text-secondary/70">
               {isGerman ? 'Branchenlösung nicht gefunden' : 'Industry solution not found'}
             </p>
           </div>
@@ -295,7 +295,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 
           className="relative py-20 lg:py-32 overflow-hidden"
@@ -347,7 +347,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
               </motion.h1>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed"
+                className="text-xl lg:text-2xl text-secondary/80 mb-8 max-w-4xl mx-auto leading-relaxed"
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -356,7 +356,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
               </motion.p>
 
               <motion.p 
-                className="text-lg text-gray-600 max-w-3xl mx-auto mb-12"
+                className="text-lg text-secondary/70 max-w-3xl mx-auto mb-12"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -382,7 +382,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-gray-300 text-gray-700 hover:bg-gray-100"
+                  className="border-platin-300 text-secondary hover:bg-platin-100"
                   icon={<Briefcase className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >
@@ -403,10 +403,10 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Spezielle Funktionen' : 'Specialized Features'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Maßgeschneiderte KI-Lösungen für Ihre Branche'
                   : 'Tailored AI solutions for your industry'
@@ -431,10 +431,10 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                     >
                       <feature.icon className="w-8 h-8 text-white" />
                     </motion.div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-secondary mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-secondary/70 text-sm">
                       {feature.description}
                     </p>
                   </AnimatedCard>
@@ -454,10 +454,10 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-secondary mb-4">
                 {isGerman ? 'Anwendungsfälle' : 'Use Cases'}
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-secondary/70 max-w-3xl mx-auto">
                 {isGerman 
                   ? 'Reale Anwendungen mit messbaren Ergebnissen'
                   : 'Real-world applications with measurable results'
@@ -481,19 +481,19 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                     >
                       <Target className="w-6 h-6 text-white" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    <h3 className="text-xl font-bold text-secondary mb-4">
                       {useCase.title}
                     </h3>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-secondary/70 mb-6">
                       {useCase.description}
                     </p>
                     <div className="flex flex-wrap gap-4">
                       {Object.entries(useCase.metrics).map(([key, value]: [string, any], metricIndex: number) => (
-                        <div key={metricIndex} className="bg-gray-50 px-3 py-2 rounded-lg">
+                        <div key={metricIndex} className="bg-platin-50 px-3 py-2 rounded-lg">
                           <div className={`text-lg font-bold bg-gradient-to-r ${data.hero.gradient} bg-clip-text text-transparent`}>
                             {value}
                           </div>
-                          <div className="text-xs text-gray-500 uppercase tracking-wide">
+                          <div className="text-xs text-secondary/60 uppercase tracking-wide">
                             {key}
                           </div>
                         </div>
@@ -516,7 +516,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-8">
+              <h2 className="text-4xl font-bold text-secondary mb-8">
                 {isGerman ? 'Ihre Vorteile' : 'Your Benefits'}
               </h2>
               <motion.div 
@@ -538,7 +538,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                     >
                       <CheckCircle className="w-5 h-5 text-white" />
                     </motion.div>
-                    <span className="text-gray-800 font-medium">{benefit}</span>
+                    <span className="text-secondary/90 font-medium">{benefit}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -597,7 +597,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                 <AnimatedButton 
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-gray-900 hover:bg-gray-100 border-none shadow-lg"
+                  className="bg-white text-secondary hover:bg-platin-100 border-none shadow-lg"
                   icon={<ArrowRight className="w-6 h-6" />}
                   onClick={() => window.location.href = '/demo'}
                 >
@@ -607,7 +607,7 @@ const IndustrySolutionPage: React.FC<IndustrySolutionPageProps> = ({ locale, ind
                 <AnimatedButton 
                   variant="outline"
                   size="lg"
-                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-gray-900 backdrop-blur-sm"
+                  className="border-white/80 text-white bg-black/10 hover:bg-white hover:text-secondary backdrop-blur-sm"
                   icon={<Users className="w-6 h-6" />}
                   onClick={() => window.location.href = '/contact'}
                 >

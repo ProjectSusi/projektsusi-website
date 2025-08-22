@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Generate meta tags for the current page
   const metaTags = generateMetaTags({
-    title: pageProps.title || 'Projekt Susi - Swiss AI RAG Solution',
+    title: pageProps.title || 'Temora AI - Swiss AI RAG Solution',
     description: pageProps.description || 'The leading Swiss solution for intelligent document analysis with complete data sovereignty and compliance.',
     path: router.asPath,
     locale,
@@ -52,8 +52,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:url" content={metaTags['og:url']} />
         <meta property="og:type" content={metaTags['og:type']} />
         <meta property="og:locale" content={metaTags['og:locale']} />
-        <meta property="og:site_name" content="Projekt Susi" />
-        <meta property="og:image" content="https://projektsusui.ch/og-image.jpg" />
+        <meta property="og:site_name" content="Temora AI" />
+        <meta property="og:image" content="https://temora.ai/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         
@@ -61,16 +61,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content={metaTags['twitter:card']} />
         <meta name="twitter:title" content={metaTags['twitter:title']} />
         <meta name="twitter:description" content={metaTags['twitter:description']} />
-        <meta name="twitter:image" content="https://projektsusui.ch/og-image.jpg" />
-        <meta name="twitter:site" content="@projektsusui" />
-        <meta name="twitter:creator" content="@projektsusui" />
+        <meta name="twitter:image" content="https://temora.ai/og-image.jpg" />
+        <meta name="twitter:site" content="@TemoreAI" />
+        <meta name="twitter:creator" content="@TemoreAI" />
         
         {/* Additional Meta Tags */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="language" content={locale === 'de' ? 'German' : 'English'} />
-        <meta name="author" content="Projekt Susi AG" />
-        <meta name="publisher" content="Projekt Susi AG" />
-        <meta name="copyright" content="© 2024 Projekt Susi AG" />
+        <meta name="author" content="Temora AI AG" />
+        <meta name="publisher" content="Temora AI AG" />
+        <meta name="copyright" content="© 2024 Temora AI AG" />
         <meta name="rating" content="General" />
         <meta name="distribution" content="Global" />
         <meta name="coverage" content="Worldwide" />
@@ -101,7 +101,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Projekt Susi AG",
+              "name": "Temora AI AG",
               "url": "https://projektsusui.ch",
               "logo": "https://projektsusui.ch/logo.png",
               "description": locale === 'de' 
@@ -121,9 +121,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 "availableLanguage": ["German", "English", "French", "Italian"]
               },
               "sameAs": [
-                "https://linkedin.com/company/projektsusui",
-                "https://twitter.com/projektsusui",
-                "https://github.com/projektsusui"
+                "https://linkedin.com/company/temoraai",
+                "https://twitter.com/TemoreAI",
+                "https://github.com/temoraai"
               ]
             })
           }}

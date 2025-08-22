@@ -10,21 +10,21 @@
     "demo": "Demo"
   },
   "hero": {
-    "title": "The Swiss AI Solution for Enterprise Intelligence",
-    "subtitle": "Complete Data Sovereignty + Regulatory Excellence + Zero Hallucination AI",
+    "title": "Temora AI - Enterprise Intelligence Reimagined",
+    "subtitle": "Complete Data Control + Enterprise-Grade AI + Zero Hallucination Technology",
     "cta_demo": "Start Live Demo",
     "cta_consultation": "Request Consultation"
   },
   "benefits": {
-    "title": "Why Swiss Enterprises Choose Projekt Susi",
-    "subtitle": "The only RAG solution specifically engineered for Swiss compliance, data privacy, and multilingual requirements.",
-    "data_sovereignty": "Swiss Data Sovereignty",
+    "title": "Why Enterprises Choose Temora AI",
+    "subtitle": "Advanced RAG solution engineered for enterprise intelligence with complete data sovereignty and regulatory compliance.",
+    "data_sovereignty": "Complete Data Sovereignty",
     "zero_hallucination": "Zero-Hallucination AI",
     "quick_setup": "5-Minute Setup"
   },
   "solutions": {
-    "title": "Tailored for Swiss Industries", 
-    "subtitle": "Specialized RAG solutions with industry-specific compliance requirements and workflows.",
+    "title": "Industry-Specific AI Solutions", 
+    "subtitle": "Tailored RAG solutions with industry-specific compliance requirements and intelligent workflows.",
     "banking": "Banking & Finance",
     "pharma": "Pharma & Life Sciences",
     "manufacturing": "Manufacturing",
@@ -32,21 +32,21 @@
   },
   "pricing": {
     "title": "Pricing & Plans",
-    "subtitle": "Fair, transparent pricing with no hidden costs. All plans include Swiss data sovereignty and compliance.",
+    "subtitle": "Fair, transparent pricing with no hidden costs. All plans include complete data sovereignty and enterprise compliance.",
     "starter": "Starter",
     "professional": "Professional", 
     "enterprise": "Enterprise",
     "custom": "Custom"
   },
   "footer": {
-    "newsletter_title": "Stay informed about Swiss AI innovations",
-    "newsletter_description": "Get monthly updates on new features, compliance updates, and success stories.",
+    "newsletter_title": "Stay informed about AI innovations",
+    "newsletter_description": "Get monthly updates on new Temora AI features, compliance updates, and customer success stories.",
     "subscribe": "Subscribe",
     "contact": "Contact",
-    "swiss_hosting": "Swiss Hosting",
+    "swiss_hosting": "Secure Hosting",
     "iso_certified": "ISO 27001 certified",
     "all_rights_reserved": "All rights reserved.",
-    "made_in_switzerland": "Proudly engineered in Switzerland 🇨🇭 for Swiss businesses"
+    "made_in_switzerland": "Engineered with Swiss precision for global enterprises 🚀"
   },
   "common": {
     "learn_more": "Learn more",
