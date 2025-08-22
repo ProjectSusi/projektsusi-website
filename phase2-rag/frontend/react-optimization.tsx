@@ -12,11 +12,8 @@ import React, {
   Suspense,
   lazy,
   memo,
-  startTransition
-} from 'react';
-import { 
-  unstable_useDeferredValue as useDeferredValue,
-  unstable_useConcurrentValue as useConcurrentValue 
+  startTransition,
+  useDeferredValue
 } from 'react';
 
 // Performance monitoring hook
@@ -242,7 +239,9 @@ export const OptimizedRAGInterface: React.FC<RAGInterfaceProps> = memo(({
               // Limit cache size
               if (cache.current.size > 100) {
                 const firstKey = cache.current.keys().next().value;
-                cache.current.delete(firstKey);
+                if (firstKey) {
+                  cache.current.delete(firstKey);
+                }
               }
             }
 
@@ -383,9 +382,10 @@ export const OptimizedRAGInterface: React.FC<RAGInterfaceProps> = memo(({
 });
 
 // Lazy loaded components for code splitting
-const AdminDashboard = lazy(() => import('./AdminDashboard'));
-const AnalyticsDashboard = lazy(() => import('./AnalyticsDashboard'));
-const SettingsPanel = lazy(() => import('./SettingsPanel'));
+// Note: These components would be imported when they exist
+// const AdminDashboard = lazy(() => import('./AdminDashboard'));
+// const AnalyticsDashboard = lazy(() => import('./AnalyticsDashboard'));
+// const SettingsPanel = lazy(() => import('./SettingsPanel'));
 
 // Bundle optimization utilities
 export class BundleOptimizer {
@@ -449,8 +449,8 @@ export const PerformanceProvider: React.FC<{ children: React.ReactNode }> = ({
     setMetrics(prev => ({ ...prev, [name]: value }));
     
     // Report to external monitoring system
-    if (window.gtag) {
-      window.gtag('event', 'performance_metric', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'performance_metric', {
         metric_name: name,
         metric_value: value
       });
@@ -519,13 +519,18 @@ export const registerServiceWorker = () => {
 // Web Vitals monitoring
 export const initWebVitalsMonitoring = () => {
   if (typeof window !== 'undefined') {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS(console.log);
-      getFID(console.log);
-      getFCP(console.log);
-      getLCP(console.log);
-      getTTFB(console.log);
-    });
+    // Commented out until web-vitals package is installed
+    // import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+    //   getCLS(console.log);
+    //   getFID(console.log);
+    //   getFCP(console.log);
+    //   getLCP(console.log);
+    //   getTTFB(console.log);
+    // }).catch(() => {
+    //   // web-vitals package not available, silently ignore
+    //   console.warn('web-vitals package not available');
+    // });
+    console.log('Web Vitals monitoring would be initialized here');
   }
 };
 
@@ -629,8 +634,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = memo(({
 
 // Export all optimizations
 export {
-  VirtualScroll,
-  AdminDashboard,
-  AnalyticsDashboard,
-  SettingsPanel
+  VirtualScroll
+  // AdminDashboard,
+  // AnalyticsDashboard,
+  // SettingsPanel
 };
