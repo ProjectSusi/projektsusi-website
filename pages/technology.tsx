@@ -46,20 +46,20 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
 
   const techFeatures = [
     {
-      id: 'zero-hallucination',
-      title: isGerman ? 'Zero-Hallucination Engine' : 'Zero-Hallucination Engine',
+      id: 'hybrid-search',
+      title: isGerman ? 'Hybrid Search Engine' : 'Hybrid Search Engine',
       icon: Target,
       color: 'from-green-500 to-emerald-600',
-      description: isGerman 
-        ? 'Unsere AI erfindet niemals Antworten - sie basiert ausschließlich auf Ihren Dokumenten'
-        : 'Our AI never invents answers - it bases responses exclusively on your documents',
+      description: isGerman
+        ? 'FAISS Vector-Suche kombiniert mit BM25 Keyword-Matching für optimale Präzision'
+        : 'FAISS vector search combined with BM25 keyword matching for optimal precision',
       details: [
-        isGerman ? 'Strikte Quellenreferenzierung' : 'Strict source referencing',
-        isGerman ? 'Confidence Scoring für jede Antwort' : 'Confidence scoring for every answer',
-        isGerman ? 'Transparente Quellenangaben' : 'Transparent source citations',
-        isGerman ? 'Keine spekulativen Antworten' : 'No speculative responses'
+        isGerman ? 'FAISS Vector Similarity' : 'FAISS vector similarity',
+        isGerman ? 'BM25 Keyword Scoring' : 'BM25 keyword scoring',
+        isGerman ? '384-dim Embeddings' : '384-dim embeddings',
+        isGerman ? 'Seitengenau Quellenangaben' : 'Page-accurate citations'
       ],
-      metrics: { accuracy: 99.9, reliability: 100, transparency: 100 }
+      metrics: { accuracy: 96, speed: 130, precision: 95 }
     },
     {
       id: 'swiss-architecture',
@@ -78,20 +78,20 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
       metrics: { scalability: 95, performance: 98, reliability: 99 }
     },
     {
-      id: 'multilingual-rag',
-      title: isGerman ? 'Multilingual RAG' : 'Multilingual RAG',
+      id: 'conversation-memory',
+      title: isGerman ? 'Conversation Memory' : 'Conversation Memory',
       icon: Globe,
       color: 'from-purple-500 to-pink-600',
-      description: isGerman 
-        ? 'Native Unterstützung für alle Schweizer Sprachen plus Englisch'
-        : 'Native support for all Swiss languages plus English',
+      description: isGerman
+        ? 'Session-basierte Kontextverwaltung für natürliche Follow-up-Fragen'
+        : 'Session-based context management for natural follow-up questions',
       details: [
-        isGerman ? 'DE/FR/IT/EN Verarbeitung' : 'DE/FR/IT/EN processing',
-        isGerman ? 'Cross-language Retrieval' : 'Cross-language retrieval',
-        isGerman ? 'Semantic Understanding' : 'Semantic understanding',
-        isGerman ? 'Cultural Context Awareness' : 'Cultural context awareness'
+        isGerman ? 'Multilingual (DE/EN)' : 'Multilingual (DE/EN)',
+        isGerman ? 'Session Management' : 'Session management',
+        isGerman ? 'Kontext-Erhaltung' : 'Context retention',
+        isGerman ? 'Follow-up Support' : 'Follow-up support'
       ],
-      metrics: { languages: 4, accuracy: 96, coverage: 98 }
+      metrics: { languages: 2, retention: 98, usability: 95 }
     },
     {
       id: 'swiss-security',
@@ -132,8 +132,8 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
     },
     {
       layer: isGerman ? 'Daten' : 'Data',
-      description: isGerman ? 'Multi-DB + Vector Storage' : 'Multi-DB + Vector Storage',
-      technologies: ['PostgreSQL', 'Redis', 'Vector DB'],
+      description: isGerman ? 'SQLite + FAISS Vector Storage' : 'SQLite + FAISS vector storage',
+      technologies: ['SQLite', 'FAISS', 'Embeddings (384-dim)'],
       icon: Database
     },
     {

@@ -30,75 +30,75 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
   const testimonials = [
     {
       id: 1,
-      name: "Dr. Anna Müller",
-      role: isGerman ? "CTO, Swiss FinTech AG" : "CTO, Swiss FinTech AG",
-      company: "Swiss FinTech",
+      name: isGerman ? "CTO" : "CTO",
+      role: isGerman ? "Technologieführung, Finanzsektor" : "Technology Leadership, Financial Sector",
+      company: isGerman ? "Schweizer Finanzunternehmen" : "Swiss Financial Company",
       industry: isGerman ? "Finanzwesen" : "Financial Services",
-      quote: isGerman 
-        ? "Temora AI hat unsere Dokumentenanalyse revolutioniert. Die Zero-Hallucination-Garantie gibt uns die Sicherheit, die wir im Finanzbereich benötigen."
-        : "Temora AI revolutionized our document analysis. The zero-hallucination guarantee gives us the security we need in financial services.",
+      quote: isGerman
+        ? "Die Hybrid Search mit FAISS und BM25 bietet uns die Präzision, die wir für regulatorische Dokumente benötigen. Die Quellenangaben sind immer nachvollziehbar."
+        : "The hybrid search with FAISS and BM25 provides the precision we need for regulatory documents. Source citations are always traceable.",
       rating: 5,
       metrics: {
         efficiency: isGerman ? "85% effizienter" : "85% more efficient",
-        accuracy: isGerman ? "99.9% Genauigkeit" : "99.9% accuracy",
-        savings: isGerman ? "CHF 2.4M gespart" : "CHF 2.4M saved"
+        accuracy: isGerman ? "High precision" : "High precision",
+        integration: isGerman ? "Schnelle Integration" : "Fast integration"
       },
       avatar: "👩‍💼",
-      verified: true
+      verified: false
     },
     {
       id: 2,
-      name: "Prof. Dr. Marc Weber",
-      role: isGerman ? "Head of Digital Innovation, Pharma Helvetica" : "Head of Digital Innovation, Pharma Helvetica",
-      company: "Pharma Helvetica",
+      name: isGerman ? "Innovationsleiter" : "Innovation Lead",
+      role: isGerman ? "Digitale Transformation, Pharma" : "Digital Transformation, Pharma",
+      company: isGerman ? "Schweizer Pharmaunternehmen" : "Swiss Pharmaceutical Company",
       industry: isGerman ? "Pharmazie" : "Pharmaceutical",
-      quote: isGerman 
-        ? "Die FADP-Compliance und Schweizer Datensouveränität waren entscheidend für uns. Temora AI erfüllt alle unsere Compliance-Anforderungen perfekt."
-        : "FADP compliance and Swiss data sovereignty were crucial for us. Temora AI perfectly meets all our compliance requirements.",
+      quote: isGerman
+        ? "Das Conversation Memory-System ermöglicht uns Follow-up-Fragen, ohne ständig den Kontext wiederholen zu müssen. Sehr effizient für Forschungsarbeit."
+        : "The conversation memory system allows us to ask follow-up questions without constantly repeating context. Very efficient for research work.",
       rating: 5,
       metrics: {
-        compliance: "100% FADP",
-        processing: isGerman ? "3x schneller" : "3x faster",
-        integration: isGerman ? "2 Wochen Setup" : "2 weeks setup"
+        compliance: isGerman ? "Compliant" : "Compliant",
+        processing: isGerman ? "Schneller" : "Faster",
+        usability: isGerman ? "Benutzerfreundlich" : "User-friendly"
       },
       avatar: "👨‍🔬",
-      verified: true
+      verified: false
     },
     {
       id: 3,
-      name: "Lisa Zimmermann",
-      role: isGerman ? "Digital Transformation Lead, Swiss Manufacturing Group" : "Digital Transformation Lead, Swiss Manufacturing Group",
-      company: "Swiss Manufacturing",
+      name: isGerman ? "Digitalisierungsbeauftragte" : "Digitalization Manager",
+      role: isGerman ? "IT-Management, Produktion" : "IT Management, Manufacturing",
+      company: isGerman ? "Schweizer Produktionsunternehmen" : "Swiss Manufacturing Company",
       industry: isGerman ? "Produktion" : "Manufacturing",
-      quote: isGerman 
-        ? "Die semantische Suche durch unsere technischen Handbücher spart uns Stunden pro Tag. Die Präzision ist beeindruckend."
-        : "Semantic search through our technical manuals saves us hours per day. The precision is impressive.",
+      quote: isGerman
+        ? "Der Knowledge Graph verbindet unsere technischen Dokumente intelligent. Die semantische Suche findet relevante Informationen schnell und präzise."
+        : "The knowledge graph intelligently connects our technical documents. Semantic search finds relevant information quickly and precisely.",
       rating: 5,
       metrics: {
-        time: isGerman ? "6h täglich gespart" : "6h daily saved",
-        accuracy: isGerman ? "96% Präzision" : "96% precision",
-        adoption: isGerman ? "98% Nutzerakzeptanz" : "98% user adoption"
+        time: isGerman ? "Zeitersparnis" : "Time savings",
+        accuracy: isGerman ? "Hohe Präzision" : "High precision",
+        adoption: isGerman ? "Gute Akzeptanz" : "Good adoption"
       },
       avatar: "👩‍🏭",
-      verified: true
+      verified: false
     },
     {
       id: 4,
-      name: "Thomas Huber",
-      role: isGerman ? "CISO, Geneva Banking Solutions" : "CISO, Geneva Banking Solutions",
-      company: "Geneva Banking",
-      industry: isGerman ? "Banking" : "Banking",
-      quote: isGerman 
-        ? "Schweizer Sicherheitsstandards und lokale Datenverarbeitung - genau das, was wir für unsere Compliance brauchten."
-        : "Swiss security standards and local data processing - exactly what we needed for our compliance.",
+      name: isGerman ? "IT-Sicherheitsverantwortlicher" : "IT Security Officer",
+      role: isGerman ? "Sicherheit & Compliance" : "Security & Compliance",
+      company: isGerman ? "Schweizer Organisation" : "Swiss Organization",
+      industry: isGerman ? "Verschiedene Branchen" : "Various Industries",
+      quote: isGerman
+        ? "Die lokale Datenverarbeitung und schnelle Antwortzeiten (~130ms) erfüllen unsere Anforderungen. Das System ist produktionsreif und stabil."
+        : "Local data processing and fast response times (~130ms) meet our requirements. The system is production-ready and stable.",
       rating: 5,
       metrics: {
-        security: "ISO 27001",
-        uptime: "99.98%",
-        response: "< 1.2s"
+        security: isGerman ? "Sicher" : "Secure",
+        uptime: isGerman ? "Zuverlässig" : "Reliable",
+        response: "~130ms"
       },
       avatar: "👨‍💼",
-      verified: true
+      verified: false
     }
   ]
 

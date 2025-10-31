@@ -31,38 +31,38 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
 
   const primaryFeatures = [
     {
-      icon: Brain,
-      title: isGerman ? "Zero-Hallucination AI" : "Zero-Hallucination AI",
-      description: isGerman 
-        ? "Garantiert nur faktenbasierte Antworten aus Ihren Dokumenten - keine erfundenen Inhalte."
-        : "Guaranteed fact-based answers from your documents only - no made-up content.",
-      benefits: isGerman 
-        ? ["100% Quellenbasiert", "Vollständige Nachverfolgbarkeit", "Keine KI-Halluzinationen"]
-        : ["100% Source-based", "Complete traceability", "No AI hallucinations"],
+      icon: Search,
+      title: isGerman ? "Hybrid Search" : "Hybrid Search",
+      description: isGerman
+        ? "FAISS Vector-Suche kombiniert mit BM25 Keyword-Suche für optimale Präzision und Relevanz."
+        : "FAISS vector search combined with BM25 keyword search for optimal precision and relevance.",
+      benefits: isGerman
+        ? ["Vector Similarity (FAISS)", "BM25 Keyword Matching", "384-dim Embeddings"]
+        : ["Vector similarity (FAISS)", "BM25 keyword matching", "384-dim embeddings"],
       color: "from-purple-500 to-indigo-600",
       bgColor: "bg-purple-50"
     },
     {
       icon: Shield,
-      title: isGerman ? "Swiss Data Sovereignty" : "Swiss Data Sovereignty",
-      description: isGerman 
-        ? "Ihre Daten bleiben in der Schweiz. FADP/GDPR-konform und ISO 27001 zertifiziert."
-        : "Your data stays in Switzerland. FADP/GDPR compliant and ISO 27001 certified.",
-      benefits: isGerman 
-        ? ["Schweizer Rechtsraum", "Ende-zu-Ende Verschlüsselung", "Audit-ready Compliance"]
-        : ["Swiss jurisdiction", "End-to-end encryption", "Audit-ready compliance"],
+      title: isGerman ? "Conversation Memory" : "Conversation Memory",
+      description: isGerman
+        ? "Session-basierte Kontextverwaltung ermöglicht natürliche Follow-up-Fragen über mehrere Interaktionen."
+        : "Session-based context management enables natural follow-up questions across multiple interactions.",
+      benefits: isGerman
+        ? ["Session Management", "Kontext-Erhaltung", "Follow-up Support"]
+        : ["Session management", "Context retention", "Follow-up support"],
       color: "from-primary-500 to-primary-600",
       bgColor: "bg-primary-50"
     },
     {
-      icon: Zap,
-      title: isGerman ? "Lightning Performance" : "Lightning Performance",
-      description: isGerman 
-        ? "Sub-2-Sekunden Antworten mit intelligenter Caching-Technologie und Schweizer Infrastruktur."
-        : "Sub-2-second responses with intelligent caching technology and Swiss infrastructure.",
-      benefits: isGerman 
-        ? ["< 2s Antwortzeit", "Smart Caching", "99.9% Verfügbarkeit"]
-        : ["< 2s response time", "Smart caching", "99.9% uptime"],
+      icon: Brain,
+      title: isGerman ? "Knowledge Graph" : "Knowledge Graph",
+      description: isGerman
+        ? "Real-time Wissensvernetzung mit evolutionärem Graph für intelligente Dokumentenbeziehungen."
+        : "Real-time knowledge networking with evolutionary graph for intelligent document relationships.",
+      benefits: isGerman
+        ? ["Real-time Evolution", "Wissensvernetzung", "Graph-basierte Suche"]
+        : ["Real-time evolution", "Knowledge networking", "Graph-based search"],
       color: "from-blue-500 to-cyan-600",
       bgColor: "bg-blue-50"
     }
@@ -70,39 +70,39 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
 
   const secondaryFeatures = [
     {
-      icon: Database,
-      title: isGerman ? "Enterprise Integration" : "Enterprise Integration",
-      description: isGerman ? "Nahtlose Integration in bestehende Systeme" : "Seamless integration with existing systems",
+      icon: Sparkles,
+      title: isGerman ? "Query Expansion" : "Query Expansion",
+      description: isGerman ? "Automatische Anfrageerweiterung für bessere Ergebnisse" : "Automatic query expansion for better results",
       color: "text-green-600"
     },
     {
       icon: Globe,
-      title: isGerman ? "Multi-Language Support" : "Multi-Language Support", 
-      description: isGerman ? "Deutsch, Englisch, Französisch" : "German, English, French",
+      title: isGerman ? "Multilingual Support" : "Multilingual Support",
+      description: isGerman ? "Deutsch & Englisch mit 384-dim Embeddings" : "German & English with 384-dim embeddings",
       color: "text-purple-600"
     },
     {
-      icon: Lock,
-      title: isGerman ? "Zero-Trust Security" : "Zero-Trust Security",
-      description: isGerman ? "Bankgrad-Sicherheit für alle Daten" : "Bank-grade security for all data",
+      icon: CheckCircle,
+      title: isGerman ? "Page Citations" : "Page Citations",
+      description: isGerman ? "Seitengenau Quellenangaben in jeder Antwort" : "Page-accurate source citations in every answer",
       color: "text-primary-600"
     },
     {
-      icon: Search,
-      title: isGerman ? "Intelligent Search" : "Intelligent Search",
-      description: isGerman ? "Semantische Suche mit KI-Präzision" : "Semantic search with AI precision",
+      icon: Zap,
+      title: isGerman ? "Fast Performance" : "Fast Performance",
+      description: isGerman ? "~130ms durchschnittliche Antwortzeit" : "~130ms average response time",
       color: "text-indigo-600"
     },
     {
       icon: FileText,
       title: isGerman ? "Document Processing" : "Document Processing",
-      description: isGerman ? "PDF, Word, Excel automatisch verarbeitet" : "PDF, Word, Excel automatically processed",
+      description: isGerman ? "PDF, DOCX, TXT, MD, CSV unterstützt" : "PDF, DOCX, TXT, MD, CSV supported",
       color: "text-orange-600"
     },
     {
-      icon: Sparkles,
-      title: isGerman ? "Swiss Innovation" : "Swiss Innovation",
-      description: isGerman ? "Entwickelt mit Schweizer Präzision" : "Built with Swiss precision",
+      icon: Database,
+      title: isGerman ? "Production Ready" : "Production Ready",
+      description: isGerman ? "v3.2.0 mit 40+ Services & FastAPI" : "v3.2.0 with 40+ services & FastAPI",
       color: "text-yellow-600"
     }
   ]

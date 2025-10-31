@@ -18,15 +18,15 @@ const Stats: React.FC<StatsProps> = ({ locale }) => {
   const stats = [
     {
       icon: Shield,
-      number: "100%",
-      label: isGerman ? "Datenschutz-Compliance" : "Data Privacy Compliance",
-      description: isGerman ? "FADP/GDPR konform" : "FADP/GDPR compliant",
+      number: "v3.2",
+      label: isGerman ? "Production Version" : "Production Version",
+      description: isGerman ? "40+ Services & Module" : "40+ services & modules",
       color: "text-primary-500",
       bgColor: "bg-primary-50"
     },
     {
       icon: Zap,
-      number: "< 2s",
+      number: "~130ms",
       label: isGerman ? "Antwortzeit" : "Response Time",
       description: isGerman ? "Durchschnittliche Abfragezeit" : "Average query time",
       color: "text-blue-500",
@@ -34,33 +34,33 @@ const Stats: React.FC<StatsProps> = ({ locale }) => {
     },
     {
       icon: TrendingUp,
-      number: "99.9%",
-      label: isGerman ? "Verfügbarkeit" : "Uptime",
-      description: isGerman ? "Enterprise-Grade SLA" : "Enterprise-grade SLA",
+      number: "Hybrid",
+      label: isGerman ? "Search Engine" : "Search Engine",
+      description: isGerman ? "FAISS Vector + BM25 Keyword" : "FAISS vector + BM25 keyword",
       color: "text-green-500",
       bgColor: "bg-green-50"
     },
     {
       icon: Globe,
-      number: "3",
+      number: "2",
       label: isGerman ? "Sprachen" : "Languages",
-      description: isGerman ? "DE, EN, FR unterstützt" : "DE, EN, FR supported",
+      description: isGerman ? "Deutsch & Englisch" : "German & English",
       color: "text-purple-500",
       bgColor: "bg-purple-50"
     },
     {
       icon: Users,
-      number: "500K+",
-      label: isGerman ? "Dokumente verarbeitet" : "Documents Processed",
-      description: isGerman ? "In Schweizer Unternehmen" : "In Swiss enterprises",
+      number: "384",
+      label: isGerman ? "Embedding-Dimensionen" : "Embedding Dimensions",
+      description: isGerman ? "MiniLM Multilingual" : "MiniLM multilingual",
       color: "text-indigo-500",
       bgColor: "bg-indigo-50"
     },
     {
       icon: Award,
-      number: "ISO 27001",
-      label: isGerman ? "Zertifizierung" : "Certification",
-      description: isGerman ? "Schweizer Sicherheitsstandard" : "Swiss security standard",
+      number: "FastAPI",
+      label: isGerman ? "Backend Framework" : "Backend Framework",
+      description: isGerman ? "Python & Ollama LLM" : "Python & Ollama LLM",
       color: "text-yellow-600",
       bgColor: "bg-yellow-50"
     }
