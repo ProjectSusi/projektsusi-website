@@ -22,13 +22,13 @@ interface HomeProps {
 export default function Home({ locale }: HomeProps) {
   const isGerman = locale === 'de'
   
-  const pageTitle = isGerman 
-    ? 'Temora AI - Die Schweizer KI-Lösung für Unternehmen'
-    : 'Temora AI - Swiss AI Solution for Enterprise Intelligence'
-  
+  const pageTitle = isGerman
+    ? 'Temora AI - Open Source RAG System v3.2'
+    : 'Temora AI - Open Source RAG System v3.2'
+
   const pageDescription = isGerman
-    ? 'Die führende Schweizer RAG-Lösung mit vollständiger Datensouveränität, FADP/GDPR Compliance und Zero-Hallucination AI. Speziell entwickelt für Schweizer Finanzwesen, Pharma und Produktion.'
-    : 'The leading Swiss RAG solution with complete data sovereignty, FADP/GDPR compliance, and zero-hallucination AI. Specifically engineered for Swiss banking, pharma, and manufacturing.'
+    ? 'Production-ready RAG System mit Hybrid Search (FAISS + BM25), Conversation Memory, Knowledge Graph und Multilingual Support (DE/EN). FastAPI + Ollama + SQLite.'
+    : 'Production-ready RAG system with hybrid search (FAISS + BM25), conversation memory, knowledge graph, and multilingual support (DE/EN). FastAPI + Ollama + SQLite.'
 
   return (
     <>
@@ -80,20 +80,6 @@ export default function Home({ locale }: HomeProps) {
               "url": "https://ai.sirth.ch",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web",
-              "offers": {
-                "@type": "Offer",
-                "priceCurrency": "CHF",
-                "price": "0",
-                "priceValidUntil": "2025-12-31",
-                "availability": "https://schema.org/InStock"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "ratingCount": "12",
-                "bestRating": "5",
-                "worstRating": "1"
-              },
               "author": {
                 "@type": "Organization",
                 "name": "Temora AI AG"

@@ -137,25 +137,24 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
             {isGerman ? (
               <>
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Revolutionäre Features
+                  System-Features
                 </span>
-                <br />für Schweizer Unternehmen
+                <br />v3.2.0
               </>
             ) : (
               <>
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Revolutionary Features
+                  System Features
                 </span>
-                <br />for Swiss Enterprise
+                <br />v3.2.0
               </>
             )}
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {isGerman 
-              ? "Entdecken Sie die nächste Generation der RAG-Technologie, entwickelt speziell für die Anforderungen Schweizer Unternehmen."
-              : "Discover the next generation of RAG technology, developed specifically for Swiss enterprise requirements."
-            }
+            {isGerman
+              ? "Production-ready RAG-System mit Hybrid Search, Conversation Memory und Knowledge Graph."
+              : "Production-ready RAG system with hybrid search, conversation memory, and knowledge graph."}
           </p>
         </motion.div>
 
@@ -279,27 +278,25 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
         >
           <AnimatedCard className="inline-block p-8 bg-gradient-to-r from-primary-50 to-blue-50">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              {isGerman 
-                ? "Bereit für die Zukunft der Unternehmens-KI?"
-                : "Ready for the Future of Enterprise AI?"
-              }
+              {isGerman
+                ? "RAG System ausprobieren"
+                : "Try the RAG System"}
             </h3>
-            
+
             <p className="text-gray-600 mb-6 max-w-md">
-              {isGerman 
-                ? "Erleben Sie selbst, wie Temora AI Ihr Unternehmen transformiert."
-                : "Experience how Temora AI transforms your enterprise."
-              }
+              {isGerman
+                ? "Testen Sie die Live-Demo oder laden Sie das System lokal herunter."
+                : "Test the live demo or download the system locally."}
             </p>
 
-            <AnimatedButton 
-              variant="gradient" 
+            <AnimatedButton
+              variant="gradient"
               size="lg"
               className="inline-flex items-center space-x-2"
               icon={<ArrowRight className="w-5 h-5" />}
               iconPosition="right"
             >
-              {isGerman ? "Demo anfordern" : "Request Demo"}
+              {isGerman ? "Live Demo" : "Live Demo"}
             </AnimatedButton>
           </AnimatedCard>
         </motion.div>

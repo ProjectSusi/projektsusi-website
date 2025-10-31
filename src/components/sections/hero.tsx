@@ -75,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
               )}>
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span className="text-white text-sm font-medium">
-                  {isGerman ? 'Swiss-engineered • Trusted by 500+ enterprises' : 'Swiss-engineered • Trusted by 500+ enterprises'}
+                  {isGerman ? 'RAG System v3.2 • Open Source' : 'RAG System v3.2 • Open Source'}
                 </span>
               </div>
 
@@ -102,9 +102,9 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
                 "text-xl lg:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed transition-all duration-700 delay-200",
                 animationPhase >= 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}>
-                {isGerman 
-                  ? 'Vollständige Datenkontrolle + Regulatorische Compliance + Mehrsprachiger Support'
-                  : 'Complete Data Sovereignty + Regulatory Excellence + Zero Hallucination AI'}
+                {isGerman
+                  ? 'Hybrid Search • Conversation Memory • Knowledge Graph • Multilingual (DE/EN)'
+                  : 'Hybrid Search • Conversation Memory • Knowledge Graph • Multilingual (DE/EN)'}
               </p>
 
               {/* Key Benefits */}
@@ -115,19 +115,19 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
                 <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <Shield className="w-5 h-5 text-green-400" />
                   <span className="text-white font-medium">
-                    {isGerman ? 'Swiss Data Sovereignty' : 'Swiss Data Sovereignty'}
+                    {isGerman ? 'FAISS + BM25 Hybrid' : 'FAISS + BM25 Hybrid'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <CheckCircle className="w-5 h-5 text-green-400" />
                   <span className="text-white font-medium">
-                    {isGerman ? 'Null-Halluzination Garantie' : 'Zero Hallucination Guarantee'}
+                    {isGerman ? 'FastAPI + Ollama' : 'FastAPI + Ollama'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <Zap className="w-5 h-5 text-green-400" />
                   <span className="text-white font-medium">
-                    {isGerman ? '5-Minuten Setup' : '5-Minute Setup'}
+                    {isGerman ? '~130ms Antwortzeit' : '~130ms Response Time'}
                   </span>
                 </div>
               </div>
@@ -261,64 +261,61 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
               </div>
             )}
 
-            {/* Social Proof */}
+            {/* Technical Stack */}
             <div className="text-center">
               <p className="text-white/80 text-lg font-medium mb-8">
-                {isGerman 
-                  ? 'Vertraut von führenden Schweizer Unternehmen'
-                  : 'Trusted by leading Swiss enterprises'}
+                {isGerman
+                  ? 'Open Source Technologie-Stack'
+                  : 'Open Source Technology Stack'}
               </p>
-              
-              {/* Company Logos */}
-              <div className="flex flex-wrap justify-center items-center gap-8 mb-8">
-                {trustedCompanies.map((company, index) => (
-                  <div 
-                    key={company.name}
-                    className={cn(
-                      "flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 hover:bg-white/20 transition-all",
-                      `animate-delay-${index * 100}`
-                    )}
-                  >
-                    <div className="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
-                      {company.logo}
-                    </div>
-                    <span className="text-white font-medium text-sm">{company.name}</span>
-                  </div>
-                ))}
+
+              {/* Technical Components */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-8">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
+                  <div className="text-white font-semibold text-sm mb-1">FastAPI</div>
+                  <div className="text-white/70 text-xs">{isGerman ? 'Backend' : 'Backend'}</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
+                  <div className="text-white font-semibold text-sm mb-1">Ollama</div>
+                  <div className="text-white/70 text-xs">{isGerman ? 'LLM Runtime' : 'LLM Runtime'}</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
+                  <div className="text-white font-semibold text-sm mb-1">FAISS</div>
+                  <div className="text-white/70 text-xs">{isGerman ? 'Vector DB' : 'Vector DB'}</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/20">
+                  <div className="text-white font-semibold text-sm mb-1">SQLite</div>
+                  <div className="text-white/70 text-xs">{isGerman ? 'Datenbank' : 'Database'}</div>
+                </div>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="my-12">
-                <TrustIndicators locale={locale} variant="hero" />
-              </div>
-
-              {/* Stats */}
+              {/* System Stats */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
                 <div className="text-center">
                   <div className="flex items-center justify-center mb-2">
-                    <Star className="w-5 h-5 text-yellow-400 mr-1" />
-                    <span className="text-3xl font-bold text-white">4.9</span>
+                    <Zap className="w-5 h-5 text-blue-400 mr-1" />
+                    <span className="text-3xl font-bold text-white">~130ms</span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    {isGerman ? 'Kundenbewertung' : 'Customer Rating'}
+                    {isGerman ? 'Avg. Antwortzeit' : 'Avg. Response Time'}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center mb-2">
-                    <Users className="w-5 h-5 text-green-400 mr-1" />
-                    <span className="text-3xl font-bold text-white">500+</span>
+                    <Shield className="w-5 h-5 text-green-400 mr-1" />
+                    <span className="text-3xl font-bold text-white">384</span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    {isGerman ? 'Aktive Kunden' : 'Active Customers'}
+                    {isGerman ? 'Embedding Dims' : 'Embedding Dims'}
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center mb-2">
-                    <Building className="w-5 h-5 text-blue-400 mr-1" />
-                    <span className="text-3xl font-bold text-white">99.9%</span>
+                    <Building className="w-5 h-5 text-purple-400 mr-1" />
+                    <span className="text-3xl font-bold text-white">40+</span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    {isGerman ? 'Uptime SLA' : 'Uptime SLA'}
+                    {isGerman ? 'Services' : 'Services'}
                   </p>
                 </div>
               </div>
