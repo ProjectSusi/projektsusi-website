@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://temora.ch/sitemap.xml
+Sitemap: https://projektsusui.ch/sitemap.xml

@@ -1,7 +1,9 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Layout from '@/components/layout/layout'
+import { PAGE_SEO, STRUCTURED_DATA, getPageKeywords } from '@/lib/seo-config'
 import { 
   SwissFlag, 
   SwissShield, 
@@ -43,6 +45,8 @@ interface AboutPageProps {
 
 const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
   const isGerman = locale === 'de'
+  const seo = isGerman ? PAGE_SEO.about.de : PAGE_SEO.about.en
+  const pageKeywords = getPageKeywords('about', locale)
 
   const timeline = [
     {
@@ -143,6 +147,57 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://temora.ch/about" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://temora.ch/about" />
+
+        {/* About Page Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              "mainEntity": {
+                "@type": "Organization",
+                "name": "Temora AI GmbH",
+                "description": seo.description,
+                "foundingDate": "2024",
+                "founders": [
+                  {
+                    "@type": "Person",
+                    "name": "Marek Safarik",
+                    "jobTitle": isGerman ? "Co-Founder & Business" : "Co-Founder & Business"
+                  },
+                  {
+                    "@type": "Person",
+                    "name": "Thomas Henzler",
+                    "jobTitle": isGerman ? "Co-Founder & Tech Lead" : "Co-Founder & Tech Lead"
+                  },
+                  {
+                    "@type": "Person",
+                    "name": "Emre Sen",
+                    "jobTitle": isGerman ? "Co-Founder & AI Engineer" : "Co-Founder & AI Engineer"
+                  }
+                ],
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Zürich",
+                  "addressCountry": "CH"
+                },
+                "areaServed": "Switzerland"
+              }
+            })
+          }}
+        />
+      </Head>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <motion.section 

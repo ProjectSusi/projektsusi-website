@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
+import { PAGE_SEO, getPageKeywords } from '@/lib/seo-config'
 
 import Pricing from '@/components/sections/pricing'
 
@@ -10,26 +11,21 @@ interface PricingPageProps {
 
 export default function PricingPage({ locale }: PricingPageProps) {
   const isGerman = locale === 'de'
-  
-  const pageTitle = isGerman 
-    ? 'Preise - Temora AI Swiss AI RAG Lösung'
-    : 'Pricing - Temora AI Swiss AI RAG Solution'
-  
-  const pageDescription = isGerman
-    ? 'Beta-Partner Programm für Temora AI. Pilotprojekt ab CHF 550/Monat. Schweizer Hosting, FADP/GDPR konform, keine Kosten für Arbeitszeit.'
-    : 'Beta partner program for Temora AI. Pilot project from CHF 550/month. Swiss hosting, FADP/GDPR compliant, no costs for work time.'
+  const seo = isGerman ? PAGE_SEO.pricing.de : PAGE_SEO.pricing.en
+  const pageKeywords = getPageKeywords('pricing', locale)
 
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        
-        <meta name="keywords" content={
-          isGerman 
-            ? 'RAG System Preise, Swiss AI Kosten, Enterprise RAG Pricing, FADP Compliance Kosten, Schweiz KI Preise'
-            : 'RAG System pricing, Swiss AI costs, Enterprise RAG pricing, FADP compliance costs, Switzerland AI prices'
-        } />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://temora.ch/pricing" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://temora.ch/pricing" />
 
         {/* Structured data for pricing */}
         <script
@@ -38,23 +34,29 @@ export default function PricingPage({ locale }: PricingPageProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Product",
-              "name": "Temora AI RAG System",
-              "description": pageDescription,
+              "name": isGerman ? "Temora AI KI-Chatbot für Dokumente" : "Temora AI Document Chatbot",
+              "description": seo.description,
               "brand": {
                 "@type": "Organization",
-                "name": "Temora AI"
+                "name": "Temora AI GmbH"
               },
-              "offers": [
-                {
-                  "@type": "Offer",
-                  "name": "Pilot Project",
-                  "price": "550",
-                  "priceCurrency": "CHF",
-                  "priceValidUntil": "2025-12-31",
-                  "availability": "https://schema.org/LimitedAvailability",
-                  "url": "https://temora.ch/pricing"
-                }
-              ]
+              "offers": {
+                "@type": "Offer",
+                "name": isGerman ? "Pilot-Projekt" : "Pilot Project",
+                "price": "550",
+                "priceCurrency": "CHF",
+                "priceValidUntil": "2025-12-31",
+                "availability": "https://schema.org/InStock",
+                "url": "https://temora.ch/pricing",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "Temora AI GmbH"
+                },
+                "itemCondition": "https://schema.org/NewCondition",
+                "description": isGerman
+                  ? "3-Monats Pilotprojekt: CHF 550/Monat + CHF 250 Setup"
+                  : "3-month pilot project: CHF 550/month + CHF 250 setup"
+              }
             })
           }}
         />

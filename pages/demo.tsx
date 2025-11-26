@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { motion, AnimatePresence } from 'framer-motion'
 import Layout from '@/components/layout/layout'
+import { PAGE_SEO, STRUCTURED_DATA, getPageKeywords } from '@/lib/seo-config'
 import { 
   SwissFlag, 
   SwissShield,
@@ -39,6 +41,8 @@ interface DemoPageProps {
 
 const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
   const isGerman = locale === 'de'
+  const seo = isGerman ? PAGE_SEO.demo.de : PAGE_SEO.demo.en
+  const pageKeywords = getPageKeywords('demo', locale)
   const [showLiveSystem, setShowLiveSystem] = useState(true)
 
   const demoFeatures = [
@@ -89,9 +93,45 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://temora.ch/demo" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://temora.ch/demo" />
+
+        {/* Demo Page Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": seo.title,
+              "description": seo.description,
+              "mainEntity": {
+                "@type": "SoftwareApplication",
+                "name": isGerman ? "Temora AI KI-Chatbot Demo" : "Temora AI Chatbot Demo",
+                "applicationCategory": "BusinessApplication",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "CHF",
+                  "availability": "https://schema.org/InStock"
+                },
+                "operatingSystem": "Web"
+              }
+            })
+          }}
+        />
+      </Head>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
-        <motion.section 
+        <motion.section
           className="relative py-20 lg:py-32 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

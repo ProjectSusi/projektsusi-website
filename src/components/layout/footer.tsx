@@ -72,10 +72,10 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
   }
 
   const contactInfo = {
-    address: isGerman 
-      ? 'Temora AI AG\nBahnhofstrasse 45\n8001 Zürich\nSchweiz'
-      : 'Temora AI AG\nBahnhofstrasse 45\n8001 Zurich\nSwitzerland',
-    phone: '+41 44 123 45 67',
+    address: isGerman
+      ? 'Temora AI GmbH\nTeichstrasse 5a\n4106 Therwil\nSchweiz'
+      : 'Temora AI GmbH\nTeichstrasse 5a\n4106 Therwil\nSwitzerland',
+    phone: '+41 XX XXX XX XX',
     email: 'info@temora.ch',
     support: 'support@temora.ch'
   }
@@ -289,7 +289,7 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/60 pt-8 border-t border-white/20">
           <div className="mb-4 md:mb-0">
             <p>
-              © 2024 Temora AI AG. {isGerman ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}
+              © 2024 Temora AI GmbH. {isGerman ? 'Alle Rechte vorbehalten.' : 'All rights reserved.'}
             </p>
             <p className="mt-1">
               {isGerman 

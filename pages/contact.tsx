@@ -1,8 +1,10 @@
 import { GetStaticProps } from 'next'
 import { useState } from 'react'
+import Head from 'next/head'
 import { motion, AnimatePresence } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Layout from '@/components/layout/layout'
+import { PAGE_SEO, STRUCTURED_DATA, getPageKeywords } from '@/lib/seo-config'
 import { 
   SwissFlag, 
   SwissShield,
@@ -48,6 +50,10 @@ interface ContactPageProps {
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
+  const isGerman = locale === 'de'
+  const seo = isGerman ? PAGE_SEO.contact.de : PAGE_SEO.contact.en
+  const pageKeywords = getPageKeywords('contact', locale)
+
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -60,8 +66,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [error, setError] = useState('')
-
-  const isGerman = locale === 'de'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -136,7 +140,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
     {
       icon: MapPin,
       title: 'Office',
-      value: 'Zürich, Schweiz',
+      value: 'Therwil, Schweiz',
       description: isGerman ? 'Termine nach Vereinbarung' : 'Appointments by arrangement',
       action: '#',
       color: 'text-primary-500'
@@ -204,6 +208,46 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://temora.ch/contact" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://temora.ch/contact" />
+
+        {/* Contact Page Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              "mainEntity": {
+                "@type": "Organization",
+                "name": "Temora AI GmbH",
+                "email": "info@temora.ch",
+                "telephone": "+41-44-123-45-67",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Teichstrasse 5a",
+                  "addressLocality": "Therwil",
+                  "postalCode": "4106",
+                  "addressCountry": "CH"
+                },
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "contactType": isGerman ? "Verkauf & Beratung" : "Sales & Consultation",
+                  "availableLanguage": ["German", "English"]
+                }
+              }
+            })
+          }}
+        />
+      </Head>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Success Animation */}
         <AnimatePresence>

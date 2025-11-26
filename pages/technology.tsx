@@ -1,6 +1,8 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
 import Layout from '@/components/layout/layout'
+import { PAGE_SEO, STRUCTURED_DATA, getPageKeywords } from '@/lib/seo-config'
 import { 
   SwissFlag, 
   SwissShield, 
@@ -43,6 +45,8 @@ interface TechnologyPageProps {
 
 const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
   const isGerman = locale === 'de'
+  const seo = isGerman ? PAGE_SEO.technology.de : PAGE_SEO.technology.en
+  const pageKeywords = getPageKeywords('technology', locale)
 
   const techFeatures = [
     {
@@ -185,6 +189,48 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://temora.ch/technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://temora.ch/technology" />
+
+        {/* Technology Page Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "TechArticle",
+              "headline": seo.title,
+              "description": seo.description,
+              "author": {
+                "@type": "Organization",
+                "name": "Temora AI GmbH"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Temora AI GmbH",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://temora.ch/temora-logo.png"
+                }
+              },
+              "mainEntityOfPage": "https://temora.ch/technology",
+              "about": {
+                "@type": "Thing",
+                "name": isGerman ? "RAG-System Technologie" : "RAG System Technology"
+              },
+              "keywords": pageKeywords
+            })
+          }}
+        />
+      </Head>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-50">
         {/* Hero Section */}
         <section className="relative py-20 lg:py-32 overflow-hidden">

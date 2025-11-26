@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import { pageTransition, staggerContainer } from '@/lib/animations'
+import { PAGE_SEO, STRUCTURED_DATA, getPageKeywords } from '@/lib/seo-config'
 
 import Hero from '@/components/sections/hero'
 import Benefits from '@/components/sections/benefits'
@@ -21,14 +22,11 @@ interface HomeProps {
 
 export default function Home({ locale }: HomeProps) {
   const isGerman = locale === 'de'
-  
-  const pageTitle = isGerman
-    ? 'Temora AI - Open Source RAG System v3.2'
-    : 'Temora AI - Open Source RAG System v3.2'
+  const seo = isGerman ? PAGE_SEO.home.de : PAGE_SEO.home.en
 
-  const pageDescription = isGerman
-    ? 'Production-ready RAG System mit Hybrid Search (FAISS + BM25), Conversation Memory, Knowledge Graph und Multilingual Support (DE/EN). FastAPI + Ollama + SQLite.'
-    : 'Production-ready RAG system with hybrid search (FAISS + BM25), conversation memory, knowledge graph, and multilingual support (DE/EN). FastAPI + Ollama + SQLite.'
+  const pageTitle = seo.title
+  const pageDescription = seo.description
+  const pageKeywords = getPageKeywords('home', locale)
 
   return (
     <>
@@ -36,14 +34,26 @@ export default function Home({ locale }: HomeProps) {
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         
-        {/* Additional homepage-specific meta tags */}
-        <meta name="keywords" content={
-          isGerman 
-            ? 'RAG System, Schweiz, KI, Künstliche Intelligenz, FADP, GDPR, Compliance, Datenschutz, Swiss AI, Finanzwesen, Pharma, Banking'
-            : 'RAG System, Switzerland, AI, Artificial Intelligence, FADP, GDPR, Compliance, Data Privacy, Swiss AI, Banking, Pharma, Manufacturing'
-        } />
+        {/* SEO-optimized keywords for Swiss AI Document Chatbot market */}
+        <meta name="keywords" content={pageKeywords} />
         
-        {/* Structured data for homepage */}
+        {/* Organization Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(STRUCTURED_DATA.organization(locale))
+          }}
+        />
+
+        {/* Software Application Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(STRUCTURED_DATA.softwareApplication(locale))
+          }}
+        />
+
+        {/* WebSite Structured Data with Search */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -51,44 +61,14 @@ export default function Home({ locale }: HomeProps) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Temora AI",
+              "alternateName": isGerman ? "KI Chatbot für Dokumente" : "AI Document Chatbot",
               "url": "https://temora.ch",
               "description": pageDescription,
-              "inLanguage": locale,
+              "inLanguage": locale === 'de' ? 'de-CH' : 'en',
               "publisher": {
                 "@type": "Organization",
-                "name": "Temora AI AG",
-                "logo": "https://temora.ch/temora-logo.png"
-              },
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://temora.ch/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
+                "name": "Temora AI GmbH"
               }
-            })
-          }}
-        />
-
-        {/* Product structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "Temora AI RAG System",
-              "description": pageDescription,
-              "url": "https://temora.ch",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
-              "author": {
-                "@type": "Organization",
-                "name": "Temora AI AG"
-              },
-              "datePublished": "2024-01-01",
-              "dateModified": "2024-12-01",
-              "inLanguage": [locale],
-              "isAccessibleForFree": true,
-              "applicationSubCategory": "AI/ML Software"
             })
           }}
         />

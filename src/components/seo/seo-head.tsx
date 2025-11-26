@@ -15,14 +15,14 @@ interface SEOProps {
 }
 
 const SEOHead: React.FC<SEOProps> = ({
-  title = 'Temora AI - Swiss AI RAG Solution',
-  description = 'The leading Swiss RAG solution with complete data sovereignty, FADP/GDPR compliance, and zero-hallucination AI. Specifically engineered for Swiss banking, pharma, and manufacturing.',
-  keywords = 'RAG System, Switzerland, AI, Artificial Intelligence, FADP, GDPR, Compliance, Data Privacy, Swiss AI, Banking, Pharma, Manufacturing',
+  title = 'KI Chatbot für Dokumente | Schweizer RAG System | Temora AI',
+  description = 'Interner KI-Chatbot für schnelle Antworten aus Ihren Dokumenten. Schweizer Hosting, FADP-konform, Zero-Hallucination. Für Vertrieb, HR, IT-Support.',
+  keywords = 'KI Chatbot für Dokumente, Dokumenten-KI Schweiz, RAG System, Wissensmanagement KI, interner Chatbot, Schweizer KI, FADP konform, Zero Hallucination',
   ogImage = 'https://temora.ch/og-image.jpg',
   ogType = 'website',
   noindex = false,
   canonical,
-  author = 'Temora AI AG',
+  author = 'Temora AI GmbH',
   publishedTime,
   modifiedTime
 }) => {
@@ -115,14 +115,16 @@ const SEOHead: React.FC<SEOProps> = ({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Temora AI AG",
+            "name": "Temora AI GmbH",
             "url": "https://temora.ch",
             "logo": "https://temora.ch/temora-logo.png",
             "description": localizedDescription,
             "address": {
               "@type": "PostalAddress",
-              "addressCountry": "CH",
-              "addressLocality": "Switzerland"
+              "streetAddress": "Teichstrasse 5a",
+              "addressLocality": "Therwil",
+              "postalCode": "4106",
+              "addressCountry": "CH"
             },
             "contactPoint": {
               "@type": "ContactPoint",

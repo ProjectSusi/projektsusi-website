@@ -29,8 +29,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Generate meta tags for the current page
   const metaTags = generateMetaTags({
-    title: pageProps.title || 'Temora AI - Swiss AI RAG Solution',
-    description: pageProps.description || 'The leading Swiss solution for intelligent document analysis with complete data sovereignty and compliance.',
+    title: pageProps.title || (locale === 'de'
+      ? 'KI Chatbot für Dokumente | Schweizer RAG System | Temora AI'
+      : 'AI Document Chatbot | Swiss RAG System | Temora AI'),
+    description: pageProps.description || (locale === 'de'
+      ? 'Interner KI-Chatbot für schnelle Antworten aus Ihren Dokumenten. Schweizer Hosting, FADP-konform, Zero-Hallucination Technologie.'
+      : 'Internal AI chatbot for instant answers from your documents. Swiss hosting, FADP-compliant, zero-hallucination technology.'),
     path: router.asPath,
     locale,
   })
@@ -68,17 +72,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* Additional Meta Tags */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="language" content={locale === 'de' ? 'German' : 'English'} />
-        <meta name="author" content="Temora AI AG" />
-        <meta name="publisher" content="Temora AI AG" />
-        <meta name="copyright" content="© 2024 Temora AI AG" />
+        <meta name="author" content="Temora AI GmbH" />
+        <meta name="publisher" content="Temora AI GmbH" />
+        <meta name="copyright" content="© 2024 Temora AI GmbH" />
         <meta name="rating" content="General" />
         <meta name="distribution" content="Global" />
         <meta name="coverage" content="Worldwide" />
         
         {/* Swiss-specific meta tags */}
-        <meta name="geo.region" content="CH" />
+        <meta name="geo.region" content="CH-BL" />
         <meta name="geo.country" content="Switzerland" />
-        <meta name="geo.placename" content="Zurich" />
+        <meta name="geo.placename" content="Therwil" />
         <meta name="DC.language" content={locale === 'de' ? 'de-CH' : 'en-CH'} />
         
         {/* Favicons */}
@@ -101,17 +105,17 @@ function MyApp({ Component, pageProps }: AppProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Temora AI AG",
+              "name": "Temora AI GmbH",
               "url": "https://temora.ch",
               "logo": "https://temora.ch/temora-logo.png",
-              "description": locale === 'de' 
-                ? "Die führende Schweizer Lösung für intelligente Dokumentenanalyse mit vollständiger Datensouveränität und Compliance."
-                : "The leading Swiss solution for intelligent document analysis with complete data sovereignty and compliance.",
+              "description": locale === 'de'
+                ? "Schweizer KI-Chatbot für Dokumentenanalyse. Schnelle Antworten aus Ihren Unternehmensdokumenten mit Zero-Hallucination Technologie."
+                : "Swiss AI chatbot for document analysis. Quick answers from your business documents with zero-hallucination technology.",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Bahnhofstrasse 45",
-                "addressLocality": "Zurich",
-                "postalCode": "8001",
+                "streetAddress": "Teichstrasse 5a",
+                "addressLocality": "Therwil",
+                "postalCode": "4106",
                 "addressCountry": "CH"
               },
               "contactPoint": {
