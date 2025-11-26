@@ -15,7 +15,7 @@ import {
   Zap
 } from 'lucide-react'
 import AnimatedCard from '@/components/ui/animated-card'
-import AnimatedButton from '@/components/ui/animated-button'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 interface TestimonialsProps {
@@ -161,29 +161,29 @@ const Testimonials: React.FC<TestimonialsProps> = ({ locale }) => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <AnimatedButton
+                <Button
                   variant="outline"
                   size="lg"
                   className="bg-white text-primary hover:bg-white/90 border-white"
-                  icon={<Calendar className="w-5 h-5" />}
                   asChild
                 >
                   <Link href="/contact">
+                    <Calendar className="w-5 h-5 mr-2" />
                     {isGerman ? 'Gespräch vereinbaren' : 'Schedule a Call'}
                   </Link>
-                </AnimatedButton>
+                </Button>
 
-                <AnimatedButton
+                <Button
                   variant="outline"
                   size="lg"
                   className="border-white/50 text-white hover:bg-white/10"
-                  icon={<ArrowRight className="w-5 h-5" />}
                   asChild
                 >
                   <Link href="/technology/demo">
+                    <ArrowRight className="w-5 h-5 mr-2" />
                     {isGerman ? 'Demo ansehen' : 'View Demo'}
                   </Link>
-                </AnimatedButton>
+                </Button>
               </div>
             </div>
           </AnimatedCard>
