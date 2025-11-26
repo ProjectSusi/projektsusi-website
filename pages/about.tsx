@@ -81,27 +81,27 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
 
   const team = [
     {
-      name: 'The Founders',
-      role: isGerman ? 'Swiss AI Pioniere' : 'Swiss AI Pioneers',
-      description: isGerman 
-        ? 'Ehemalige UBS & ETH Zürich Experten mit 15+ Jahren Erfahrung in Enterprise AI.'
-        : 'Former UBS & ETH Zurich experts with 15+ years experience in enterprise AI.',
+      name: 'Marek Safarik',
+      role: isGerman ? 'Co-Founder & Business' : 'Co-Founder & Business',
+      description: isGerman
+        ? 'Betriebsökonom FH, Banking & Finance. Fachspezialist mit Erfahrung im Finanzsektor. Bachelorarbeit zu KI-Chatbots im Vertrieb.'
+        : 'Business Economist FH, Banking & Finance. Specialist with experience in the financial sector. Bachelor thesis on AI chatbots in sales.',
       icon: Crown
     },
     {
-      name: 'Swiss Engineering',
-      role: isGerman ? 'Präzision in Code' : 'Precision in Code',
-      description: isGerman 
-        ? 'Unser Entwicklerteam kombiniert Schweizer Qualitätsstandards mit modernster KI-Technologie.'
-        : 'Our dev team combines Swiss quality standards with cutting-edge AI technology.',
+      name: 'Thomas Henzler',
+      role: isGerman ? 'Co-Founder & Tech Lead' : 'Co-Founder & Tech Lead',
+      description: isGerman
+        ? 'Dipl. Wirtschaftsinformatik (i.A.), Fullstack Developer für QM-Software & KI. Diplomarbeit zu KI-gestützten RAG-Systemen.'
+        : 'Diploma in Business Informatics (in progress), Fullstack Developer for QM software & AI. Thesis on AI-powered RAG systems.',
       icon: Code
     },
     {
-      name: 'Compliance Experts',
-      role: isGerman ? 'Regulatory Excellence' : 'Regulatory Excellence',
-      description: isGerman 
-        ? 'FINMA, FADP und GDPR Spezialisten sorgen für rechtssichere Implementierungen.'
-        : 'FINMA, FADP and GDPR specialists ensure legally compliant implementations.',
+      name: 'Emre Sen',
+      role: isGerman ? 'Co-Founder & AI Engineer' : 'Co-Founder & AI Engineer',
+      description: isGerman
+        ? 'BSc AI & Machine Learning (HSLU). IT-Erfahrung in der Versicherungsbranche. Fokus: KI-Chatbots & Cyber Security.'
+        : 'BSc AI & Machine Learning (HSLU). IT experience in insurance. Focus: AI chatbots & cyber security.',
       icon: Shield
     }
   ]

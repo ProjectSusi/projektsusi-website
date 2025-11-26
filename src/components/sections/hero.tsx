@@ -29,14 +29,14 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
     })
   }, [])
 
-  // Trusted companies logos (mock data)
-  const trustedCompanies = [
-    { name: 'UBS', logo: '🏦' },
-    { name: 'Credit Suisse', logo: '🏛️' },
-    { name: 'Roche', logo: '💊' },
-    { name: 'Novartis', logo: '🧬' },
-    { name: 'Swiss Re', logo: '🛡️' },
-    { name: 'Zurich Insurance', logo: '☂️' }
+  // Technology partners and integrations
+  const techStack = [
+    { name: 'FastAPI', logo: '⚡' },
+    { name: 'Ollama', logo: '🦙' },
+    { name: 'FAISS', logo: '🔍' },
+    { name: 'PostgreSQL', logo: '🐘' },
+    { name: 'Docker', logo: '🐳' },
+    { name: 'Next.js', logo: '▲' }
   ]
 
   const handleDemoClick = () => {

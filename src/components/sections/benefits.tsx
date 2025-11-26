@@ -64,33 +64,33 @@ const Benefits: React.FC<BenefitsProps> = ({ locale }) => {
   const additionalBenefits = [
     {
       icon: Globe,
-      title: isGerman ? 'Mehrsprachig Native' : 'Multilingual Native',
-      description: isGerman ? 'Deutsch, Französisch, Italienisch, Rätoromanisch out-of-the-box' : 'German, French, Italian, Romansh out-of-the-box'
+      title: isGerman ? 'Mehrsprachig' : 'Multilingual',
+      description: isGerman ? 'Deutsch, Französisch, Italienisch und Englisch' : 'German, French, Italian and English'
     },
     {
       icon: Lock,
-      title: isGerman ? 'Enterprise Sicherheit' : 'Enterprise Security',
-      description: isGerman ? 'Bank-Grade Verschlüsselung mit MFA und SSO Integration' : 'Bank-grade encryption with MFA and SSO integration'
+      title: isGerman ? 'Lokale Verarbeitung' : 'Local Processing',
+      description: isGerman ? 'Alle Daten bleiben auf Schweizer Servern' : 'All data stays on Swiss servers'
     },
     {
       icon: Gauge,
-      title: isGerman ? 'Sub-Sekunden Performance' : 'Sub-Second Performance',
-      description: isGerman ? 'Optimiert für Schweizer Infrastruktur und Netzwerke' : 'Optimized for Swiss infrastructure and networks'
+      title: isGerman ? '~130ms Antwortzeit' : '~130ms Response Time',
+      description: isGerman ? 'Schnelle Antworten durch optimierte RAG-Pipeline' : 'Fast answers through optimized RAG pipeline'
     },
     {
       icon: Users,
-      title: isGerman ? 'Swiss Support Team' : 'Swiss Support Team',
-      description: isGerman ? '24/7 Support von Schweizer KI-Experten in Ihrer Sprache' : '24/7 support from Swiss AI experts in your language'
+      title: isGerman ? 'Persönlicher Support' : 'Personal Support',
+      description: isGerman ? 'Direkter Kontakt zu unseren Entwicklern' : 'Direct contact with our developers'
     }
   ]
 
   const complianceFeatures = [
     { label: 'FADP', checked: true },
     { label: 'GDPR', checked: true },
-    { label: 'FINMA', checked: true },
-    { label: 'ISO 27001', checked: true },
-    { label: 'SOC 2', checked: true },
-    { label: 'Swiss Banking', checked: true }
+    { label: isGerman ? 'Swiss Hosting' : 'Swiss Hosting', checked: true },
+    { label: isGerman ? 'Lokales LLM' : 'Local LLM', checked: true },
+    { label: isGerman ? 'Quellenangaben' : 'Source Citations', checked: true },
+    { label: isGerman ? 'Open Source' : 'Open Source', checked: true }
   ]
 
   return (
@@ -106,15 +106,15 @@ const Benefits: React.FC<BenefitsProps> = ({ locale }) => {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold text-secondary mb-6">
-            {isGerman 
-              ? 'Warum Schweizer Unternehmen Temora AI wählen'
-              : 'Why Swiss Enterprises Choose Temora AI'}
+            {isGerman
+              ? 'Was Temora AI auszeichnet'
+              : 'What Makes Temora AI Different'}
           </h2>
-          
+
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {isGerman 
-              ? 'Die einzige RAG-Lösung, die speziell für Schweizer Compliance, Datenschutz und Mehrsprachigkeit entwickelt wurde.'
-              : 'The only RAG solution specifically engineered for Swiss compliance, data privacy, and multilingual requirements.'}
+            {isGerman
+              ? 'Eine RAG-Lösung speziell für Schweizer Anforderungen: lokale Datenverarbeitung, Datenschutz und Mehrsprachigkeit.'
+              : 'A RAG solution built for Swiss requirements: local data processing, data privacy, and multilingual support.'}
           </p>
         </div>
 

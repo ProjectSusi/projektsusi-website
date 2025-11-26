@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Shield, Award, Lock, CheckCircle, Globe, Building, Star, Zap } from 'lucide-react'
+import { Shield, Lock, CheckCircle, Globe, Building, Zap, Target, Rocket } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface TrustIndicatorsProps {
@@ -9,10 +9,10 @@ interface TrustIndicatorsProps {
   className?: string
 }
 
-const TrustIndicators: React.FC<TrustIndicatorsProps> = ({ 
-  locale, 
+const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
+  locale,
   variant = 'default',
-  className 
+  className
 }) => {
   const isGerman = locale === 'de'
 
@@ -21,84 +21,90 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
       id: 'swiss-made',
       icon: Shield,
       title: 'Swiss Made',
-      subtitle: isGerman ? 'Schweizer Qualität' : 'Swiss Quality',
-      description: isGerman ? 'Entwickelt in der Schweiz' : 'Developed in Switzerland',
+      subtitle: isGerman ? 'Entwickelt in CH' : 'Built in CH',
+      description: isGerman ? 'Entwickelt und gehostet in der Schweiz' : 'Developed and hosted in Switzerland',
       color: 'text-primary-600',
       bgColor: 'bg-primary-50',
-      borderColor: 'border-primary-200'
+      borderColor: 'border-primary-200',
+      status: 'achieved'
     },
     {
-      id: 'fadp-compliant',
+      id: 'fadp-ready',
       icon: Lock,
       title: 'FADP',
-      subtitle: isGerman ? 'Compliant' : 'Compliant',
-      description: isGerman ? 'Schweizer Datenschutzgesetz' : 'Swiss Data Protection Act',
+      subtitle: isGerman ? 'Konform' : 'Compliant',
+      description: isGerman ? 'Schweizer Datenschutzgesetz konform' : 'Swiss Data Protection Act compliant',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200'
+      borderColor: 'border-blue-200',
+      status: 'achieved'
     },
     {
-      id: 'gdpr-compliant',
+      id: 'gdpr-ready',
       icon: CheckCircle,
       title: 'GDPR',
       subtitle: isGerman ? 'Konform' : 'Compliant',
-      description: isGerman ? 'EU-Datenschutz-Grundverordnung' : 'EU General Data Protection Regulation',
+      description: isGerman ? 'EU-Datenschutz konform' : 'EU data protection compliant',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
-      borderColor: 'border-green-200'
+      borderColor: 'border-green-200',
+      status: 'achieved'
     },
     {
-      id: 'finma-ready',
+      id: 'local-hosting',
       icon: Building,
-      title: 'FINMA',
-      subtitle: isGerman ? 'Ready' : 'Ready',
-      description: isGerman ? 'Finanzmarktaufsicht konform' : 'Financial market supervision compliant',
+      title: isGerman ? 'Swiss Hosting' : 'Swiss Hosting',
+      subtitle: isGerman ? 'Lokal' : 'Local',
+      description: isGerman ? 'Daten bleiben in der Schweiz' : 'Data stays in Switzerland',
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200'
+      borderColor: 'border-purple-200',
+      status: 'achieved'
     },
     {
-      id: 'iso-certified',
-      icon: Award,
-      title: 'ISO 27001',
-      subtitle: isGerman ? 'Zertifiziert' : 'Certified',
-      description: isGerman ? 'Informationssicherheit' : 'Information Security',
+      id: 'local-llm',
+      icon: Globe,
+      title: 'Local LLM',
+      subtitle: 'Ollama',
+      description: isGerman ? 'Keine Cloud-KI-Dienste' : 'No cloud AI services',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-200'
+      borderColor: 'border-orange-200',
+      status: 'achieved'
     },
     {
-      id: 'zero-hallucination',
-      icon: Zap,
-      title: isGerman ? 'Zero-Hallucination' : 'Zero-Hallucination',
-      subtitle: 'AI',
-      description: isGerman ? 'Nur verifizierte Antworten' : 'Only verified answers',
+      id: 'source-citation',
+      icon: Target,
+      title: isGerman ? 'Quellenangaben' : 'Source Citations',
+      subtitle: isGerman ? 'Transparent' : 'Transparent',
+      description: isGerman ? 'Jede Antwort mit Quellenverweis' : 'Every answer with source reference',
       color: 'text-yellow-600',
       bgColor: 'bg-yellow-50',
-      borderColor: 'border-yellow-200'
+      borderColor: 'border-yellow-200',
+      status: 'achieved'
     }
   ]
 
-  const certifications = [
+  const features = [
     {
-      name: 'Swiss Made Software',
+      name: isGerman ? 'Swiss Entwicklung' : 'Swiss Development',
       logo: '🇨🇭',
-      verified: true
+      achieved: true
     },
     {
-      name: 'SOC 2 Type II',
-      logo: '🛡️',
-      verified: true
+      name: isGerman ? 'Lokales LLM' : 'Local LLM',
+      logo: '🦙',
+      achieved: true
     },
     {
-      name: 'FADP Compliant',
+      name: isGerman ? 'FADP Konform' : 'FADP Compliant',
       logo: '📋',
-      verified: true
+      achieved: true
     },
     {
-      name: 'Enterprise Grade',
-      logo: '⭐',
-      verified: true
+      name: isGerman ? 'Beta Phase' : 'Beta Phase',
+      logo: '🚀',
+      achieved: true
     }
   ]
 
@@ -130,9 +136,9 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
   if (variant === 'footer') {
     return (
       <div className={cn("grid grid-cols-2 md:grid-cols-4 gap-4", className)}>
-        {certifications.map((cert, index) => (
+        {features.map((feat, index) => (
           <motion.div
-            key={cert.name}
+            key={feat.name}
             className="flex items-center space-x-3 p-3 bg-white/10 rounded-lg backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -140,13 +146,13 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
           >
-            <span className="text-2xl">{cert.logo}</span>
+            <span className="text-2xl">{feat.logo}</span>
             <div>
-              <div className="text-sm font-medium text-white">{cert.name}</div>
-              {cert.verified && (
+              <div className="text-sm font-medium text-white">{feat.name}</div>
+              {feat.achieved && (
                 <div className="flex items-center space-x-1 text-xs text-green-300">
                   <CheckCircle className="w-3 h-3" />
-                  <span>{isGerman ? 'Verifiziert' : 'Verified'}</span>
+                  <span>{isGerman ? 'Aktiv' : 'Active'}</span>
                 </div>
               )}
             </div>
@@ -205,9 +211,9 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
             {isGerman ? 'Vertrauen & Sicherheit' : 'Trust & Security'}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {isGerman 
-              ? 'Unsere Zertifizierungen und Compliance-Standards garantieren höchste Sicherheit und Datenschutz.'
-              : 'Our certifications and compliance standards guarantee the highest security and data protection.'
+            {isGerman
+              ? 'Schweizer Entwicklung mit lokaler Datenverarbeitung - Ihre Daten verlassen die Schweiz nicht.'
+              : 'Swiss development with local data processing - your data never leaves Switzerland.'
             }
           </p>
         </motion.div>
@@ -238,15 +244,15 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
               >
                 <badge.icon className={cn("w-8 h-8", badge.color)} />
               </motion.div>
-              
+
               <h3 className="text-lg font-bold text-gray-900 mb-2">
                 {badge.title} {badge.subtitle}
               </h3>
-              
+
               <p className="text-sm text-gray-600 mb-4">
                 {badge.description}
               </p>
-              
+
               <motion.div
                 className="flex items-center justify-center space-x-1 text-green-600"
                 initial={{ opacity: 0 }}
@@ -255,16 +261,16 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
               >
                 <CheckCircle className="w-4 h-4" />
                 <span className="text-sm font-medium">
-                  {isGerman ? 'Verifiziert' : 'Verified'}
+                  {isGerman ? 'Aktiv' : 'Active'}
                 </span>
               </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Security Stats */}
+        {/* Honest Status */}
         <motion.div
-          className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8 text-center"
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -272,24 +278,19 @@ const TrustIndicators: React.FC<TrustIndicatorsProps> = ({
         >
           {[
             {
-              value: '99.9%',
-              label: isGerman ? 'Uptime Garantie' : 'Uptime Guarantee',
+              value: '~130ms',
+              label: isGerman ? 'Antwortzeit' : 'Response Time',
               icon: Zap
             },
             {
-              value: '256-bit',
-              label: isGerman ? 'Verschlüsselung' : 'Encryption',
-              icon: Lock
+              value: '384-dim',
+              label: isGerman ? 'Embeddings' : 'Embeddings',
+              icon: Globe
             },
             {
-              value: '24/7',
-              label: isGerman ? 'Sicherheitsüberwachung' : 'Security Monitoring',
-              icon: Shield
-            },
-            {
-              value: 'SOC 2',
-              label: isGerman ? 'Typ II Zertifiziert' : 'Type II Certified',
-              icon: Award
+              value: isGerman ? 'Beta' : 'Beta',
+              label: isGerman ? 'Aktueller Status' : 'Current Status',
+              icon: Rocket
             }
           ].map((stat, index) => (
             <motion.div
