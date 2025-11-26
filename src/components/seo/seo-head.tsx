@@ -18,7 +18,7 @@ const SEOHead: React.FC<SEOProps> = ({
   title = 'Temora AI - Swiss AI RAG Solution',
   description = 'The leading Swiss RAG solution with complete data sovereignty, FADP/GDPR compliance, and zero-hallucination AI. Specifically engineered for Swiss banking, pharma, and manufacturing.',
   keywords = 'RAG System, Switzerland, AI, Artificial Intelligence, FADP, GDPR, Compliance, Data Privacy, Swiss AI, Banking, Pharma, Manufacturing',
-  ogImage = 'https://ai.sirth.ch/og-image.jpg',
+  ogImage = 'https://temora.ch/og-image.jpg',
   ogType = 'website',
   noindex = false,
   canonical,
@@ -29,7 +29,7 @@ const SEOHead: React.FC<SEOProps> = ({
   const router = useRouter()
   const { locale = 'de' } = router
   
-  const currentUrl = `https://ai.sirth.ch${router.asPath}`
+  const currentUrl = `https://temora.ch${router.asPath}`
   const canonicalUrl = canonical || currentUrl
 
   const isGerman = locale === 'de'
@@ -116,8 +116,8 @@ const SEOHead: React.FC<SEOProps> = ({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Temora AI AG",
-            "url": "https://ai.sirth.ch",
-            "logo": "https://ai.sirth.ch/logo.png",
+            "url": "https://temora.ch",
+            "logo": "https://temora.ch/temora-logo.png",
             "description": localizedDescription,
             "address": {
               "@type": "PostalAddress",

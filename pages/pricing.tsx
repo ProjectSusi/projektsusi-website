@@ -52,7 +52,7 @@ export default function PricingPage({ locale }: PricingPageProps) {
                   "priceCurrency": "CHF",
                   "priceValidUntil": "2025-12-31",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://projektsusui.ch/pricing#starter"
+                  "url": "https://temora.ch/pricing#starter"
                 },
                 {
                   "@type": "Offer", 
@@ -61,7 +61,7 @@ export default function PricingPage({ locale }: PricingPageProps) {
                   "priceCurrency": "CHF",
                   "priceValidUntil": "2025-12-31", 
                   "availability": "https://schema.org/InStock",
-                  "url": "https://projektsusui.ch/pricing#professional"
+                  "url": "https://temora.ch/pricing#professional"
                 },
                 {
                   "@type": "Offer",
@@ -70,7 +70,7 @@ export default function PricingPage({ locale }: PricingPageProps) {
                   "priceCurrency": "CHF",
                   "priceValidUntil": "2025-12-31",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://projektsusui.ch/pricing#enterprise"
+                  "url": "https://temora.ch/pricing#enterprise"
                 }
               ]
             })

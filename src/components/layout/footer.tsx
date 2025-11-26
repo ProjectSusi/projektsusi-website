@@ -76,8 +76,8 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
       ? 'Temora AI AG\nBahnhofstrasse 45\n8001 Zürich\nSchweiz'
       : 'Temora AI AG\nBahnhofstrasse 45\n8001 Zurich\nSwitzerland',
     phone: '+41 44 123 45 67',
-    email: 'info@projektsusui.ch',
-    support: 'support@projektsusui.ch'
+    email: 'info@temora.ch',
+    support: 'support@temora.ch'
   }
 
   return (
@@ -98,13 +98,13 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-alpine rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">P</span>
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden bg-white">
+                <img src="/temora-logo.png" alt="Temora AI" className="w-10 h-10 object-contain" />
               </div>
               <div>
                 <div className="text-xl font-bold">
-                  <span className="text-primary">Projekt</span>
-                  <span className="text-white">Susui</span>
+                  <span className="text-white">Temora</span>
+                  <span className="text-primary"> AI</span>
                 </div>
                 <div className="text-xs text-white/60">Swiss AI Excellence</div>
               </div>
@@ -125,15 +125,15 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
               >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a 
-                href="https://twitter.com/projektsusui" 
+              <a
+                href="https://twitter.com/temoraai"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
-              <a 
-                href="https://github.com/projektsusui" 
+              <a
+                href="https://github.com/temoraai"
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
                 aria-label="GitHub"
               >

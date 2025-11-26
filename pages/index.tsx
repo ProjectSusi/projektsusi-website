@@ -51,17 +51,17 @@ export default function Home({ locale }: HomeProps) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Temora AI",
-              "url": "https://ai.sirth.ch",
+              "url": "https://temora.ch",
               "description": pageDescription,
               "inLanguage": locale,
               "publisher": {
                 "@type": "Organization",
                 "name": "Temora AI AG",
-                "logo": "https://ai.sirth.ch/logo.png"
+                "logo": "https://temora.ch/temora-logo.png"
               },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://ai.sirth.ch/search?q={search_term_string}",
+                "target": "https://temora.ch/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -77,7 +77,7 @@ export default function Home({ locale }: HomeProps) {
               "@type": "SoftwareApplication",
               "name": "Temora AI RAG System",
               "description": pageDescription,
-              "url": "https://ai.sirth.ch",
+              "url": "https://temora.ch",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web",
               "author": {

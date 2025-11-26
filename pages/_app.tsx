@@ -87,8 +87,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#FF0000" />
-        <meta name="msapplication-TileColor" content="#FF0000" />
+        <meta name="theme-color" content="#1D4ED8" />
+        <meta name="msapplication-TileColor" content="#1D4ED8" />
         
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,8 +102,8 @@ function MyApp({ Component, pageProps }: AppProps) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Temora AI AG",
-              "url": "https://projektsusui.ch",
-              "logo": "https://projektsusui.ch/logo.png",
+              "url": "https://temora.ch",
+              "logo": "https://temora.ch/temora-logo.png",
               "description": locale === 'de' 
                 ? "Die führende Schweizer Lösung für intelligente Dokumentenanalyse mit vollständiger Datensouveränität und Compliance."
                 : "The leading Swiss solution for intelligent document analysis with complete data sovereignty and compliance.",

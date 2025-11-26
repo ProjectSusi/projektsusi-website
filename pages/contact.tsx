@@ -120,9 +120,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'hello@projektsusui.ch',
+      value: 'hello@temora.ch',
       description: isGerman ? '24h Response Time' : '24h Response Time',
-      action: 'mailto:hello@projektsusui.ch',
+      action: 'mailto:hello@temora.ch',
       color: 'text-primary'
     },
     {

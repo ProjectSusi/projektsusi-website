@@ -37,7 +37,7 @@ const LiveRAGIntegration: React.FC<LiveRAGIntegrationProps> = ({
   const [connectionStatus, setConnectionStatus] = useState<'checking' | 'connected' | 'error'>('checking')
   const [showFallback, setShowFallback] = useState(false)
   
-  const RAG_URL = 'https://rag.sirth.ch/ui'
+  const RAG_URL = 'https://rag.temora.ch/ui'
   
   // Check connection to RAG system
   useEffect(() => {
