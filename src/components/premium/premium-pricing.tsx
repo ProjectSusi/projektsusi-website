@@ -139,7 +139,7 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
         isGerman ? 'Unbegrenzte Anfragen' : 'Unlimited queries',
         isGerman ? '25 Benutzer inklusiv' : '25 users included',
         isGerman ? 'Premium Swiss Hosting' : 'Premium Swiss hosting',
-        isGerman ? '24/7 Priority Support' : '24/7 priority support',
+        isGerman ? 'E-Mail & Chat Support' : 'Email & chat support',
         isGerman ? 'FINMA Ready' : 'FINMA ready',
         isGerman ? 'Advanced Analytics' : 'Advanced analytics',
         isGerman ? 'Custom Integrationen' : 'Custom integrations',
@@ -170,7 +170,7 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
         isGerman ? 'Bank-Grade Security' : 'Bank-grade security',
         isGerman ? 'Custom AI Training' : 'Custom AI training',
         isGerman ? 'Multi-Tenant Architecture' : 'Multi-tenant architecture',
-        isGerman ? '99.99% SLA Garantie' : '99.99% SLA guarantee',
+        isGerman ? 'Premium Support' : 'Premium support',
         isGerman ? 'Dedicated Success Manager' : 'Dedicated success manager'
       ],
       color: 'from-primary-500 to-primary-700',
@@ -246,9 +246,9 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             {[
-              { icon: Star, value: '4.9', label: isGerman ? 'Bewertung' : 'Rating' },
-              { icon: Users, value: '500+', label: isGerman ? 'Kunden' : 'Customers' },
-              { icon: Award, value: '99.9%', label: 'Uptime' }
+              { icon: Shield, value: '100%', label: isGerman ? 'Swiss Hosted' : 'Swiss Hosted' },
+              { icon: Zap, value: '~2s', label: isGerman ? 'Antwortzeit' : 'Response' },
+              { icon: Award, value: 'FADP', label: isGerman ? 'Konform' : 'Compliant' }
             ].map((stat, index) => (
               <div key={index} className="text-center glass-morphism px-6 py-4 rounded-xl hover-lift">
                 <stat.icon className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
@@ -549,18 +549,18 @@ const PremiumPricing: React.FC<PremiumPricingProps> = ({ locale }) => {
             {[
               {
                 icon: Shield,
-                title: isGerman ? 'Bank-Grade Security' : 'Bank-Grade Security',
-                description: isGerman ? 'FINMA-konform, ISO 27001' : 'FINMA compliant, ISO 27001'
+                title: isGerman ? 'Swiss Security' : 'Swiss Security',
+                description: isGerman ? 'FADP & GDPR konform' : 'FADP & GDPR compliant'
               },
               {
                 icon: Zap,
-                title: isGerman ? 'Lightning Fast' : 'Lightning Fast',
-                description: isGerman ? '< 2s Antwortzeit' : '< 2s response time'
+                title: isGerman ? 'Schnelle Antworten' : 'Fast Responses',
+                description: isGerman ? '~2s Antwortzeit' : '~2s response time'
               },
               {
                 icon: Clock,
-                title: isGerman ? '24/7 Support' : '24/7 Support',
-                description: isGerman ? 'Swiss Premium Support' : 'Swiss premium support'
+                title: isGerman ? 'Support' : 'Support',
+                description: isGerman ? 'E-Mail & Chat Support' : 'Email & chat support'
               },
               {
                 icon: Building,

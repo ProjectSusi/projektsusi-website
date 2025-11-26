@@ -105,9 +105,9 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
         isGerman ? 'Ende-zu-Ende Verschlüsselung' : 'End-to-end encryption',
         isGerman ? 'Zero-Trust Architecture' : 'Zero-trust architecture',
         isGerman ? 'Swiss Data Centers Only' : 'Swiss data centers only',
-        isGerman ? 'ISO 27001 / SOC 2 Ready' : 'ISO 27001 / SOC 2 ready'
+        isGerman ? 'FADP & GDPR konform' : 'FADP & GDPR compliant'
       ],
-      metrics: { encryption: 100, compliance: 100, uptime: 99.9 }
+      metrics: { encryption: 100, compliance: 100, localLLM: 100 }
     }
   ]
 
@@ -213,7 +213,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
 
               <div className="flex justify-center space-x-8 mb-12">
                 {[
-                  { icon: Target, value: 99.9, label: isGerman ? 'Genauigkeit' : 'Accuracy', suffix: '%' },
+                  { icon: Target, value: 384, label: isGerman ? 'Embedding Dims' : 'Embedding Dims', suffix: '' },
                   { icon: Shield, value: 100, label: isGerman ? 'Swiss Hosted' : 'Swiss Hosted', suffix: '%' },
                   { icon: Zap, value: 2, label: isGerman ? 'Sek. Response' : 'Sec Response', suffix: '<' }
                 ].map((stat, index) => (
@@ -400,9 +400,9 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                   category: isGerman ? 'Performance' : 'Performance',
                   specs: [
                     '< 2s Response Zeit',
-                    '99.9% Uptime SLA',
-                    'Auto-scaling bis 10K QPS',
-                    '< 100ms Vector Search'
+                    'Schweizer Server',
+                    'Lokales LLM (Ollama)',
+                    '~130ms Vector Search'
                   ],
                   icon: Zap,
                   color: 'text-yellow-500'
@@ -413,7 +413,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
                     'AES-256 Verschlüsselung',
                     'Zero-Trust Architecture',
                     'Swiss Data Centers',
-                    'ISO 27001 Ready'
+                    'FADP & GDPR konform'
                   ],
                   icon: Shield,
                   color: 'text-primary-500'
@@ -518,7 +518,7 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
               <div className="mt-8 flex items-center justify-center space-x-8 text-white/80">
                 <div className="flex items-center space-x-2">
                   <Target className="w-5 h-5" />
-                  <span className="text-sm">{isGerman ? '99.9% Genauigkeit' : '99.9% Accuracy'}</span>
+                  <span className="text-sm">{isGerman ? 'Quellenangaben' : 'Source Citations'}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Shield className="w-5 h-5" />

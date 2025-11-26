@@ -153,24 +153,24 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
 
   const teamMembers = [
     {
-      role: isGerman ? 'Co-Founder & CTO' : 'Co-Founder & CTO',
-      name: 'Swiss Tech Expert',
-      description: isGerman ? 'ETH Zürich AI Researcher, ex-UBS' : 'ETH Zurich AI researcher, ex-UBS',
-      specialties: ['AI Architecture', 'Swiss Compliance', 'RAG Systems'],
-      icon: Rocket
-    },
-    {
-      role: isGerman ? 'Co-Founder & CEO' : 'Co-Founder & CEO',
-      name: 'Swiss Business Expert',
-      description: isGerman ? 'McKinsey Consultant, Swiss Banking' : 'McKinsey consultant, Swiss banking',
-      specialties: ['Strategy', 'Enterprise Sales', 'Swiss Market'],
+      role: isGerman ? 'Co-Founder & Business' : 'Co-Founder & Business',
+      name: 'Marek Safarik',
+      description: isGerman ? 'Betriebsökonom FH, Banking & Finance' : 'Business Economist FH, Banking & Finance',
+      specialties: ['Business Development', 'Banking', 'Finance'],
       icon: Building
     },
     {
-      role: isGerman ? 'Head of Compliance' : 'Head of Compliance',
-      name: 'Swiss Legal Expert',
-      description: isGerman ? 'Ex-FINMA, Datenschutz-Spezialist' : 'Ex-FINMA, data protection specialist',
-      specialties: ['FADP', 'FINMA', 'Privacy Law'],
+      role: isGerman ? 'Co-Founder & Tech' : 'Co-Founder & Tech',
+      name: 'Thomas Henzler',
+      description: isGerman ? 'Dipl. Wirtschaftsinformatik, Fullstack Developer' : 'Business Informatics, Fullstack Developer',
+      specialties: ['RAG Systems', 'FastAPI', 'AI Integration'],
+      icon: Rocket
+    },
+    {
+      role: isGerman ? 'AI & ML' : 'AI & ML',
+      name: 'Emre Sen',
+      description: isGerman ? 'BSc AI & ML (HSLU), Cyber Security' : 'BSc AI & ML (HSLU), Cyber Security',
+      specialties: ['Machine Learning', 'AI', 'Security'],
       icon: Shield
     }
   ]

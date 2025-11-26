@@ -79,7 +79,7 @@ const TechnologyDemoPage: React.FC<TechnologyDemoPageProps> = ({ locale }) => {
       items: [
         { name: isGerman ? 'Antwortzeit' : 'Response Time', value: '< 1.8s', icon: Clock },
         { name: isGerman ? 'Durchsatz' : 'Throughput', value: '10K req/min', icon: Activity },
-        { name: isGerman ? 'Verfügbarkeit' : 'Uptime', value: '99.98%', icon: CheckCircle }
+        { name: isGerman ? 'Hosting' : 'Hosting', value: 'Swiss', icon: CheckCircle }
       ]
     },
     {

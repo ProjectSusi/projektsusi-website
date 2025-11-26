@@ -221,7 +221,7 @@ const Footer: React.FC<FooterProps> = ({ locale }) => {
                 <div className="flex items-center space-x-2">
                   <Globe className="w-4 h-4 text-primary" />
                   <span className="text-xs text-white/60">
-                    {isGerman ? 'ISO 27001 zertifiziert' : 'ISO 27001 certified'}
+                    {isGerman ? 'FADP & GDPR konform' : 'FADP & GDPR compliant'}
                   </span>
                 </div>
               </div>
