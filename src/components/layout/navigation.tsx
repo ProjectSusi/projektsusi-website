@@ -33,35 +33,6 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
   const isGerman = locale === 'de'
 
   const navigation = {
-    solutions: {
-      label: isGerman ? 'Lösungen' : 'Solutions',
-      items: [
-        {
-          href: '/solutions/banking',
-          label: isGerman ? 'Finanzwesen' : 'Banking & Finance',
-          description: isGerman ? 'FINMA-konforme KI für Banken' : 'FINMA-compliant AI for banks',
-          icon: '🏦'
-        },
-        {
-          href: '/solutions/pharma',
-          label: isGerman ? 'Pharma & Life Sciences' : 'Pharma & Life Sciences',
-          description: isGerman ? 'Arzneimittelforschung beschleunigen' : 'Accelerate drug discovery',
-          icon: '💊'
-        },
-        {
-          href: '/solutions/manufacturing',
-          label: isGerman ? 'Produktion' : 'Manufacturing',
-          description: isGerman ? 'Qualitäts- und Compliance-Automatisierung' : 'Quality & compliance automation',
-          icon: '🏭'
-        },
-        {
-          href: '/solutions/government',
-          label: isGerman ? 'Öffentlicher Sektor' : 'Government',
-          description: isGerman ? 'Mehrsprachige Bürgerdienste' : 'Multilingual citizen services',
-          icon: '🏛️'
-        }
-      ]
-    },
     technology: {
       label: isGerman ? 'Technologie' : 'Technology',
       items: [
@@ -76,35 +47,6 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
           label: isGerman ? 'Live Demo' : 'Live Demo',
           description: isGerman ? 'Testen Sie Temora AI sofort' : 'Try Temora AI instantly',
           icon: '🎪'
-        },
-        {
-          href: '/technology/api',
-          label: isGerman ? 'API-Dokumentation' : 'API Documentation',
-          description: isGerman ? 'Entwickler-Ressourcen' : 'Developer resources',
-          icon: '📚'
-        }
-      ]
-    },
-    compliance: {
-      label: isGerman ? 'Compliance' : 'Compliance',
-      items: [
-        {
-          href: '/compliance/fadp',
-          label: isGerman ? 'FADP Compliance' : 'FADP Compliance',
-          description: isGerman ? 'Schweizer Datenschutzgesetz' : 'Swiss Data Protection Act',
-          icon: '🇨🇭'
-        },
-        {
-          href: '/compliance/finma',
-          label: isGerman ? 'FINMA Banking' : 'FINMA Banking',
-          description: isGerman ? 'Finanzmarktregulierung' : 'Financial market regulation',
-          icon: '🏦'
-        },
-        {
-          href: '/compliance/security',
-          label: isGerman ? 'Sicherheit' : 'Security',
-          description: isGerman ? 'Enterprise-Grade Sicherheit' : 'Enterprise-grade security',
-          icon: '🛡️'
         }
       ]
     }
@@ -112,22 +54,13 @@ const Navigation: React.FC<NavigationProps> = ({ locale }) => {
 
   const mainNavItems = [
     { href: '/', label: isGerman ? 'Startseite' : 'Home' },
-    { 
-      label: navigation.solutions.label, 
-      dropdown: navigation.solutions.items,
-      key: 'solutions'
-    },
-    { 
-      label: navigation.technology.label, 
+    { href: '/solutions', label: isGerman ? 'Einsatzbereiche' : 'Use Cases' },
+    {
+      label: navigation.technology.label,
       dropdown: navigation.technology.items,
       key: 'technology'
     },
-    { 
-      label: navigation.compliance.label, 
-      dropdown: navigation.compliance.items,
-      key: 'compliance'
-    },
-    { href: '/pricing', label: isGerman ? 'Preise' : 'Pricing' },
+    { href: '/pricing', label: isGerman ? 'Pilot-Projekt' : 'Pilot Project' },
     { href: '/about', label: isGerman ? 'Über uns' : 'About' }
   ]
 

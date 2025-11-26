@@ -16,8 +16,8 @@ export default function PricingPage({ locale }: PricingPageProps) {
     : 'Pricing - Temora AI Swiss AI RAG Solution'
   
   const pageDescription = isGerman
-    ? 'Transparente Preise für Temora AI RAG System. Von CHF 15,000 für Starter bis Enterprise-Lösungen. Inklusive Swiss Data Sovereignty, FADP/GDPR Compliance und ROI-Garantie.'
-    : 'Transparent pricing for Temora AI RAG System. From CHF 15,000 for Starter to Enterprise solutions. Including Swiss data sovereignty, FADP/GDPR compliance, and ROI guarantee.'
+    ? 'Beta-Partner Programm für Temora AI. Pilotprojekt ab CHF 550/Monat. Schweizer Hosting, FADP/GDPR konform, keine Kosten für Arbeitszeit.'
+    : 'Beta partner program for Temora AI. Pilot project from CHF 550/month. Swiss hosting, FADP/GDPR compliant, no costs for work time.'
 
   return (
     <>
@@ -42,35 +42,17 @@ export default function PricingPage({ locale }: PricingPageProps) {
               "description": pageDescription,
               "brand": {
                 "@type": "Organization",
-                "name": "Temora AI AG"
+                "name": "Temora AI"
               },
               "offers": [
                 {
                   "@type": "Offer",
-                  "name": "Starter Plan",
-                  "price": "15000",
+                  "name": "Pilot Project",
+                  "price": "550",
                   "priceCurrency": "CHF",
                   "priceValidUntil": "2025-12-31",
-                  "availability": "https://schema.org/InStock",
-                  "url": "https://temora.ch/pricing#starter"
-                },
-                {
-                  "@type": "Offer", 
-                  "name": "Professional Plan",
-                  "price": "45000",
-                  "priceCurrency": "CHF",
-                  "priceValidUntil": "2025-12-31", 
-                  "availability": "https://schema.org/InStock",
-                  "url": "https://temora.ch/pricing#professional"
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Enterprise Plan", 
-                  "price": "120000",
-                  "priceCurrency": "CHF",
-                  "priceValidUntil": "2025-12-31",
-                  "availability": "https://schema.org/InStock",
-                  "url": "https://temora.ch/pricing#enterprise"
+                  "availability": "https://schema.org/LimitedAvailability",
+                  "url": "https://temora.ch/pricing"
                 }
               ]
             })
