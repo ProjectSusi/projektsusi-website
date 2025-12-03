@@ -314,14 +314,14 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({ locale }) => {
                 <Slider
                   value={[inputs.avgHourlyRate]}
                   onValueChange={(value) => setInputs({ ...inputs, avgHourlyRate: value[0] })}
-                  min={50}
-                  max={200}
+                  min={20}
+                  max={300}
                   step={5}
                   className="w-full"
                 />
                 <div className="flex justify-between text-xs text-gray-400 mt-1">
-                  <span>CHF 50</span>
-                  <span>CHF 200</span>
+                  <span>CHF 20</span>
+                  <span>CHF 300</span>
                 </div>
               </div>
 
