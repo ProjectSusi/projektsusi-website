@@ -6,6 +6,7 @@ import { pageTransition, staggerContainer } from '@/lib/animations'
 import { PAGE_SEO, STRUCTURED_DATA, getPageKeywords } from '@/lib/seo-config'
 
 import Hero from '@/components/sections/hero'
+import ROICalculator from '@/components/sections/roi-calculator'
 import Benefits from '@/components/sections/benefits'
 import Solutions from '@/components/sections/solutions'
 import Features from '@/components/sections/features'
@@ -87,6 +88,17 @@ export default function Home({ locale }: HomeProps) {
           transition={{ duration: 0.8 }}
         >
           <Hero locale={locale} />
+        </motion.section>
+
+        {/* ROI Calculator - Main Feature */}
+        <motion.section
+          id="roi-calculator"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+        >
+          <ROICalculator locale={locale} />
         </motion.section>
 
         {/* Stats Section */}
