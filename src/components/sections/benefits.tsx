@@ -107,8 +107,8 @@ const Benefits: React.FC<BenefitsProps> = ({ locale }) => {
           
           <h2 className="text-4xl lg:text-5xl font-bold text-secondary mb-6">
             {isGerman
-              ? 'Was Temora AI auszeichnet'
-              : 'What Makes Temora AI Different'}
+              ? 'RAG System Vorteile für Schweizer Unternehmen'
+              : 'RAG System Benefits for Swiss Businesses'}
           </h2>
 
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -232,11 +232,11 @@ const Benefits: React.FC<BenefitsProps> = ({ locale }) => {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
+            <p className="text-2xl font-bold mb-4">
               {isGerman 
                 ? 'Bereit für Swiss AI Excellence?'
                 : 'Ready for Swiss AI Excellence?'}
-            </h3>
+            </p>
             <p className="text-xl mb-6 text-white/90">
               {isGerman 
                 ? 'Starten Sie noch heute Ihre digitale Transformation'

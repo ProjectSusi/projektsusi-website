@@ -86,13 +86,13 @@ const Hero: React.FC<HeroProps> = ({ locale }) => {
               )}>
                 {isGerman ? (
                   <>
-                    Die <span className="text-blue-200 font-semibold">Schweizer</span> KI-Lösung<br />
-                    für Schweizer <span className="text-white font-bold">Unternehmen</span>
+                    <span className="text-blue-200 font-semibold">KI Chatbot</span> für Dokumente<br />
+                    Schweizer <span className="text-white font-bold">RAG System</span>
                   </>
                 ) : (
                   <>
-                    The <span className="text-blue-200 font-semibold">Swiss</span> AI Solution<br />
-                    for Enterprise <span className="text-white font-bold">Intelligence</span>
+                    <span className="text-blue-200 font-semibold">AI Chatbot</span> for Documents<br />
+                    Swiss <span className="text-white font-bold">RAG System</span>
                   </>
                 )}
               </h1>

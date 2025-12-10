@@ -137,14 +137,14 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
             {isGerman ? (
               <>
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  System-Features
+                  Dokumenten-KI Features
                 </span>
                 <br />v3.2.0
               </>
             ) : (
               <>
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  System Features
+                  Document AI Features
                 </span>
                 <br />v3.2.0
               </>
@@ -189,7 +189,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
                   </motion.div>
 
                   {/* Feature Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <p className="text-2xl font-bold text-gray-900 mb-4">
                     {feature.title}
                   </h3>
 
@@ -277,7 +277,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
           className="text-center"
         >
           <AnimatedCard className="inline-block p-8 bg-gradient-to-r from-primary-50 to-blue-50">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <p className="text-2xl font-bold text-gray-900 mb-4">
               {isGerman
                 ? "RAG System ausprobieren"
                 : "Try the RAG System"}

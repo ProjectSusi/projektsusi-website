@@ -108,7 +108,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
           <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
             {isGerman ? (
               <>
-                Werden Sie
+                KI Dokumenten-Chatbot:
                 <br />
                 <span className="bg-gradient-to-r from-green-400 to-primary-400 bg-clip-text text-transparent">
                   Beta-Partner
@@ -116,7 +116,7 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
               </>
             ) : (
               <>
-                Become a
+                AI Document Chatbot:
                 <br />
                 <span className="bg-gradient-to-r from-green-400 to-primary-400 bg-clip-text text-transparent">
                   Beta Partner
@@ -215,11 +215,9 @@ const CTA: React.FC<CTAProps> = ({ locale }) => {
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className={`text-2xl font-bold mb-4 ${
+                  <div className={`text-2xl font-bold mb-4 ${
                     option.primary ? 'text-gray-900' : 'text-gray-800'
-                  }`}>
-                    {option.title}
-                  </h3>
+                  }`}>{option.title}</div>
 
                   {/* Description */}
                   <p className="text-gray-600 mb-8 leading-relaxed">
