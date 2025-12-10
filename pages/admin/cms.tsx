@@ -38,22 +38,56 @@ export default function CMSAdmin() {
   const [searchTerm, setSearchTerm] = useState('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
-  // Check authentication
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [authLoading, setAuthLoading] = useState(true)
+  const [passwordInput, setPasswordInput] = useState('')
+  const [authError, setAuthError] = useState('')
+
+  // SECURITY: Check authentication with session expiry (4 hours)
   useEffect(() => {
     const checkAuth = () => {
-      // Simple auth check - in production use proper authentication
-      const isAuth = localStorage.getItem('cms_auth') === 'true' || process.env.NODE_ENV === 'development'
-      if (!isAuth) {
-        const password = prompt('Enter CMS password:')
-        if (password === 'admin' || password === process.env.NEXT_PUBLIC_CMS_PASSWORD) {
-          localStorage.setItem('cms_auth', 'true')
-        } else {
-          router.push('/')
+      const authData = localStorage.getItem('cms_auth_session')
+      if (authData) {
+        try {
+          const { expiry } = JSON.parse(authData)
+          if (Date.now() < expiry) {
+            setIsAuthenticated(true)
+          } else {
+            localStorage.removeItem('cms_auth_session')
+          }
+        } catch {
+          localStorage.removeItem('cms_auth_session')
         }
       }
+      setAuthLoading(false)
     }
     checkAuth()
-  }, [router])
+  }, [])
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    const validPassword = process.env.NEXT_PUBLIC_CMS_PASSWORD
+    if (!validPassword) {
+      setAuthError('CMS password not configured. Set NEXT_PUBLIC_CMS_PASSWORD env var.')
+      return
+    }
+    if (passwordInput === validPassword) {
+      const sessionData = { expiry: Date.now() + (4 * 60 * 60 * 1000) }
+      localStorage.setItem('cms_auth_session', JSON.stringify(sessionData))
+      setIsAuthenticated(true)
+      setAuthError('')
+      setPasswordInput('')
+    } else {
+      setAuthError('Invalid password')
+      setPasswordInput('')
+    }
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('cms_auth_session')
+    setIsAuthenticated(false)
+  }
 
   // Load content
   useEffect(() => {
@@ -182,7 +216,51 @@ export default function CMSAdmin() {
       global: <Settings className="w-4 h-4" />
     }
     return icons[type] || <FileText className="w-4 h-4" />
+  }  // Show loading state
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    )
   }
+
+  // Show login form if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Head>
+          <title>CMS Login - Temora AI</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+            <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">CMS Admin Login</h1>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <input
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
+                  placeholder="Enter CMS password"
+                  autoComplete="current-password"
+                />
+              </div>
+              {authError && <div className="text-red-600 text-sm">{authError}</div>}
+              <button type="submit" className="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary/90">
+                Login
+              </button>
+            </form>
+            <p className="mt-4 text-xs text-gray-500 text-center">Protected area. Unauthorized access prohibited.</p>
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  
 
   return (
     <>
