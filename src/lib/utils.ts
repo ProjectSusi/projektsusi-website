@@ -88,8 +88,10 @@ export const generateMetaTags = (page: {
   path: string;
   locale: string;
 }): Record<string, string> => {
-  const baseUrl = 'https://projektsusui.ch'
-  const fullUrl = `${baseUrl}${page.path}`
+  const baseUrl = 'https://temora.ch'
+  // Normalize path to avoid duplicate URLs
+  const normalizedPath = page.path === '/' ? '' : page.path.replace(//$/, '')
+  const fullUrl = `${baseUrl}${normalizedPath}`
   
   return {
     title: page.title,
@@ -98,7 +100,7 @@ export const generateMetaTags = (page: {
     'og:description': page.description,
     'og:url': fullUrl,
     'og:type': 'website',
-    'og:locale': page.locale,
+    'og:locale': page.locale === 'de' ? 'de_CH' : 'en',
     'twitter:card': 'summary_large_image',
     'twitter:title': page.title,
     'twitter:description': page.description,

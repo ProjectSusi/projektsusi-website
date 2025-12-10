@@ -1,0 +1,7 @@
+# Cloudflare Pages Redirects
+# Force non-www canonical URL (301 permanent redirect)
+https://www.temora.ch/* https://temora.ch/:splat 301
+
+# Old domain redirect
+https://projektsusui.ch/* https://temora.ch/:splat 301
+https://www.projektsusui.ch/* https://temora.ch/:splat 301

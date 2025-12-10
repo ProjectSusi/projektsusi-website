@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       ? 'KI Chatbot für Dokumente | Schweizer RAG System | Temora AI'
       : 'AI Document Chatbot | Swiss RAG System | Temora AI'),
     description: pageProps.description || (locale === 'de'
-      ? 'Interner KI-Chatbot für schnelle Antworten aus Ihren Dokumenten. Schweizer Hosting, FADP-konform, Zero-Hallucination Technologie.'
+      ? 'KI-Chatbot für schnelle Antworten aus Ihren Dokumenten. Schweizer Hosting, FADP-konform, Zero-Hallucination.'
       : 'Internal AI chatbot for instant answers from your documents. Swiss hosting, FADP-compliant, zero-hallucination technology.'),
     path: router.asPath,
     locale,
@@ -71,7 +71,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         
         {/* Additional Meta Tags */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="language" content={locale === 'de' ? 'German' : 'English'} />
+        <meta name="language" content={locale === 'de' ? 'de' : 'en'} />
         <meta name="author" content="Temora AI GmbH" />
         <meta name="publisher" content="Temora AI GmbH" />
         <meta name="copyright" content="© 2024 Temora AI GmbH" />

@@ -83,7 +83,7 @@ export const PAGE_SEO = {
   home: {
     de: {
       title: 'KI Chatbot für Dokumente | Schweizer RAG System | Temora AI',
-      description: 'Interner KI-Chatbot für schnelle Antworten aus Ihren Dokumenten. Schweizer Hosting, FADP-konform, Zero-Hallucination Technologie. Für Vertrieb, HR, IT-Support.',
+      description: 'KI-Chatbot für schnelle Antworten aus Dokumenten. Schweizer Hosting, FADP-konform, Zero-Hallucination. Vertrieb, HR, IT-Support.',
       keywords: 'KI Chatbot für Dokumente, Dokumenten-KI Schweiz, RAG System, Wissensmanagement KI, interner Chatbot, Schweizer KI, FADP konform, Zero Hallucination',
       h1: 'KI-Chatbot für Ihre Unternehmensdokumente'
     },
