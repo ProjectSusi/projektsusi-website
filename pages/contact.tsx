@@ -217,7 +217,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ locale }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://temora.ch/contact" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://temora.ch/contact" />
 
         {/* Contact Page Structured Data */}
         <script

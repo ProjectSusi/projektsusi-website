@@ -102,7 +102,6 @@ const DemoPage: React.FC<DemoPageProps> = ({ locale }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://temora.ch/demo" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://temora.ch/demo" />
 
         {/* Demo Page Structured Data */}
         <script

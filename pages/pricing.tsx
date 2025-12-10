@@ -25,7 +25,6 @@ export default function PricingPage({ locale }: PricingPageProps) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://temora.ch/pricing" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://temora.ch/pricing" />
 
         {/* Structured data for pricing */}
         <script

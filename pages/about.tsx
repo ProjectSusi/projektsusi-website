@@ -156,7 +156,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ locale }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://temora.ch/about" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://temora.ch/about" />
 
         {/* About Page Structured Data */}
         <script

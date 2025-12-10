@@ -28,7 +28,6 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ locale }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://temora.ch/solutions" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://temora.ch/solutions" />
 
         {/* Use Cases Structured Data */}
         <script

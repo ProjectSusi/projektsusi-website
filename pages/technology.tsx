@@ -198,7 +198,6 @@ const TechnologyPage: React.FC<TechnologyPageProps> = ({ locale }) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://temora.ch/technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://temora.ch/technology" />
 
         {/* Technology Page Structured Data */}
         <script
