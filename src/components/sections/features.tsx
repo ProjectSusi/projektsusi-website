@@ -191,7 +191,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
                   {/* Feature Title */}
                   <p className="text-2xl font-bold text-gray-900 mb-4">
                     {feature.title}
-                  </h3>
+                  </p>
 
                   {/* Feature Description */}
                   <p className="text-gray-600 mb-6 text-lg leading-relaxed">
@@ -281,7 +281,7 @@ const Features: React.FC<FeaturesProps> = ({ locale }) => {
               {isGerman
                 ? "RAG System ausprobieren"
                 : "Try the RAG System"}
-            </h3>
+            </p>
 
             <p className="text-gray-600 mb-6 max-w-md">
               {isGerman

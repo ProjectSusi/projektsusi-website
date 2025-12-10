@@ -65,7 +65,7 @@ export default function CMSAdmin() {
     checkAuth()
   }, [])
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     const validPassword = process.env.NEXT_PUBLIC_CMS_PASSWORD
     if (!validPassword) {

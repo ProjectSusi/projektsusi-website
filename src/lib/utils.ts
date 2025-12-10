@@ -90,7 +90,7 @@ export const generateMetaTags = (page: {
 }): Record<string, string> => {
   const baseUrl = 'https://temora.ch'
   // Normalize path to avoid duplicate URLs
-  const normalizedPath = page.path === '/' ? '' : page.path.replace(//$/, '')
+  const normalizedPath = page.path === '/' ? '' : page.path.replace(/\/$/, '')
   const fullUrl = `${baseUrl}${normalizedPath}`
   
   return {
