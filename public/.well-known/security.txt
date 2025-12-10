@@ -1,0 +1,15 @@
+# Temora AI Security Contact
+# https://temora.ch/.well-known/security.txt
+
+Contact: mailto:security@temora.ch
+Contact: mailto:hello@temora.ch
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: de, en
+Canonical: https://temora.ch/.well-known/security.txt
+
+# Acknowledgments
+# We appreciate responsible disclosure of security vulnerabilities.
+# Please report issues to security@temora.ch
+
+# Policy
+Policy: https://temora.ch/security-policy
